@@ -15,7 +15,9 @@ class Storygraph_Book(models.Model):
 
 class Storygraph_Tag(models.Model):
     tag_name = models.CharField(max_length=100)
-    tag_type = models.CharField(max_length=100)  # e.g., genre, mood, theme
+
+    # MOOD,GENRE,PACE,OTHER
+    tag_type = models.CharField(max_length=100)
 
     def __str__(self):
         return f"{self.tag_name} ({self.tag_type})"
@@ -27,3 +29,19 @@ class Tagged_Book(models.Model):
 
     def __str__(self):
         return f"{self.book.title} tagged with {self.tag.tag_name}"
+    
+class Synonym(models.Model):
+    synonym = models.CharField(max_length=100)
+
+    # SELF,PYMULTIDICTIONARY
+    source = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.synonym} ({self.source})"
+    
+class Synonym_Relation(models.Model):
+    tag = models.ForeignKey(Storygraph_Tag, on_delete=models.CASCADE)
+    synonym = models.ForeignKey(Synonym, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.synonym.synonym} ({self.synonym.source}) is a synonym of {self.tag.tag_name}"
