@@ -1,0 +1,60 @@
+This text file is meant to give a short description of all the studies and sources that we are gathering,
+each one with a short explanation of its contents and relevance to the project.
+
+Studies:
+
+- "MUSIC MOOD DATASET CREATION BASED ON LAST.FM TAGS" by Erion Çano and Maurizio Morisio:
+    filename: music_mood_lastfm.pdf
+    content: using the last.fm music dataset, strive to create a complete mood categorisation based on
+                a popular mood taxonomy. Last.fm is particularly useful since users can use any tag for any kind
+                of music, and so there is an unstructred set of tags that can be filtered to a systematic classification.
+    relevance: has provided initial insight into mood taxonomies, as well as potential applications to music sentiment analysis.
+                also provides insight into the vast and varied last.fm tagging system, which is useful for our project.
+                Most common tag categories in last.fm are genre, opinion, mood, instruments, epoch, locations.
+
+
+- "A social tag-based dimensional model of emotions: Building cross-domain folksonomies" by Ignacio Fernández-Tobías, Iván Cantador, Laura Plaza:
+    filename: music_book_lexicon.pdf
+    content: by defining music and movies emotion folksonomies, and tracing them back to a model of core emotions, the authors are able to establish
+                a link between the two domains. This so-called cross-reference folksonomy might be useful for future recommendation systems.
+    relevance: it contains exactly part of what we need to do with our book-music tag mapping, to construct our own lexicon of book-music tags 
+                (taking into account the limited scope of this project)
+    (vocab) Folksonomy: the set of tags in a social tagging system, which is an unstructured environment in which users can associated any opinion tag 
+                    (including mood tags) to any item in their domain. It results in a massive but unstructured knowledge classification scheme that can have many uses. 
+                    for example, last.fm contains a folksonomy for tracks and other music items.
+                    Folksonomies contain mood tags that are domain-specific, and so part of the challenge is about translating between the limited tag domain that 
+                    storygraph offers, and the vast folksonomy of last.fm.
+
+- "Categorising Social Tags to Improve Folksonomy-based Recommendations" by Iván Cantador, Ioannis Konstas, Joemon M. Jose:
+    filename: categorising_social_tags.pdf
+    content: the authors proposed a different method of exploiting folksonomies for recommendation systems, taking into account the purpose of the tags.
+                filtering tags into purpose-oriented categories achieves a similar performance, while reducing work.
+    relevance: provides insight into different tag purposes, which might be useful when constructing our book-music tag mapping. for example, we will
+                need to treat mood tags and genre tags completely differently.
+
+- "Understanding Booksonomies: How and why are book taggers tagging?" by Aedín Guyot:
+    filename: understanding_booksonomies.pdf
+    content: by analising the tags of 50 of the most famous books in LibraryThing, the author tries to infer general categorisation models and patterns
+                for a booksonomy (based on user motivation for tagging a book), as well as other aspects like tag frequency and distribution.
+    relevance: by looking into how users tend to classify their favorite books, we might have a useful scheme by which to base our book tagging. It
+                is also useful when making a comparison into the much-different music folksonomies. Provides an example of a booksonomy (LibraryThing).
+                Most popular categories for book tagging in the LibraryThing booksonomy are genre/style, subject (of the book), and personal tags (those 
+                that are relevant only for the user that used the tag, likely for personal organisation). In non-fiction subject was the most popular category of tags.
+
+- "Inferring Semantic Facets of a Music Folksonomy with Wikipedia":
+    filename: music_folksonomies_wikipedia.pdf
+    content: the authors use the Last.fm folksonomy as a basis to infer semantic facets, and then classify tags into these facets, using Wikipedia as a knowledge base.
+    relevance: uses the "gold standard" on music tagging, four main facets that serve as ground truth: genres, instruments, locations & languages, and moods.
+
+
+Sources:
+
+https://books.org/blog/should-you-listen-to-music-while-reading/
+    content: in this blog post, the author ponders the pros and cons of listening to music while reading. they posit that, while every reader 
+                is different, there are generally preferred aspects for music that enhances the reading experiences, such as: no lyrics, low tempo,
+                low volume, instrumental music, ambient music, classical, jazz, etc.
+    relevance: it might be the beginning of research into the "listenability" of music while reading. in the future, we might want to consider 
+                other aspects like tempo, presence of lyrics, favor certain moods over others, etc.
+
+# Provides a list of songs for some categories of books (about love, about friendship...). Shows that there is a community interested in this topic
+https://windowstoworlds.wordpress.com/2020/07/31/music-to-listen-to-while-reading/

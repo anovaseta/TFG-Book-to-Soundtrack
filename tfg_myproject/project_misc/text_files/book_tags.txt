@@ -1,0 +1,23 @@
+Pace: slow-paced, medium-paced, fast-paced.
+Moods: emotional, reflective, adventurous, dark, mysterious, sad, funny, lighthearted, challenging, tense, inspiring, hopeful, relaxing.
+Genres: fiction, literary, classics, historical, contemporary, fantasy, young-adult, science fiction, nonfiction, thriller, dystopian,
+    magical realism, horror, memoir, romance.
+Age group: young adult, childrens.
+Era: literary?, classics, contemporary.
+Other: lgbtqia+.
+
+All genres on Storygraph: https://app.thestorygraph.com/reading_challenges/fdb9250e-5a65-4a3d-9dbf-b9c02b790d78
+
+For genre tags, we have the following emotion association:
+- romance: passion, longing, heartbreak, joy, desire, intimacy, affection, tenderness.
+- horror: fear, suspense, dread, anxiety, shock, terror, unease.
+- dystopian: fear, anxiety, resilience, hope, despair, tension.
+- thriller: suspense, excitement, surprise, anticipation, anxiety.
+- magical realism: wonder, curiosity, enchantment, mystery, surrealism.
+- science fiction: vastness, uncertainty, awe, wonder, curiosity.
+- young adult: hope, confusion, excitement, rebellion.
+- fantasy: wonder, adventure, excitement, curiosity, enchantment.
+- historical: nostalgia, reflection, admiration, melancholy.
+- crime: suspense, intrigue, tension, excitement.
+- mystery: suspense, curiosity, intrigue, surprise.
+

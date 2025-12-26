@@ -1,0 +1,9 @@
+Siguiente pasos: 
+  - Usar la database VAD para conseguir un pool más grande de palabras.
+  - Posiblemente usar la cuarta dimensión S del TFG de Javi.
+  - https://www.nltk.org/howto/wordnet.html para conseguir diccionario de sinónimos. usamos nltk para acceder a wordnet, el cual
+    posee lo que queremos. no sé si es la mejor opción, pero es una opción. thesaurus api?
+  - Diseñar una base de datos para cargar los datos?? Sí, y será así expansiva.
+  - Diagrama entidad-relación. OK 
+      https://app.moqups.com/ using moqups to do current diagram project.
+  - Crear directamente el proyecto de Django y así ya viene dada una ddbb de SQLite. OK

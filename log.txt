@@ -1,0 +1,61 @@
+Este log tiene como objetivo llevar un control del trabajo realizado en este TFG.
+
+Tue Sept 16: created scrape_books_db.py to scrape book info from StoryGraph. Managed to scrape 30 something books.
+
+Fri Sept 19: added error handling to skip books that cause errors. Books rejected are logged in rejects.txt. added 
+signal handlign to save progress with ctrl+c. total books in db_output_final are 297.
+
+Fri Sept 26: completed the 500 something books.
+
+Fri Oct 3: reunion with tutor. Siguientes pasos: hacer una recopilación de las tags obtenidas, investigar a fondo pylast e ir
+construyendo la base de datos híbrida.
+
+Thu Oct 9: created tags_summary.py to get a summary of all the tags obtained from StoryGraph. Installed pylast in the python environment.
+
+Tue Oct 14: downloaded a study on constructing a mood dataset using lastfm. learning about lastfm tags (only 16% approximately are mood tags). learning about
+sentiment analysis and classification that is relevant to this project. 
+
+Next steps: 
+    Use mood tags from books to see top artists/tracks in LastFM.
+    Figure out how to relate rest of book tags to music (research).
+    Research what book readers like listening to while reading.
+
+Mon Oct 20: got top 15 artists/albums/tracks for each 'Mood' tag (see: book_tags.txt) from StoryGraph using pylast. saved in sample_tag_search.json.
+Note: experiment with get_weekly_artists/albums/tracks to get varied results.
+
+Thu Oct 23: further research on music mood tags and sentiment analysis. trying to figure out a systematic way of relating them to book tags.
+book-music tag mapping is probably going to be a big part of the project. reading through a study that does a similar thing with movies and music.
+maybe useful to work based on book and music popular emotion-based taxonomies. 
+
+two approaches? 
+first one: "if you like this book, you might like this music". doesn't take into account that the music needs to be listenable while reading.
+second one: "try this playlist while you read this book". needs to take into account listenability factors (no lyrics, low tempo, ambient, etc).
+
+Next:
+
+- Investigate GEMS-9 as a valid mood-based taxonomy for music.
+- Read about booksonomies (two studies in email)
+
+Thu Oct 30: keep reading abput booksonomies (book folksonomies). research on how users like to categorise books. honestly also research music folksonomies???
+
+book folksonomies and taxonomies are subject-based (genre, style, topic), while music folksonomies are more mood-based. need to find a way to relate both.
+
+work with what we have: StoryGraph offers a limited taxonomy, but also mood-related tags which should be useful. last.fm offers a vast folksonomy with many tags,
+classified into general categories we might exploit: genre, mood, instruments, location?
+StoryGraph has a unique taxonomy though: music pace, genre, moods, era? No subject-based tagging because it is not a folksonomy (sad). Might LibraryThing be used in any way?
+We might need to start researching and getting creative with the tags. Do cross-referencing that is moreless justified and go from there.
+I need to write an email.
+
+Email was written.
+
+Thu Nov 20: i'm back, hopefully more frequently. hablé con alejandro y acordamos usar la database del tfg de un compañero, javi wang, para asociar palabras con "equivalentes 
+emocionales", en función de la clasificación de dicha database. necesitamos ahora asociar las palabras existentes de la taxonomía de storygraph con moods, tal que la database 
+pueda ser utilizada, y usar a partir de ahí la taxonomía de last.fm. solo tenía una hora y estaba gestionando cositas.
+
+Tue Dec 9: started ER diagram for the book db, used moqups. investigated wordnet as a possible source of synonyms. thesaurus api? pymultidictionary? pymultidictionary
+felt better.
+
+Mon Dec 15: created 'webapp' app. Created some models of what is going to be the final db. Used sqlite to investigate db. Figured out how to graph the finished db into a sort of er diagram, useful for later.
+Got stuck with how to populate the db.
+
+Tue Dec 23: created populate_catalog.py and other auxiliary scripts in project_misc, managed to populated the database with books and tags yay. un trabajazo. next steps: further populate synonyms, then lastfm.
