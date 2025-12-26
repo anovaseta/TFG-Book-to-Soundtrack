@@ -1,18 +1,24 @@
 # Name: populate_catalog.py
 # Date: Dec 23 2025
-# Description: popular la database entera que será la base de este proyecto. Consiste en varias fases
+# Description: popular la database entera que será la base de este proyecto. 
+# Requiere haber construido los modelos (el esquema de la database relacional) en models.py.
+# Consiste en varias fases:
+#   - Poblar los libros y sus tags the Storygraph
+#   - Poblar los sinónimos a partir de los 'mood' tags
+#   - Poblar artistas,álbumes,canciones a partir de todas las etiquetas en last.fm.
 
 import os
 import django
 import json
 from django.utils.html import strip_tags
+from PyMultiDictionary import MultiDictionary
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tfg_webpage.settings')
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 
-from webapp.models import Storygraph_Book, Storygraph_Tag, Tagged_Book
+from webapp.models import Storygraph_Book, Storygraph_Tag, Tagged_Book, Synonym, Synonym_Relation
 
 django.setup()
 
@@ -25,13 +31,13 @@ def populate_books_and_tags():
     book_file = open(book_path, "r")
     book_db = json.load(book_file)
 
-    tag_path = os.path.join("../project_misc", "tags_classification.json")
+    tag_path = os.path.join("../project_misc", "tags_classification.json") # load json assigning a label type to each tag
     tag_file = open(tag_path, "r")
     tag_db = json.load(tag_file)
 
     for bookk in book_db.values():
-        # Create or get the Storygraph_Book instance
-
+        
+        # Create all the storygraph book instances in the db
         description = strip_tags(bookk.get('description', ''))
         book, created = Storygraph_Book.objects.get_or_create(
             title=bookk.get('title', 'Unknown Title'),
@@ -48,7 +54,7 @@ def populate_books_and_tags():
         tags = bookk.get('tags', [])
         for tagg in tags:
 
-            # first, search for tag type
+            # first, associate each tag to its label type
             if tagg in tag_db["mood"]:
                 tag_type = "MOOD"
             elif tagg in tag_db["genre"]:
@@ -57,167 +63,71 @@ def populate_books_and_tags():
                 tag_type = "PACE"
             elif tagg in tag_db["other"]:
                 tag_type = "OTHER"
+            else:
+                print("Tag ", tagg, " does not have a type")
 
+            # create the tag instances as we shift through the books
             tag, created = Storygraph_Tag.objects.get_or_create(
                 tag_name=tagg,
                 tag_type=tag_type
             )
 
-            # Create Tagged_Book relationship
+            # create the relationship between books and its tags
             Tagged_Book.objects.get_or_create(
                 book=book,
                 tag=tag
             )
 
+    book_file.close()
+    tag_file.close()
 
-def populate():
-    populate_books_and_tags()
+
+def populate_synonyms_from_tags():
+    
+    # gets all the names of MOOD tags from the current database
+    all_tags = Storygraph_Tag.objects.all().filter(tag_type='MOOD')
+
+    # initalize PyMultiDictionary
+    dict = MultiDictionary()
+
+    # save synonyms only for MOOD-type tags for now
+    for obj_tag in all_tags:
+
+        tag = obj_tag.tag_name
+        syn_list = dict.synonym('en', tag)
+        syn_list = syn_list + [tag] # add tag itself 'as a synonym'
+
+        # print(tag, syn_list)
+        # print('----------------------------------------------------------------')
+
+        # create synonym instances, and their relationship to the tag
+        for syn in syn_list:
+            if syn == tag:
+                type = 'SELF' # add tag itself 'as a synonym'
+            else:
+                type = 'PYMULTIDICTIONARY'
+
+            # print(syn, type)
+
+            obj_syn, created = Synonym.objects.get_or_create(
+                synonym=syn,
+                source=type
+            )
+
+            Synonym_Relation.objects.get_or_create(
+                tag=obj_tag,
+                synonym=obj_syn
+            )
+
+
+
+
     
 
-
-
-
-# def populate():
-
-#     languages = [
-#         {'name': 'English'},
-#         {'name': 'Spanish'}
-#     ]
-
-#     genres = [
-#         {'name': 'Horror'},
-#         {'name': 'Thriller'},
-#         {'name': 'Science Fiction'},
-#         {'name': 'Historical'}
-#     ]
-
-#     authors = [
-#         {
-#             'first_name': 'Stephen',
-#             'last_name': 'King',
-#             'date_of_birth': '1947-09-21',
-#             'date_of_death': ''
-#         },
-#         {
-#             'first_name': 'Isaac',
-#             'last_name': 'Asimov',
-#             'date_of_birth': '1920-01-02',
-#             'date_of_death': '1992-05-06'
-#         }
-#     ]
-
-#     books = [
-#         {
-#             'title': 'The Shining',
-#             'summary': 'The Shining centers on the life of Jack Torrance, a struggling writer and recovering alcoholic who accepts a position as the off-season caretaker of the historic Overlook Hotel in the Colorado Rockies.',
-#             'author': {'first_name': authors[0]['first_name'], 'last_name': authors[0]['last_name']},
-#             'isbn': '9780345806789',
-#             'genre': [genres[0]['name'], genres[1]['name']],
-#             'language': languages[0]['name']
-#         },
-#         {
-#             'title': 'Cementerio de Animales',
-#             'summary': 'El Dr. Louis Creed descubre un cementerio extraño en un bosque cercano a su nueva casa. Cuando el gato de la familia muere atropellado, Louis lo entierra en ese inquietante cementerio y, lo que ocurre después, le aterra tanto como le fascina.',
-#             'author': {'first_name':authors[0]['first_name'], 'last_name':authors[0]['last_name']},
-#             'isbn': '9780450057694',
-#             'genre': genres[0]['name'],
-#             'language': languages[1]['name']
-#         },
-#         {
-#             'title': 'I Robot',
-#             'summary': 'I Robot is a fixup novel of science fiction short stories or essays by American writer Isaac Asimov. The stories originally appeared in the American magazines Super Science Stories and Astounding Science Fiction.',
-#             'author': {'first_name':authors[1]['first_name'], 'last_name':authors[1]['last_name']},
-#             'isbn': '9780194242363',
-#             'genre': [genres[2]['name']],
-#             'language': languages[0]['name']
-#         },
-#         {
-#             'title': 'Viaje Alucinante',
-#             'summary': 'En plena Guerra Fría un científico soviético, especialista en la miniaturización de objetos, deserta a los Estados Unidos. En la fuga es ayudado por un agente de la CIA, que no puede evitar un intento de asesinato en su contra, quedando el tránsfuga en estado de coma.',
-#             'author': {'first_name':authors[1]['first_name'], 'last_name':authors[1]['last_name']},
-#             'isbn': '9780553275728',
-#             'genre': [genres[2]['name']],
-#             'language': languages[1]['name']
-#         }
-#     ]
-
-#     book_instances = [
-#         {
-#         'book': books[0]['title'],
-#         'imprint': 'It was restored three years ago.',
-#         'due_back': '2021-10-10',
-#         'status': 'o'
-#         },
-#         {
-#         'book': books[0]['title'],
-#         'imprint': 'New purchase.',
-#         'due_back': '',
-#         'status': 'a'
-#         },
-#         {
-#         'book': books[1]['title'],
-#         'imprint': 'Nueva edición comprada hace dos años.',
-#         'due_back': '2021-10-20',
-#         'status': 'o'
-#         },
-#         {
-#         'book': books[2]['title'],
-#         'imprint': 'It comes from the main library.',
-#         'due_back': '',
-#         'status': 'a'
-#         },
-#         {
-#         'book': books[3]['title'],
-#         'imprint': 'It is a non-remunerated donation.',
-#         'due_back': '',
-#         'status': 'r'
-#         }
-#     ]
-
-
-#     for lan in languages:
-#         lang = Language(name=lan['name'])
-#         lang.save()
-
-#     for gen in genres:
-#         genr = Genre(name=gen['name'])
-#         genr.save()
-
-#     for aut in authors:
-#         if not aut['date_of_death']:
-#             dod = None
-#         else:
-#             dod = aut['date_of_death']
-#         auth = Author(first_name=aut['first_name'], last_name=aut['last_name'], date_of_birth=aut['date_of_birth'], date_of_death=dod)
-#         auth.save()
-
-#     for bo in books:
-#         t    = bo['title']
-#         s    = bo['summary']
-#         isb  = bo['isbn']
-#         l    = bo['language']
-#         g    = bo['genre']
-#         a_fn = bo['author']['first_name']
-#         a_ln = bo['author']['last_name']
-
-#         aut  = Author.objects.filter(first_name__contains=a_fn, last_name__contains=a_ln).first()
-#         lang = Language.objects.filter(name__contains=l).first()
-#         new_book = Book(title=t, isbn=isb, summary=s, author=aut, language=lang)
-#         new_book.save() # A first save is convenient to avoid Foreign Key problems with the N-M relation
-#         for ge in g:
-#             gen = Genre.objects.filter(name__contains=ge).first()
-#             new_book.genre.add(gen)
-#         new_book.save()
-
-#     for bi in book_instances:
-#         bok  = Book.objects.filter(title__contains=bi['book']).first()
-#         if not bi['due_back']:
-#             db = None
-#         else:
-#             db = bi['due_back']
-#         new_book_instance = BookInstance(book=bok, imprint=bi['imprint'], due_back=db, status=bi['status'])
-#         new_book_instance.save()
-
+def populate():
+    # populate_books_and_tags()
+    populate_synonyms_from_tags()
+    
 
 if __name__ == '__main__':
     print("Starting catalog population script...")
