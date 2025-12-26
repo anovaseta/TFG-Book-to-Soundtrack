@@ -1,9 +1,11 @@
 {
-    "mood": ["emotional", "reflective", "adventurous", "dark", "mysterious", "sad", "funny", "lighthearted", "challenging", "tense", "inspiring", "hopeful", "relaxing"], 
+    "mood": ["emotional", "reflective", "adventurous", "dark", "mysterious", "sad", "funny", "lighthearted", "challenging", "tense",
+        "inspiring", "hopeful", "relaxing", "informative"], 
     "pace": ["medium-paced", "slow-paced", "fast-paced"], 
-    "genre": ["fiction", "literary", "classics", "historical", "contemporary", "fantasy", "young-adult", "science fiction", "nonfiction", "thriller", "dystopian", 
-    "magical realism", "horror", "memoir", "romance"], 
-    "other": ["young adult", "mystery", "lgbtqia+", "middle grade", "childrens", "short stories", "informative", "poetry", "philosophy", "history", "play", "religion", 
-    "crime", "autobiography", "politics", "self help", "comics", "biography", "science", "speculative fiction", "race", "graphic novel", "food and drink", "sports", 
-    "health", "mathematics", "travel", "feminism", "reference"]
+    "genre": ["fiction", "literary", "classics", "historical", "contemporary", "fantasy", "young-adult", "science fiction", "nonfiction", 
+        "thriller", "dystopian", "magical realism", "horror", "memoir", "romance", "mystery", "short stories", "philosophy", "history", 
+        "crime", "poetry", "play", "autobiography", "politics", "self help", "comics", "biography", "science", "speculative fiction", 
+        "graphic novel", "mathematics"], 
+    "other": ["young adult", "lgbtqia+", "middle grade", "childrens", "religion", "race", "food and drink", "sports", 
+        "health", "travel", "feminism", "reference"]
 }
