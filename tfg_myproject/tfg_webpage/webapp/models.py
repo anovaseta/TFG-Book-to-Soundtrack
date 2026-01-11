@@ -30,6 +30,7 @@ class Tagged_Book(models.Model):
     def __str__(self):
         return f"{self.book.title} tagged with {self.tag.tag_name}"
     
+
 class Synonym(models.Model):
     synonym = models.CharField(max_length=100)
 
@@ -39,9 +40,24 @@ class Synonym(models.Model):
     def __str__(self):
         return f"{self.synonym} ({self.source})"
     
+
 class Synonym_Relation(models.Model):
     tag = models.ForeignKey(Storygraph_Tag, on_delete=models.CASCADE)
     synonym = models.ForeignKey(Synonym, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.synonym.synonym} ({self.synonym.source}) is a synonym of {self.tag.tag_name}"
+    
+
+class LastFM_Entity(models.Model):
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=100) # TRACK, ALBUM, ARTIST
+    def __str__(self):
+        return f"{self.artist} ({self.type})"
+    
+class Entity_Tag_Relation(models.Model):
+    entity = models.ForeignKey(LastFM_Entity, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Synonym, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.synonym.synonym} ({self.synonym.source}) is a synonym of {self.tag.tag_name}"
