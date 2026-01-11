@@ -61,3 +61,5 @@ Got stuck with how to populate the db.
 Tue Dec 23: created populate_catalog.py and other auxiliary scripts in project_misc, managed to populated the database with books and tags yay. un trabajazo. next steps: further populate synonyms, then lastfm.
 
 Fri Dec 26: added synonyms to the database. Next: investigate last.fm and figure out which calls to the api are gonna be used. then populate database.
+
+Sun Jan 11: db done!
