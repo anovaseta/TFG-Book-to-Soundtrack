@@ -8,9 +8,13 @@
 
 import pylast
 import json
+import os
 
 # In order to perform a write operation you need to authenticate yourself
-account_file = open("lastfm_api_account.json", "r")
+out_path = os.path.join("../", "sample_tag_search.json")
+account_path = os.path.join("../", "lastfm_api_account.json")
+
+account_file = open(account_path, "r")
 account_info = json.load(account_file)
 
 password_hash = pylast.md5(account_info["password"])
@@ -22,7 +26,7 @@ network = pylast.LastFMNetwork(
     password_hash=password_hash,
 )
 
-sample_tag_search = open("sample_tag_search.json", "w", encoding="utf-8")
+sample_tag_search = open(out_path, "w", encoding="utf-8")
 
 tags = ["emotional", "reflective", "adventurous", "dark", "mysterious", "sad",
         "funny", "lighthearted", "challenging", "tense", "inspiring",
@@ -30,13 +34,22 @@ tags = ["emotional", "reflective", "adventurous", "dark", "mysterious", "sad",
 
 sample_dict = dict()
 
+limit = 30
+
 for tag in tags:
     cur_tag = network.get_tag(tag).name
     sample_dict[cur_tag] = dict()
 
-    cur_tag_artists = network.get_tag(tag).get_top_artists(limit=15)
-    cur_tag_albums = network.get_tag(tag).get_top_albums(limit=15)
-    cur_tag_tracks = network.get_tag(tag).get_top_tracks(limit=15)
+    cur_tag_artists = network.get_tag(tag).get_top_artists(limit=limit)
+    cur_tag_albums = network.get_tag(tag).get_top_albums(limit=limit)
+    cur_tag_tracks = network.get_tag(tag).get_top_tracks(limit=limit)
+
+    # tt = network.get_tag(tag)
+    
+    # methods_list = [method for method in dir(tt) if callable(getattr(tt, method)) and not method.startswith("__")]
+
+    # print("Methods using dir(): ", methods_list)
+
     artist_list = []
     albums_list = []
     tracks_list = []
