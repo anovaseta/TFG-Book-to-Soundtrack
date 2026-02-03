@@ -23,9 +23,9 @@ def signal_handler(sig, frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
-db = open("book_db.txt", "r")
-rejects = open("rejects.txt", "w+")
-db_output = open("db_output.json", "w")
+db = open("./text_files/book_db.txt", "r")
+rejects = open("./text_files/rejects.txt", "w+")
+db_output = open("./json_files/db_output.json", "w")
 book_db = dict()
 
 
@@ -34,6 +34,7 @@ for line in db:
         cur_line = line[:-1]  # remove newline character
         book = Book()
         str_result = book.search(cur_line)
+        print(str_result)
         result = json.loads(str_result)
         book_id = result[0]["book_id"]  # obtain book_id from the result
 
