@@ -63,3 +63,28 @@ Tue Dec 23: created populate_catalog.py and other auxiliary scripts in project_m
 Fri Dec 26: added synonyms to the database. Next: investigate last.fm and figure out which calls to the api are gonna be used. then populate database.
 
 Sun Jan 11: db done!
+
+Thu Jan 15: 
+
+flujo: ISBN book --------> mood tags ----------> lista de sinónimos ---------> artistas/álbumes/canciones de lastfm ----------> lista completa de canciones
+
+cambios en database inicial:
+    OK experimentar con el limit value de get_top_x
+    OK poner identificativos de entidades de lastfm --> pylast parece no incluir ids, solo los nombres, nos tendremos que fiar.
+    OK implementar sacar canciones a partir de artistas/álbumes (random search de canciones de artista/álbum)
+    hacer algo con las tags de género/other
+
+probar un flujo rudimentario de la aplicacion con un fichero python conectado a ddbb: 
+    flujo: ISBN book --------> mood tags ----------> lista de sinónimos ---------> artistas/álbumes/canciones de lastfm ----------> lista completa de canciones
+    ir haciendo un tracking de cosas: qué entidades vienen de tags originales, qué canciones son originales o vienen de un artista/álbum, cuántas veces sale cada canción
+
+pensar pesos: cosas que adquieran más o menos importancia en la curación de la lista final.
+pace + spotify: filtrado final?
+
+10539
+2522
+3078
+4939
+
+Tue Feb 02 (2026): sooo entity.item is what has all other relevant callables (like get tracks off of an album). got familiar with each entity 
+(tag, artist, album, track) and found the relevant callables and methods that point to other entities.
