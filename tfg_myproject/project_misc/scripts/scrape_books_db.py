@@ -32,6 +32,7 @@ book_db = dict()
 for line in db:
     try:
         cur_line = line[:-1]  # remove newline character
+        print("\n", cur_line)  # check progress
         book = Book()
         str_result = book.search(cur_line)
         print(str_result)
@@ -42,7 +43,6 @@ for line in db:
         book_info = json.loads(book.book_info(book_id))
         book_info.pop("warnings", None)
         book_db[cur_line] = book_info  # load information of book into dict
-        print("\n", cur_line)  # check progress
 
     except Exception as e:
         print("\nError with:", cur_line)

@@ -88,3 +88,5 @@ pace + spotify: filtrado final?
 
 Tue Feb 02 (2026): sooo entity.item is what has all other relevant callables (like get tracks off of an album). got familiar with each entity 
 (tag, artist, album, track) and found the relevant callables and methods that point to other entities.
+motherfucker storygraph_api is not working anymore. Tried web scraping using requests by python, bs, scrapy, selenium, all of them unsuccessful.
+used google colab notebook as well with bs and API, got same error results.
