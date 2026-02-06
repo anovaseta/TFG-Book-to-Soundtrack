@@ -86,7 +86,12 @@ pace + spotify: filtrado final?
 3078
 4939
 
-Tue Feb 02 (2026): sooo entity.item is what has all other relevant callables (like get tracks off of an album). got familiar with each entity 
+Tue Feb 03 (2026): sooo entity.item is what has all other relevant callables (like get tracks off of an album). got familiar with each entity 
 (tag, artist, album, track) and found the relevant callables and methods that point to other entities.
 motherfucker storygraph_api is not working anymore. Tried web scraping using requests by python, bs, scrapy, selenium, all of them unsuccessful.
 used google colab notebook as well with bs and API, got same error results.
+
+Fri Feb 06: he conseguido hacer un scraping exitoso. he terminado el script que, en esencia, hace el scraping que hacía la API antes. estoy orgullose.
+Siguientes pasos:
+    - Recopilar más libros en una database por si el scraping vuelve a fallar.
+    - Continuar con el caso de uso inicial. Ver cómo obtener la lista completa de canciones.
