@@ -5,6 +5,10 @@
 from storygraph_api import Book
 id = "28386517-30cc-4ce4-bb90-9336c370a9dd"
 book = Book()
-# result = book.book_info(id)
+try:
+    result = book.book_info(id)
+    print(result)
+except Exception as e:
+    print(e)
 result = book.search("The Orphan Master's Son, Adam Johnson")
 print(result)

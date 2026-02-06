@@ -1,3 +1,7 @@
+# Name: selenium-test.py
+# Date: 03 Feb 2026
+# Description: un script para intentar hacer web scraping de storygraph CON SELENIUM
+
 # import the required library
 from selenium import webdriver
 from selenium.webdriver.common.by import By

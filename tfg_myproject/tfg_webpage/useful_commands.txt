@@ -1,3 +1,6 @@
 python3 manage.py graph_models > {my output as a .dot file}
 ## Do not use -a since it will include all apps, in settings.py you have put that only the webapp app should de shown ##
 ## No need to use -g since we only want to grapth a single app ##
+
+https://www.scraperapi.com/web-scraping/best-practices/
+best practices for web scraping
