@@ -7,9 +7,11 @@ import sys
 import django
 import json
 import pylast
-from django.utils.html import strip_tags
-from PyMultiDictionary import MultiDictionary
-from storygraph_api import Book
+from PyMultiDictionary import MultiDictionary, DICT_SYNONYMCOM, DICT_THESAURUS
+
+sys.path.append('/home/manuloseta/TFG/tfg_myproject')
+from project_misc.scripts.storygraph_scraper import book_info, book_search
+from project_misc.scripts.dictionary_scraper import thesaurus
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tfg_webpage.settings')
 from django.core.wsgi import get_wsgi_application
@@ -27,7 +29,56 @@ if __name__ == '__main__':
     
     # Step 1: retrieve book info from ISBN from StoryGraph
 
-    book = Book()
     isbn = sys.argv[1]
     print(isbn)
-    print(book.book_info(isbn))
+
+    book_id = book_search(isbn)
+    book_data = book_info(book_id)
+
+    print([b for b in book_data.items() if b[0] != 'description'])
+
+    proceed = False
+    while(proceed == False):
+        ans = input(f'\nProceed? [y/n]\n')
+        if ans == 'y' or ans == 'Y':
+            proceed = True
+        elif ans == 'n' or ans == 'N':
+            print('System exit')
+            sys.exit(0)
+        else:
+            print('invalid answer')
+
+
+    # Step 2: compile an initial list of keywords associated to the book
+
+    tags = book_data['tags']
+    print(tags)
+
+    dict = MultiDictionary(*tags)
+    dict.set_words_lang('en')
+
+    keywords = []
+
+    for tag in tags:
+        syn_list = dict.get_synonyms(DICT_SYNONYMCOM)
+        keywords += [s for s in syn_list] + [tag]
+    
+    print(keywords)
+
+    proceed = False
+    while(proceed == False):
+        ans = input(f'\nProceed? [y/n]\n')
+        if ans == 'y' or ans == 'Y':
+            proceed = True
+        elif ans == 'n' or ans == 'N':
+            print('System exit')
+            sys.exit(0)
+        else:
+            print('invalid answer')
+
+
+
+
+
+
+
