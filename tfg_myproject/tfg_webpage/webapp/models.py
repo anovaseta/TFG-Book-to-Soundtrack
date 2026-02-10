@@ -8,6 +8,7 @@ class Storygraph_Book(models.Model):
     first_published_year = models.IntegerField()
     average_rating = models.FloatField()
     description = models.TextField(default='')
+    cover_source = models.URLField(default='')
 
     def __str__(self):
         return f"{self.title} by {self.authors}"
