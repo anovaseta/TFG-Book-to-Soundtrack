@@ -95,3 +95,5 @@ Fri Feb 06: he conseguido hacer un scraping exitoso. he terminado el script que,
 Siguientes pasos:
     - Recopilar más libros en una database por si el scraping vuelve a fallar.
     - Continuar con el caso de uso inicial. Ver cómo obtener la lista completa de canciones.
+
+Tue Feb 10: 168 more books added to dabatase, this time using my own scraper. 670 books total. pymultidictionary also failed BUT i dont care anymore i will be scraping everything.
