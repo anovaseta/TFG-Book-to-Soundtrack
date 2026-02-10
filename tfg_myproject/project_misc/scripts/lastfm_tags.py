@@ -1,10 +1,7 @@
 # Name: lastfm_tags.py
 # Date: ?? Sept/Oct 2025
 # Description: un script muy inicial para probar la funcionalidad de las
-# tags de lastfm
-# Input: lastfm_api_account.json con las credenciales de la API de lastfm
-# Output: sample_tag_search.json con los top artists, albums y tracks de cada 
-# tag en la lista predefinida
+# tags de lastfm. Usado en feb 2026 para investigar los métodos de pylast
 
 import pylast
 import json

@@ -117,19 +117,21 @@ def book_info(id):
             'cover-source': img
         }
     
-    dir_name = f'{title}|{authors[0]}'
-    try:
-        os.mkdir(f'books/{dir_name}')
-    except OSError as e:
-        print(e)
+    # dir_name = f'{title}|{authors[0]}'
+    # try:
+    #     os.mkdir(f'books/{dir_name}')
+    # except OSError as e:
+    #     print(e)
     
-    f = open(f'./books/{dir_name}/{dir_name}.html', 'w+')
-    f.write(soup.prettify())
-    f.close()
+    # f = open(f'./books/{dir_name}/{dir_name}.html', 'w+')
+    # f.write(soup.prettify())
+    # f.close()
 
-    f = open(f'./books/{dir_name}/{dir_name}.json', 'w+')
-    f.write(json.dumps(data, indent=4))
-    f.close
+    # f = open(f'./books/{dir_name}/{dir_name}.json', 'w+')
+    # f.write(json.dumps(data, indent=4))
+    # f.close
+
+    return data
 
 if __name__ == '__main__':
 
@@ -139,5 +141,7 @@ if __name__ == '__main__':
     id = book_search(ISBN=isbn)
     print(id)
 
-    book_info(id)
+    data = book_info(id)
+
+    print(data)
     
