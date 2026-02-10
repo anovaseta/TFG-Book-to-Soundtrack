@@ -10,7 +10,6 @@
 import os
 import django
 import json
-import pylast
 from django.utils.html import strip_tags
 from PyMultiDictionary import MultiDictionary
 
@@ -28,31 +27,34 @@ def populate_books_and_tags():
     # Load the scraped book database from Storygraph
 
     # book_db = pm.load_json("db_output_final.json")
-    book_path = os.path.join("../project_misc", "db_output_final.json") # load the ddbb in json format
+    book_path = os.path.join("../project_misc", "json_files/db_output.json") # load the ddbb in json format
     book_file = open(book_path, "r")
     book_db = json.load(book_file)
 
-    tag_path = os.path.join("../project_misc", "tags_classification.json") # load json assigning a label type to each tag
+    tag_path = os.path.join("../project_misc", "json_files/tags_classification.json") # load json assigning a label type to each tag
     tag_file = open(tag_path, "r")
     tag_db = json.load(tag_file)
 
     for bookk in book_db.values():
+
+        title, tags = bookk.get('title', ''), bookk.get('tags', [])
+
+        print(f'Processing book {title} with tags {tags}')
         
         # Create all the storygraph book instances in the db
-        description = strip_tags(bookk.get('description', ''))
         book, created = Storygraph_Book.objects.get_or_create(
-            title=bookk.get('title', 'Unknown Title'),
+            title=title,
             defaults={
                 'authors': bookk.get('authors', []),
-                'pages': bookk.get('pages', 0),
-                'first_published_year': bookk.get('first_pub', 0),
-                'average_rating': bookk.get('average_rating', 0.0),
-                'description': description
+                'pages': bookk.get('pages', -1),
+                'first_published_year': bookk.get('first_pub', -1),
+                'average_rating': bookk.get('average_rating', -1),
+                'description': bookk.get('description', ''),
+                'cover_source': bookk.get('cover-source', '')
             }
         )
 
         # Process tags
-        tags = bookk.get('tags', [])
         for tagg in tags:
 
             # first, associate each tag to its label type
@@ -188,9 +190,9 @@ def populate_lastfm_from_synonyms():
         
 
 def populate():
-    # populate_books_and_tags()
+    populate_books_and_tags()
     # populate_synonyms_from_tags()
-    populate_lastfm_from_synonyms()
+    # populate_lastfm_from_synonyms()
     
 
 if __name__ == '__main__':
