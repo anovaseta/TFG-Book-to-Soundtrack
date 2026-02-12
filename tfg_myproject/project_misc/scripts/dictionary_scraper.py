@@ -4,14 +4,19 @@
 
 import sys
 import os
+import re
 import json
 from bs4 import BeautifulSoup as bs
 import re
 from urllib.request import Request, urlopen
 
-def thesaurus(word):
+def thesaurus(word, include='strongest'):
 
-    url = f'https://www.thesaurus.com/browse/{word}'
+    assert include in ['weak', 'strong', 'strongest'], '\'include\' parameter must have one of these values: [\'weak\', \'strong\', \'strongest\']'
+
+
+    word = re.sub(" ", "%20", word) # useful parsing for urls
+    url = f'https://www.thesaurus.com/browse/{word}?noredirect=true'
 
     # request for the webpage of a certain book
     req = Request(
@@ -26,13 +31,46 @@ def thesaurus(word):
     )
 
     response = urlopen(req)
-    print(response.status, response.reason)
+    # print(response.status, response.reason)
 
     soup = bs(response.read(), 'html.parser')
 
-    file = open("x.html", "w+")
-    file.write(soup.prettify())
+    s_list = []
+
+    synonyms = soup.find('section', class_="synonym-antonym-panel")
+
+    # always include strongest synonyms
+    strongest = synonyms.find_all('a', class_="word-chip synonym-antonym-word-chip similarity-100")
+    for a in strongest:
+        parsed_text = re.sub(r"  +", "", a.text)
+        parsed_text = re.sub("\n", "", parsed_text)
+        s_list.append(parsed_text)
+
+    if include == 'strong':
+        strong = synonyms.find_all('a', class_="word-chip synonym-antonym-word-chip similarity-50")
+        for a in strong:
+            parsed_text = re.sub(r"  +", "", a.text)
+            parsed_text = re.sub("\n", "", parsed_text)
+            s_list.append(parsed_text)
+
+    if include == 'weak':
+        strong = synonyms.find_all('a', class_="word-chip synonym-antonym-word-chip similarity-50")
+        for a in strong:
+            parsed_text = re.sub(r"  +", "", a.text)
+            parsed_text = re.sub("\n", "", parsed_text)
+            s_list.append(parsed_text)
+
+        weak = synonyms.find_all('a', class_="word-chip synonym-antonym-word-chip similarity-10")
+        for a in weak:
+            parsed_text = re.sub(r"  +", "", a.text)
+            parsed_text = re.sub("\n", "", parsed_text)
+            s_list.append(parsed_text)
+
+    # file = open("x.html", "w+")
+    # file.write(soup.prettify())
+
+    return [s_list, len(s_list)]
 
 if __name__ == '__main__':
     word = sys.argv[1]
-    thesaurus(word)
+    print(thesaurus(word))
