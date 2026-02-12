@@ -97,3 +97,5 @@ Siguientes pasos:
     - Continuar con el caso de uso inicial. Ver cómo obtener la lista completa de canciones.
 
 Tue Feb 10: 168 more books added to dabatase, this time using my own scraper. 670 books total. pymultidictionary also failed BUT i dont care anymore i will be scraping everything.
+
+Thu Feb 12: terminé el flow inicial, hasta una lista final de canciones y sus artistas. Me creé una cuenta premium de spotify. ahora toca bichear en la api.
