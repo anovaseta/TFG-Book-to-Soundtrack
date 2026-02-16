@@ -8,6 +8,7 @@ import django
 import json
 import pylast
 import random, secrets
+import requests
 
 sys.path.append('/home/manuloseta/TFG/tfg_myproject')
 from project_misc.scripts.storygraph_scraper import book_info, book_search
@@ -108,48 +109,48 @@ if __name__ == '__main__':
         password_hash=password_hash,
     )
 
+    kw = keywords[9]
 
-    for kw in [keywords[9]]:
-        print(kw)
+    print(kw)
 
-        tracks = [(tr.item.get_name(), tr.item.get_artist().get_name()) for tr in network.get_tag(kw).get_top_tracks(limit=15)]
-        print(tracks)
+    tracks = [(tr.item.get_name(), tr.item.get_artist().get_name()) for tr in network.get_tag(kw).get_top_tracks(limit=15)]
+    print(tracks)
 
-        albums = network.get_tag(kw).get_top_albums(limit=15)
-        print(f'{len(albums)} albums recovered')
-        a_tracks = []
-        for album in albums:
-            print(album.item.get_name())
-            var = []
-            random.seed(secrets.randbits(12))
-            n = random.randint(0,2)
-            print(f'{n} tracks to gather')
-            if n == 0:
-                continue
-            try:
-                var = random.sample(album.item.get_tracks(), n)
-            except Exception as e:
-                print(e)
-            a_tracks += [(tr.get_name(), tr.get_artist().get_name()) for tr in var]
-        print(a_tracks)
+    albums = network.get_tag(kw).get_top_albums(limit=15)
+    print(f'{len(albums)} albums recovered')
+    a_tracks = []
+    for album in albums:
+        print(album.item.get_name())
+        var = []
+        random.seed(secrets.randbits(12))
+        n = random.randint(0,2)
+        print(f'{n} tracks to gather')
+        if n == 0:
+            continue
+        try:
+            var = random.sample(album.item.get_tracks(), n)
+        except Exception as e:
+            print(e)
+        a_tracks += [(tr.get_name(), tr.get_artist().get_name()) for tr in var]
+    print(a_tracks)
 
-        artists = network.get_tag(kw).get_top_artists(limit=15)
-        print(f'{len(artists)} artists recovered')
-        ar_tracks = []
-        for ar in artists:
-            print(ar.item.get_name())
-            var = []
-            random.seed(secrets.randbits(12))
-            n = random.randint(0,2)
-            print(f'{n} tracks to gather')
-            if n == 0:
-                continue
-            try:
-                var = random.sample(ar.item.get_top_tracks(limit=30), n)
-            except Exception as e:
-                print(e)
-            ar_tracks += [(tr.item.get_name(), tr.item.get_artist().get_name()) for tr in var]
-        print(ar_tracks)
+    artists = network.get_tag(kw).get_top_artists(limit=15)
+    print(f'{len(artists)} artists recovered')
+    ar_tracks = []
+    for ar in artists:
+        print(ar.item.get_name())
+        var = []
+        random.seed(secrets.randbits(12))
+        n = random.randint(0,2)
+        print(f'{n} tracks to gather')
+        if n == 0:
+            continue
+        try:
+            var = random.sample(ar.item.get_top_tracks(limit=30), n)
+        except Exception as e:
+            print(e)
+        ar_tracks += [(tr.item.get_name(), tr.item.get_artist().get_name()) for tr in var]
+    print(ar_tracks)
 
     final_list = tracks + a_tracks + ar_tracks
     random.shuffle(final_list)
@@ -159,7 +160,30 @@ if __name__ == '__main__':
 
     # Step 5: Connect to Spotify API to create the playlist
 
+    spotify_file = open(os.path.join("../", "project_misc/json_files/spotify_api_account.json"), "r")
+    spotify_credentials = json.load(spotify_file)
+    access_token = spotify_credentials["access_token"]
+    print(access_token)
     
+    api = "https://api.spotify.com/v1"
+
+    playlist_url = f'{api}/me/playlists'
+    headers = {"Authorization": "Bearer {}".format(access_token),
+               "Content-Type": "application/json"}
+    data = {
+        "name": f"Playlist for keyword {kw}",
+        "description": "Playlist created to test project",
+        "public": True
+    }
+
+    print(headers)
+
+    response = requests.post(playlist_url, headers=headers, data=data)
+
+    print(response.status_code, response.reason)
+
+    print(f"\n{response.raw}")
+
 
     
 

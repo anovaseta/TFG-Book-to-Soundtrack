@@ -99,3 +99,6 @@ Siguientes pasos:
 Tue Feb 10: 168 more books added to dabatase, this time using my own scraper. 670 books total. pymultidictionary also failed BUT i dont care anymore i will be scraping everything.
 
 Thu Feb 12: terminé el flow inicial, hasta una lista final de canciones y sus artistas. Me creé una cuenta premium de spotify. ahora toca bichear en la api.
+
+Mon Feb 16: bichear en la api de spotify supongo. está difícil la cosa y hay que tener montada nuestra app de una forma un tanto completa para que este último paso 
+de generar la playlist funcione. creo que ya estamos entrando en temas de montar la página web.
