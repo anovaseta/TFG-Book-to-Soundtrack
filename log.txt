@@ -102,3 +102,12 @@ Thu Feb 12: terminé el flow inicial, hasta una lista final de canciones y sus a
 
 Mon Feb 16: bichear en la api de spotify supongo. está difícil la cosa y hay que tener montada nuestra app de una forma un tanto completa para que este último paso 
 de generar la playlist funcione. creo que ya estamos entrando en temas de montar la página web.
+
+Mon Feb 23: 
+Siguientes pasos:
+    - desarrollar 'modo offline': sinónimos y entidades de lastfm.
+    - mejorar el algoritmo para que envuelva TODOS los sinónimos disponibles para lastfm
+    - otras formas de explotar las tags iniciales?
+    - incluir la api de spotify con search y get track, metodos que funcionan con una autenticacion sencilla
+    - escuchar playlists rudimentarias. ir pensando en qué preguntas conformarían el estudio final.
+    - empezar con la pagina web como tal. maquetas del diseño?
