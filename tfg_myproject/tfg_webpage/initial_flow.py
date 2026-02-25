@@ -83,7 +83,7 @@ if __name__ == '__main__':
     for mood in dict_t['MOOD']:
         try:
             print(mood)
-            syn_list = thesaurus(mood)
+            syn_list = thesaurus(mood, 'strongest')
         except Exception as e:
             print(e)
 
@@ -109,56 +109,73 @@ if __name__ == '__main__':
         password_hash=password_hash,
     )
 
-    kw = keywords[9]
+    final_dict = {'TRACK': {'n': 0, 'items': []}, 'FROM_ARTISTS': {'n': 0, 'items': []}, 'FROM_ALBUMS': {'n': 0, 'items': []}}
+    final_list = []
 
-    print(kw)
+    for kw in keywords:
+        # use lastfm api to get tracks, albums and artists from each keyword 'kw'
+        # questionable findings, no matches with spotify later
 
-    tracks = [(tr.item.get_name(), tr.item.get_artist().get_name()) for tr in network.get_tag(kw).get_top_tracks(limit=15)]
-    print(tracks)
+        print(kw)
 
-    albums = network.get_tag(kw).get_top_albums(limit=15)
-    print(f'{len(albums)} albums recovered')
-    a_tracks = []
-    for album in albums:
-        print(album.item.get_name())
-        var = []
-        random.seed(secrets.randbits(12))
-        n = random.randint(0,2)
-        print(f'{n} tracks to gather')
-        if n == 0:
-            continue
-        try:
-            var = random.sample(album.item.get_tracks(), n)
-        except Exception as e:
-            print(e)
-        a_tracks += [(tr.get_name(), tr.get_artist().get_name()) for tr in var]
-    print(a_tracks)
+        tracks = [(tr.item.get_name(), tr.item.get_artist().get_name(), kw) for tr in network.get_tag(kw).get_top_tracks(limit=3)]
+        final_dict['TRACK']['n'] += len(tracks)
+        final_dict['TRACK']['items'] += tracks
+        # print(tracks)
 
-    artists = network.get_tag(kw).get_top_artists(limit=15)
-    print(f'{len(artists)} artists recovered')
-    ar_tracks = []
-    for ar in artists:
-        print(ar.item.get_name())
-        var = []
-        random.seed(secrets.randbits(12))
-        n = random.randint(0,2)
-        print(f'{n} tracks to gather')
-        if n == 0:
-            continue
-        try:
-            var = random.sample(ar.item.get_top_tracks(limit=30), n)
-        except Exception as e:
-            print(e)
-        ar_tracks += [(tr.item.get_name(), tr.item.get_artist().get_name()) for tr in var]
-    print(ar_tracks)
+        albums = network.get_tag(kw).get_top_albums(limit=3)
+        print(f'{len(albums)} albums recovered')
+        a_tracks = []
+        for album in albums:
+            # print(album.item.get_name())
+            var = []
+            random.seed(secrets.randbits(12))
+            n = random.randint(0,3)
+            print(f'{n} tracks to gather')
+            if n == 0:
+                continue
+            try:
+                tracks = album.item.get_tracks()
+                if len(tracks) < n:
+                    n = len(tracks)
+                var = random.sample(tracks, n)
+            except Exception as e:
+                print(e)
+            a_tracks += [(tr.get_name(), tr.get_artist().get_name(), kw) for tr in var]
+        # print(a_tracks)
+        final_dict['FROM_ALBUMS']['n'] += len(a_tracks)
+        final_dict['FROM_ALBUMS']['items'] += a_tracks
 
-    final_list = tracks + a_tracks + ar_tracks
-    random.shuffle(final_list)
+        artists = network.get_tag(kw).get_top_artists(limit=3)
+        print(f'{len(artists)} artists recovered')
+        ar_tracks = []
+        for ar in artists:
+            # print(ar.item.get_name())
+            var = []
+            random.seed(secrets.randbits(12))
+            n = random.randint(0,3)
+            # print(f'{n} tracks to gather')
+            if n == 0:
+                continue
+            try:
+                var = random.sample(ar.item.get_top_tracks(limit=5), n)
+            except Exception as e:
+                print(e)
+            ar_tracks += [(tr.item.get_name(), tr.item.get_artist().get_name(), kw) for tr in var]
+        # print(ar_tracks)
+        final_dict['FROM_ARTISTS']['n'] += len(ar_tracks)
+        final_dict['FROM_ARTISTS']['items'] += ar_tracks
+
+    print(final_dict)
+    for l in final_dict.values():
+        final_list += l['items']
     print(final_list)
+    random.shuffle(final_list)
+    print(f'{len(final_list)} tracks gathered in total')
 
     inputt()
 
-    # Step 5: Connect to Spotify API to create the playlist
+    # Step 5: Connect to Spotify API to get the song URLs
 
     spotify_file = open(os.path.join("../", "project_misc/json_files/spotify_api_account.json"), "r")
     spotify_credentials = json.load(spotify_file)
@@ -166,23 +183,43 @@ if __name__ == '__main__':
     print(access_token)
     
     api = "https://api.spotify.com/v1"
-
-    playlist_url = f'{api}/me/playlists'
+    search_url = f'{api}/search'
     headers = {"Authorization": "Bearer {}".format(access_token),
                "Content-Type": "application/json"}
-    data = {
-        "name": f"Playlist for keyword {kw}",
-        "description": "Playlist created to test project",
-        "public": True
-    }
 
-    print(headers)
+    # for (track, artist) in final_list[0:9]:
+    #     print("--------------------")
+    #     print(f"({track},{artist})")
+    #     search_query = f'{search_url}?q={track}%2520track%3A{track}%2520artist%3A{artist}&type=track&limit=1'
+    #     response = requests.get(search_query, headers=headers)
+    #     print(response.status_code, response.reason)
+    #     items = response.json()
 
-    response = requests.post(playlist_url, headers=headers, data=data)
+    #     id_spotify = items['tracks']['items'][0]['id']
+    #     url_spotify = items['tracks']['items'][0]['external_urls']['spotify']
+    #     track_name = items['tracks']['items'][0]['name']
+    #     print(f'Track ID: {id_spotify}\nTrack URL: {url_spotify}\nTrack name: {track_name}')
 
-    print(response.status_code, response.reason)
+    found_tracks = []
 
-    print(f"\n{response.raw}")
+    for (track, artist, _) in final_list[:9]:
+        # para ver si hace una buena search
+        print("--------------------")
+        print(f"({track},{artist})")
+        search_query = f'{search_url}?q={track}%2520track%3A{track}%2520artist%3A{artist}&type=track&market=US&limit=10'
+        response = requests.get(search_query, headers=headers)
+        print(response.status_code, response.reason)
+        items = response.json()
+
+        for item in items['tracks']['items']:
+            track_name = item['name']
+            artists = []
+            for artist in item['artists']:
+                artists.append(artist['name'])
+            url_spotify = item['external_urls']['spotify']
+            print(f'Track name: {track_name}    Artists: {artists}    Track URL: {url_spotify}')
+
+
 
 
     

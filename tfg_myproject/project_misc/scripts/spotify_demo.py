@@ -1,11 +1,10 @@
-import sys
-import os
-import re
+# Name: spotify_demo.py
+# Date: 25 Feb 2026
+# Description: un script para renovar credenciales para usar la API de Spotify
+
 import json
-from bs4 import BeautifulSoup as bs
-import re
-from urllib.request import Request, urlopen
 import requests
+import time
 
 def client_credentials():
     # unscoped authorization
@@ -37,9 +36,13 @@ def client_credentials():
     spotify_file.write(json.dumps(spotify_credentials, indent=4))
     spotify_file.close()
 
-    print(f"Token expires in {expires_in} seconds")
+    t = time.time() + expires_in # get current time and add expires_in
+    tt = time.strftime("%H:%M:%S", time.localtime(t)) # convert time to a readable format
+    print(f"Token expires in {tt}")
+    
 
 def authorization_code_flow():
+    # scoped authorization (NOT USED)
 
     spotify_file = open("json_files/spotify_api_account.json", "r+")
     spotify_credentials = json.load(spotify_file)
@@ -60,8 +63,8 @@ def authorization_code_flow():
 
 
 if __name__ == '__main__':
-    # client_credentials()
-    authorization_code_flow()
+    client_credentials()
+    # authorization_code_flow()
 
     
 
