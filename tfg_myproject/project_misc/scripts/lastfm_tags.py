@@ -10,7 +10,7 @@ import os
 # In order to perform a write operation you need to authenticate yourself
 
 # out_path = os.path.join("../", "sample_tag_search.json")
-account_path = os.path.join("../", "lastfm_api_account.json")
+account_path = os.path.join("json_files", "lastfm_api_account.json")
 
 account_file = open(account_path, "r")
 account_info = json.load(account_file)
@@ -62,6 +62,7 @@ for tag in tags:
     for artist in cur_tag_artists:
         print(artist.item)
         print([method for method in dir(artist.item) if not method.startswith("__")])
+        print(artist.item.info)
         print("top tags:", [t.item.get_name() for t in artist.item.get_top_tags()])
         print("top tracks:", [tr.item.get_name() for tr in artist.item.get_top_tracks(limit=10)])
         print("top albums:", [tr.item.get_name() for tr in artist.item.get_top_albums(limit=10)])
@@ -85,7 +86,7 @@ for tag in tags:
     # sample_dict[cur_tag]["top_albums"] = albums_list
 
     for track in cur_tag_tracks:
-        print(track.item)
+        print(track.item.info)
         print(track.item.get_title(), "|", track.item.get_artist(), "|", track.item.get_album().get_title())
         print([method for method in dir(track.item) if not method.startswith("__")])
         print("top tags:", [t.item.get_name() for t in track.item.get_top_tags()])

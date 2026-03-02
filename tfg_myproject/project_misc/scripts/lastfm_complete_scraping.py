@@ -9,9 +9,9 @@ import pylast
 import json
 import os
 
-in_path = os.path.join("../", "synonym_list.json")
-out_path = os.path.join("../", "complete_tag_search.json")
-account_path = os.path.join("../", "lastfm_api_account.json")
+in_path = os.path.join("json_files", "synonym_list.json")
+out_path = os.path.join("json_files", "complete_tag_search.json")
+account_path = os.path.join("json_files", "lastfm_api_account.json")
 
 in_file = open(in_path, "r")
 out_file = open(out_path, "w", encoding="utf-8")
