@@ -80,6 +80,10 @@ def book_info(id):
     for a in auths:
         authors.append(a.text)
     # print(authors)
+
+    # parse unique book identifier
+    book_id = soup.find('div', class_='hidden edition-info mt-3').find_all('p')[0].text.split(' ')[2]
+    # print(book_id)
     
     # parsing pages and first year of publication
     pages_first_pub = soup.find('p', class_='text-sm font-light text-darkestGrey dark:text-grey mt-1').find_all('span')
@@ -108,15 +112,64 @@ def book_info(id):
     img = soup.find('div', class_='book-cover').find('img').get_attribute_list('src')[0]
     # print(img)
 
+    reviews_url = f'{url}/community_reviews'
+
+    # request for the COMMUNITY REVIEWS of a certain book
+    req = Request(
+        url=reviews_url, 
+        headers={"authority": "www.google.com",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "accept-language": "en-US,en;q=0.9",
+        "referer": "www.google.com",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",}
+        # headers={"authority": "www.google.com",
+        # "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",}
+    )
+
+    response = urlopen(req)
+    print(response.status, response.reason)
+    # print(response.getheaders())
+
+    webpage = urlopen(req).read()
+    soup_two = bs(webpage, 'html.parser')
+    # print(soup.prettify())
+
+    # parsing number of reviews
+    n_reviews = soup_two.find('span', class_='text-sm font-medium mt-0.5 ml-[5px] text-darkerGrey dark:text-darkGrey').find('a').text.split(' ')[0]
+    # print(n_reviews)
+
+    # parse tag percentages
+    tag_percent = {}
+    div_tags_percent = soup_two.find('div', class_='mt-2 moods-list-reviews text-sm flex flex-wrap gap-x-4 gap-y-1.5').find_all('p')
+    # print(div_tags)
+    for tag in div_tags_percent:
+        # print(tag)
+        l = tag.text.split(' ')
+        tag_percent[l[0][:-1]] = l[1][:-1]
+    # print(tag_percent)
+
+    # parse mood percentages
+    pace_percent = {}
+    div_pace_percent = soup_two.find('div', class_='w-full').find_all('span', class_ = 'sr-only')
+    for pace in div_pace_percent:
+        l = pace.text.split(' ')
+        pace_percent[l[4]] = l[0][:-1]
+    # print(pace_percent)
+
     data = {
-            'title':title,
-            'authors': authors,
-            'pages': pages,
-            'first_pub': first_pub,
-            'tags': tags,
-            'description': description,
-            'cover-source': img
-        }
+        'storygraph_id': id,
+        'title': title,
+        'authors': authors,
+        'ISBN/UID': book_id,
+        'pages': pages,
+        'first_pub': first_pub,
+        'tags': tags,
+        'description': description,
+        'cover-source': img,
+        'n_reviews': n_reviews,
+        'tag_percent': tag_percent,
+        'pace_percent': pace_percent,
+    }
     
     # dir_name = f'{title}|{authors[0]}'
     # try:
@@ -126,6 +179,10 @@ def book_info(id):
     
     # f = open(f'./books/{dir_name}/{dir_name}.html', 'w+')
     # f.write(soup.prettify())
+    # f.close()
+
+    # f = open(f'./books/{dir_name}/{dir_name}-community-reviews.html', 'w+')
+    # f.write(soup_two.prettify())
     # f.close()
 
     # f = open(f'./books/{dir_name}/{dir_name}.json', 'w+')
