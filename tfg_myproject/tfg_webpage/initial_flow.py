@@ -9,6 +9,7 @@ import json
 import pylast
 import random, secrets
 import requests
+import re
 
 sys.path.append('/home/manuloseta/TFG/tfg_myproject')
 from project_misc.scripts.storygraph_scraper import book_info, book_search
@@ -169,8 +170,8 @@ if __name__ == '__main__':
     print(final_dict)
     for l in final_dict.values():
         final_list += l['items']
-    print(final_list)
     random.shuffle(final_list)
+    print(final_list)
     print(f'{len(final_list)} tracks gathered in total')
 
     inputt()
@@ -202,22 +203,46 @@ if __name__ == '__main__':
 
     found_tracks = []
 
-    for (track, artist, _) in final_list[:9]:
+    for (track, artist, keyword) in [final_list[0]]:
         # para ver si hace una buena search
+        match_found = False
         print("--------------------")
-        print(f"({track},{artist})")
-        search_query = f'{search_url}?q={track}%2520track%3A{track}%2520artist%3A{artist}&type=track&market=US&limit=10'
-        response = requests.get(search_query, headers=headers)
-        print(response.status_code, response.reason)
-        items = response.json()
+        print(f"({track}, {artist}, {keyword})")
+        parsed_track = re.sub(' ', '%20', track)
+        parsed_artist = re.sub(' ', '%20', artist)
+        search_query = f'{search_url}?q={parsed_track}%20{parsed_artist}%20track%3A{parsed_track}%20artist%3A{parsed_artist}&type=track&market=US&limit=10'
+        print(search_query)
+        try:
+            response = requests.get(search_query, headers=headers)
+            print(response.status_code, response.reason)
+            items = response.json()
 
-        for item in items['tracks']['items']:
-            track_name = item['name']
-            artists = []
-            for artist in item['artists']:
-                artists.append(artist['name'])
-            url_spotify = item['external_urls']['spotify']
-            print(f'Track name: {track_name}    Artists: {artists}    Track URL: {url_spotify}')
+            for item in items['tracks']['items']:
+                track_name = item['name']
+                artists = []
+                for a in item['artists']:
+                    artists.append(a['name'])
+                url_spotify = item['external_urls']['spotify']
+                # print(f'Track name: {track_name}    Artists: {artists}    Track URL: {url_spotify}')
+                # print(f'{track} == {track_name}')
+                # print(track_name == track)
+                # print(f'{artist} in {artists}')
+                # print(artist in artists)
+                if track == track_name:
+                    if artist in artists:
+                        print('Match found!')
+                        print(f'Track name: {track_name}    Artists: {artists}    Track URL: {url_spotify}')
+                        match_found = True
+                        found_tracks.append((track, artist, keyword))
+                        break
+            if not match_found:
+                print('Match not found..')
+        except Exception as e:
+            print(e)
+            print(response.headers)
+            print(response.raw)
+
+    print(f'{len(found_tracks)} tracks found out of {len(final_list)}')
 
 
 
