@@ -106,12 +106,17 @@ de generar la playlist funcione. creo que ya estamos entrando en temas de montar
 Mon Feb 23: 
 Siguientes pasos:
     - desarrollar 'modo offline': sinónimos y entidades de lastfm.
-    - mejorar el algoritmo para que envuelva TODOS los sinónimos disponibles para lastfm
+    -OK- mejorar el algoritmo para que envuelva TODOS los sinónimos disponibles para lastfm
     - otras formas de explotar las tags iniciales?
-    - incluir la api de spotify con search y get track, metodos que funcionan con una autenticacion sencilla
+    -OK- incluir la api de spotify con search y get track, metodos que funcionan con una autenticacion sencilla
     - escuchar playlists rudimentarias. ir pensando en qué preguntas conformarían el estudio final.
     - empezar con la pagina web como tal. maquetas del diseño?
 
 Wed Feb 25: a ello. SPOTIFY EMBEDS para cuando esté haciendo la página web. bro qué tracks estoy consiguiendo de lastfm cuidado con eso porque en spotify no se encuentran.
 en cuanto tenga el flow 'online' mas o menos averiguado creo que puedo empezar la bbdd 'desde cero'.
 me dio un meltdown hoy y creo que despues de unas horas llegué a mi límite :(. Lo siguiente seria ver, de las 200 o así canciones extraídas del flow actual de lastfm, cuántas son detectadas por spotify.
+
+Tue Mar 03: seguimos con el flow de canciones. Rate limit exceeded, wait 22 hours jopetas. Entre 50% y 60% de tracks recuperadas correctamente por Spotify. Tener todo esto en cuenta.
+Centrarse masivamente en el 'modo offline', necesitamos tener en cuenta el rate limit de Spotify.
+MODO OFFLINE: pensar en cada paso de la BBDD, fortalecer enlaces.
+Acabo de actualizar la recopilación de información de cada libro de Storygraph. Toca ir actualizando la BBDD la verdad.
