@@ -188,14 +188,18 @@ def populate_lastfm_from_synonyms():
         counter += 1
 
         
-
 def populate():
-    populate_books_and_tags()
+    # populate_books_and_tags()
     # populate_synonyms_from_tags()
     # populate_lastfm_from_synonyms()
+    erase_db()
+
+
+def erase_db():
+    Storygraph_Book.objects.all().delete()
     
 
 if __name__ == '__main__':
-    print("Starting catalog population script...")
+    print("Starting catalog script...")
     populate()
     print("Done!")

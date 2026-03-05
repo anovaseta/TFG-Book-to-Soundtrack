@@ -2,13 +2,17 @@ from django.db import models
 
 
 class Storygraph_Book(models.Model):
+    storygraph_id = models.CharField(max_length=300)
     title = models.CharField(max_length=300)
     authors = models.JSONField(max_length=300)
+    isbn_uid = models.CharField(max_length=300)
     pages = models.IntegerField()
     first_published_year = models.IntegerField()
-    average_rating = models.FloatField()
     description = models.TextField(default='')
     cover_source = models.URLField(default='')
+    number_of_reviews = models.CharField(max_length=300)
+    tag_percentages = models.JSONField(max_length=3000)
+    pace_percentages = models.JSONField(max_length=3000)
 
     def __str__(self):
         return f"{self.title} by {self.authors}"
