@@ -31,6 +31,7 @@ class Storygraph_Tag(models.Model):
 class Tagged_Book(models.Model):
     book = models.ForeignKey(Storygraph_Book, on_delete=models.CASCADE)
     tag = models.ForeignKey(Storygraph_Tag, on_delete=models.CASCADE)
+    weight = models.FloatField()
 
     def __str__(self):
         return f"{self.book.title} tagged with {self.tag.tag_name}"
