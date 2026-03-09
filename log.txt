@@ -123,3 +123,6 @@ Acabo de actualizar la recopilación de información de cada libro de Storygraph
 
 Thu Mar 05: la biblioteca está dando problemas. ya estoy dade de alta uwu. BBDD a ello!! Acabo de bajar la información actualizada de 644 libros. Asimismo, he calculado la media ponderada
 de todas las etiquetas con un 25% o más. Debería dar más variedad en los resultados. Falta subirlo a la BBDD como tal. Siguientes pasos: repensar los sinónimos.
+
+Mon Mar 09: BBDD a ello! save all_books_extended.json in case db fails for some reason. saved all thesaurus synonyms on a json file, next step would be introduce it on the db. then,
+finally, do the lastfm+spotify search CAREFUL WITH THE RATE LIMIT.
