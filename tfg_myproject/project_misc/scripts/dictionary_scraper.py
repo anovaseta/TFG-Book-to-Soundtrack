@@ -9,6 +9,26 @@ import json
 from bs4 import BeautifulSoup as bs
 import re
 from urllib.request import Request, urlopen
+import django
+
+sys.path.append('/home/manuloseta/TFG/tfg_myproject/tfg_webpage')
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tfg_webpage.settings')
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
+django.setup()  
+
+from webapp.models import Storygraph_Tag
+
+def get_thesaurus_synonyms(word_list, include='strongest'):
+    syn_dict = {}
+    assert include in ['weak', 'strong', 'strongest'], '\'include\' parameter must have one of these values: [\'weak\', \'strong\', \'strongest\']'
+    for word in word_list:
+        syn_dict[word] = thesaurus(word,include)
+
+    return (syn_dict, include)
+
 
 def thesaurus(word, include='strongest'):
 
@@ -72,5 +92,34 @@ def thesaurus(word, include='strongest'):
     return [s_list, len(s_list)]
 
 if __name__ == '__main__':
-    word = sys.argv[1]
-    print(thesaurus(word))
+    # this main gathers tag synonyms from thesaurus, grouped by strength index (weak, strong or strongest)
+
+    final_dict = {}
+    word_list = [t.tag_name for t in Storygraph_Tag.objects.filter(tag_type='MOOD')]
+
+    syn_dict,syn_type = get_thesaurus_synonyms(word_list, 'strongest')
+    # print(syn_dict, syn_type)
+
+    for syn,list in syn_dict.items():
+        # print(syn, list)
+        final_dict[syn] = {'strongest': None}
+        final_dict[syn]['strongest'] = list[0]
+
+    syn_dict,syn_type = get_thesaurus_synonyms(word_list, 'strong')
+
+    for syn,list in syn_dict.items():
+        # print(syn, list)
+        final_dict[syn]['strong'] = [w for w in list[0] if w not in final_dict[syn]['strongest']]
+
+    syn_dict,syn_type = get_thesaurus_synonyms(word_list, 'weak')
+
+    for syn,list in syn_dict.items():
+        # print(syn, list)
+        final_dict[syn]['weak'] = [w for w in list[0] if w not in final_dict[syn]['strongest'] and w not in final_dict[syn]['strong']]
+
+    f = open('json_files/all_thesaurus_synonyms.json', 'w')
+    f.write(json.dumps(final_dict, indent=4))
+    f.close()
+    # print(final_dict['challenging'])
+
+
