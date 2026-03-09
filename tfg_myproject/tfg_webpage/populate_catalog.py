@@ -27,7 +27,7 @@ def populate_books_and_tags():
     # Load the scraped book database from Storygraph
 
     # book_db = pm.load_json("db_output_final.json")
-    book_path = os.path.join("../project_misc", "json_files/db_output.json") # load the ddbb in json format
+    book_path = os.path.join("../project_misc", "json_files/all_books_extended.json") # load the ddbb in json format
     book_file = open(book_path, "r")
     book_db = json.load(book_file)
 
@@ -35,52 +35,72 @@ def populate_books_and_tags():
     tag_file = open(tag_path, "r")
     tag_db = json.load(tag_file)
 
+    count = 0
+
+    failed_books = []
+
     for bookk in book_db.values():
+        try:
+            if bookk is None:
+                continue
 
-        title, tags = bookk.get('title', ''), bookk.get('tags', [])
+            count += 1
+            title, tags = bookk['title'], bookk['tag_weights']
 
-        print(f'Processing book {title} with tags {tags}')
-        
-        # Create all the storygraph book instances in the db
-        book, created = Storygraph_Book.objects.get_or_create(
-            title=title,
-            defaults={
-                'authors': bookk.get('authors', []),
-                'pages': bookk.get('pages', -1),
-                'first_published_year': bookk.get('first_pub', -1),
-                'average_rating': bookk.get('average_rating', -1),
-                'description': bookk.get('description', ''),
-                'cover_source': bookk.get('cover-source', '')
-            }
-        )
-
-        # Process tags
-        for tagg in tags:
-
-            # first, associate each tag to its label type
-            if tagg in tag_db["mood"]:
-                tag_type = "MOOD"
-            elif tagg in tag_db["genre"]:
-                tag_type = "GENRE"
-            elif tagg in tag_db["pace"]:
-                tag_type = "PACE"
-            elif tagg in tag_db["other"]:
-                tag_type = "OTHER"
-            else:
-                print("Tag ", tagg, " does not have a type")
-
-            # create the tag instances as we shift through the books
-            tag, created = Storygraph_Tag.objects.get_or_create(
-                tag_name=tagg,
-                tag_type=tag_type
+            print(f'Processing book {title}')
+            
+            # Create all the storygraph book instances in the db
+            book, created = Storygraph_Book.objects.get_or_create(
+                title=title,
+                defaults={
+                    'authors': bookk.get('authors', []),
+                    'pages': bookk.get('pages', -1),
+                    'first_published_year': bookk.get('first_pub', -1),
+                    'description': bookk.get('description', ''),
+                    'cover_source': bookk.get('cover-source', ''),
+                    'storygraph_id': bookk.get('storygraph_id'),
+                    'isbn_uid': bookk.get('ISBN/UID'),
+                    'number_of_reviews': bookk.get('n_reviews'),
+                    'tag_percentages': bookk.get('tag_percent'),
+                    'pace_percentages': bookk.get('pace_percent'),
+                    'tag_weights': bookk.get('tag_weights')
+                }
             )
 
-            # create the relationship between books and its tags
-            Tagged_Book.objects.get_or_create(
-                book=book,
-                tag=tag
-            )
+            # Process tags
+            for tagg in tags:
+                print(tagg[0], tagg[1])
 
+                # first, associate each tag to its label type
+                if tagg[0] in tag_db["mood"]:
+                    tag_type = "MOOD"
+                elif tagg in tag_db["genre"]:
+                    tag_type = "GENRE"
+                elif tagg in tag_db["pace"]:
+                    tag_type = "PACE"
+                elif tagg in tag_db["other"]:
+                    tag_type = "OTHER"
+                else:
+                    print("Tag ", tagg[0], " does not have a type")
+
+                # create the tag instances as we shift through the books
+                tag, created = Storygraph_Tag.objects.get_or_create(
+                    tag_name=tagg[0],
+                    tag_type=tag_type
+                )
+                print(created)
+
+                # create the relationship between books and its tags
+                Tagged_Book.objects.get_or_create(
+                    book=book,
+                    tag=tag,
+                    weight=tagg[1]
+                )
+        except Exception as e:
+            print(e)
+            failed_books.append(bookk['title'])
+
+    print(failed_books)
     book_file.close()
     tag_file.close()
 
@@ -190,13 +210,14 @@ def populate_lastfm_from_synonyms():
         
 def populate():
     # populate_books_and_tags()
-    # populate_synonyms_from_tags()
+    populate_synonyms_from_tags()
     # populate_lastfm_from_synonyms()
-    erase_db()
+    # erase_db()
 
 
 def erase_db():
-    Storygraph_Book.objects.all().delete()
+    Synonym.objects.all().delete()
+    Synonym_Relation.objects.all().delete()
     
 
 if __name__ == '__main__':
