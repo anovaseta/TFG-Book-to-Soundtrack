@@ -2,17 +2,18 @@ from django.db import models
 
 
 class Storygraph_Book(models.Model):
-    storygraph_id = models.CharField(max_length=300)
+    storygraph_id = models.CharField(max_length=300, default='')
     title = models.CharField(max_length=300)
-    authors = models.JSONField(max_length=300)
-    isbn_uid = models.CharField(max_length=300)
+    authors = models.JSONField(max_length=500)
+    isbn_uid = models.CharField(max_length=300, default='')
     pages = models.IntegerField()
     first_published_year = models.IntegerField()
     description = models.TextField(default='')
     cover_source = models.URLField(default='')
-    number_of_reviews = models.CharField(max_length=300)
-    tag_percentages = models.JSONField(max_length=3000)
-    pace_percentages = models.JSONField(max_length=3000)
+    number_of_reviews = models.CharField(max_length=300, default='')
+    tag_percentages = models.JSONField(max_length=3000, default=dict)
+    pace_percentages = models.JSONField(max_length=3000, default=dict)
+    tag_weights = models.JSONField(max_length=3000, default=dict)
 
     def __str__(self):
         return f"{self.title} by {self.authors}"
@@ -31,7 +32,7 @@ class Storygraph_Tag(models.Model):
 class Tagged_Book(models.Model):
     book = models.ForeignKey(Storygraph_Book, on_delete=models.CASCADE)
     tag = models.ForeignKey(Storygraph_Tag, on_delete=models.CASCADE)
-    weight = models.FloatField()
+    weight = models.FloatField(default=-1)
 
     def __str__(self):
         return f"{self.book.title} tagged with {self.tag.tag_name}"
