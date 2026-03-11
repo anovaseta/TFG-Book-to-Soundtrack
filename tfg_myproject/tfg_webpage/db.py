@@ -18,15 +18,16 @@ django.setup()
 
 def get_synonyms():
     # get synonyms from db
-    all_synonyms = [syn.synonym for syn in Synonym.objects.all()]
+    all_synonyms = [(syn.synonym, syn.source) for syn in Synonym.objects.all()]
 
-    # LastFM authentication credentials
     file_path = os.path.join("../", "project_misc/json_files/synonym_list.json")
     syn_file = open(file_path, "w")
     
     syn_file.write(json.dumps(all_synonyms, indent=4, ensure_ascii=False))
 
     syn_file.close()
+
+    print(len(all_synonyms))
 
 
 def get_storygraph_books():
@@ -54,6 +55,13 @@ def get_json_thesaurus_synonyms():
     f = open('db_json/all_thesaurus_synonyms.json', 'r')
     all_syn = json.loads(f.read())
     return all_syn
+
+
+def get_json_lastfm_entities():
+    f = open('db_json/all_lastfm_entities.json', 'r')
+    all_entities = json.loads(f.read())
+    return all_entities
+
         
 
 if __name__ == '__main__':
@@ -63,5 +71,11 @@ if __name__ == '__main__':
     # all_books = get_json_books()
     # print(list(all_books.values())[0])
 
-    all_syn = get_json_thesaurus_synonyms()
-    print(all_syn.keys())
+    # get_synonyms()
+    all_entities = get_json_lastfm_entities()
+    counter = 0
+    for tt in all_entities.values():
+        for tracks in tt.values():
+            counter += len(tracks['items'])
+
+    print(counter)

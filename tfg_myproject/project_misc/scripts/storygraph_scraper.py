@@ -83,6 +83,7 @@ def book_search(search_list, check_if_found = False):
     else:
         return id
 
+
 def book_info(id):
     # loveless_alice = 'https://app.thestorygraph.com/books/7e661a0d-089c-4eff-ba80-15cb6a54c05d'
     # convenience_sayaka = 'https://app.thestorygraph.com/books/62a675b0-1825-402c-9bd7-faa0667ccf91'
@@ -289,11 +290,9 @@ def find_list_of_books(file_path):
     file.write(json.dumps(book_data, indent=4))
     file.close()
 
+
 if __name__ == '__main__':
     # find_single_book(sys.argv[1:])
 
     file_path = os.path.join("json_files", "all_books_05-03-26.json")
     find_list_of_books(file_path=file_path)
-
-    
-    

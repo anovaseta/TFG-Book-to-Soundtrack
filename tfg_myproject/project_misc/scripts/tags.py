@@ -37,29 +37,29 @@ def tag_reload():
     f = open("json_files/all_books_extended.json", 'r+')
     all_books_extended = json.loads(f.read())
     print(len(all_books_extended))
-    # for b in all_books_extended.values():
-    #     extended_tags = []
-    #     total = 0
-    #     weighted_tags = []
-    #     try: 
-    #         # print('-----------------------------------------------')
-    #         # print(b['title'])
-    #         # tags = b['tags']
-    #         tag_percentage = b['tag_percent']
-    #         # print(tag_percentage)
-    #         for t, p in b['tag_percent'].items():
-    #             if int(p) > 25:
-    #                 total += int(p)
-    #                 extended_tags.append((t,p))
-    #         # print(extended_tags)
-    #         for t, p in extended_tags:
-    #             weighted_tags.append((t,float(int(p)/total)))
-    #         # print(weighted_tags) 
-    #         b['tag_weights'] = weighted_tags
-    #     except Exception as e:
-    #         print(e)
-    # f.write(json.dumps(all_books_extended, indent=4))
-    # f.close()
+    for b in all_books_extended.values():
+        extended_tags = []
+        total = 0
+        weighted_tags = []
+        try: 
+            # print('-----------------------------------------------')
+            # print(b['title'])
+            # tags = b['tags']
+            tag_percentage = b['tag_percent']
+            # print(tag_percentage)
+            for t, p in b['tag_percent'].items():
+                if int(p) > 25:
+                    total += int(p)
+                    extended_tags.append((t,p))
+            # print(extended_tags)
+            for t, p in extended_tags:
+                weighted_tags.append((t,float(int(p)/total)))
+            # print(weighted_tags) 
+            b['tag_weights'] = weighted_tags
+        except Exception as e:
+            print(e)
+    f.write(json.dumps(all_books_extended, indent=4))
+    f.close()
 
 
 

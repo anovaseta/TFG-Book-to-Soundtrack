@@ -11,6 +11,7 @@
 import os
 import django
 import json
+import sys
 from django.utils.html import strip_tags
 from PyMultiDictionary import MultiDictionary
 
@@ -145,7 +146,7 @@ def populate_synonyms_from_tags():
                 print(syn,affinity,obj_tag,src)
 
 
-def populate_lastfm_from_synonyms():
+def populate_music_from_synonyms():
 
     in_path = os.path.join("../", "project_misc", "complete_tag_search.json")
     in_file = open(in_path, "r")
@@ -202,9 +203,10 @@ def populate_lastfm_from_synonyms():
         
 def populate():
     # populate_books_and_tags()
-    populate_synonyms_from_tags()
-    # populate_lastfm_from_synonyms()
+    # populate_synonyms_from_tags()
+    # populate_music_from_synonyms()
     # erase_db()
+    sys.exit(0)
 
 
 def erase_db():
