@@ -128,7 +128,8 @@ Mon Mar 09: BBDD a ello! save all_books_extended.json in case db fails for some 
 finally, do the lastfm+spotify search CAREFUL WITH THE RATE LIMIT.
 
 Wed Mar 11: sinónimos metidos. ahora toca recopilar el pool más grande de tracks que se pueda, prestando atención al rate limit de spotify. CON LIMIT=1000 llevamos 50 tags de las 441 en lastfm.
-Una vez completemos eso (lo dejaré trabajando, porque los scripts ya están refinados, es solamente cuestión de dejarlo trabajar) habrá que filtrar cada una de ellas por spotify (miedo)
+Una vez completemos eso (lo dejaré trabajando, porque los scripts ya están refinados, es solamente cuestión de dejarlo trabajar) habrá que filtrar cada una de ellas por spotify (miedo).
+ultimo update: 200 tags.
 
 incomplete entities:
     OK emotional - albums
