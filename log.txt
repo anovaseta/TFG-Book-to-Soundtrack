@@ -126,3 +126,5 @@ de todas las etiquetas con un 25% o más. Debería dar más variedad en los resu
 
 Mon Mar 09: BBDD a ello! save all_books_extended.json in case db fails for some reason. saved all thesaurus synonyms on a json file, next step would be introduce it on the db. then,
 finally, do the lastfm+spotify search CAREFUL WITH THE RATE LIMIT.
+
+Wed Mar 11: sinónimos metidos. ahora toca recopilar el pool más grande de tracks que se pueda, prestando atención al rate limit es spotify.
