@@ -41,7 +41,7 @@ class Tagged_Book(models.Model):
 class Synonym(models.Model):
     synonym = models.CharField(max_length=100)
 
-    # SELF,PYMULTIDICTIONARY
+    # SELF,THESAURUS
     source = models.CharField(max_length=100)
 
     def __str__(self):
@@ -51,20 +51,21 @@ class Synonym(models.Model):
 class Synonym_Relation(models.Model):
     tag = models.ForeignKey(Storygraph_Tag, on_delete=models.CASCADE)
     synonym = models.ForeignKey(Synonym, on_delete=models.CASCADE)
+    affinity = models.CharField(max_length=50, default='') # [weak, strong, strongest]
 
     def __str__(self):
-        return f"{self.synonym.synonym} ({self.synonym.source}) is a synonym of {self.tag.tag_name}"
+        return f"{self.synonym.synonym} ({self.synonym.source}) is a synonym of {self.tag.tag_name} with affinity {self.affinity}"
     
 
 class LastFM_Entity(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=100) # TRACK, ALBUM, ARTIST
     def __str__(self):
-        return f"{self.artist} ({self.type})"
+        return f"{self.name} ({self.type})"
     
 class Entity_Tag_Relation(models.Model):
     entity = models.ForeignKey(LastFM_Entity, on_delete=models.CASCADE)
     tag = models.ForeignKey(Synonym, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.synonym.synonym} ({self.synonym.source}) is a synonym of {self.tag.tag_name}"
+        return f"{self.entity.name} is related to {self.tag.synonym}"
