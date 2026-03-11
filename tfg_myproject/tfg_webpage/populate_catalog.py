@@ -2,6 +2,7 @@
 # Date: Dec 23 2025
 # Description: popular la database entera que será la base de este proyecto. 
 # Requiere haber construido los modelos (el esquema de la database relacional) en models.py.
+# Requiere tener la información ya recopilada, normalmente en formato json.
 # Consiste en varias fases:
 #   - Poblar los libros y sus tags the Storygraph
 #   - Poblar los sinónimos a partir de los 'mood' tags
@@ -27,7 +28,7 @@ def populate_books_and_tags():
     # Load the scraped book database from Storygraph
 
     # book_db = pm.load_json("db_output_final.json")
-    book_path = os.path.join("../project_misc", "json_files/all_books_extended.json") # load the ddbb in json format
+    book_path = os.path.join("db_json", "all_books_extended.json") # load the ddbb in json format
     book_file = open(book_path, "r")
     book_db = json.load(book_file)
 
@@ -106,51 +107,42 @@ def populate_books_and_tags():
 
 
 def populate_synonyms_from_tags():
-    
-    # gets all the names of MOOD tags from the current database
-    all_tags = Storygraph_Tag.objects.all().filter(tag_type='MOOD')
 
-    # initalize PyMultiDictionary
-    dict = MultiDictionary()
-
-    syn_total_list = []
+    f = open("db_json/all_thesaurus_synonyms.json", "r")
+    all_synonyms = json.loads(f.read())
 
     # save synonyms only for MOOD-type tags for now
-    for obj_tag in all_tags:
+    for tag,syn_dict in all_synonyms.items():
 
-        tag = obj_tag.tag_name
-        syn_list = dict.synonym('en', tag)
-        syn_list = syn_list + [tag] # add tag itself 'as a synonym'
-        print("processing", tag, "with", len(syn_list), "synonyms")
+        print('----------------------------------------------------------------')
 
-        # print(tag, syn_list)
-        # print('----------------------------------------------------------------')
+        print("processing", tag, "tag")
 
-        # create synonym instances, and their relationship to the tag
-        for syn in syn_list:
-            if syn in syn_total_list:
-                continue
+        obj_tag = Storygraph_Tag.objects.get(tag_name=tag)
+        # print(obj_tag, type(obj_tag))
 
-            if syn == tag:
-                type = 'SELF' # add tag itself 'as a synonym'
-            else:
-                type = 'PYMULTIDICTIONARY'
-
-            # print(syn, type)
-
-            obj_syn, created = Synonym.objects.get_or_create(
-                synonym=syn,
-                source=type
-            )
-
-            Synonym_Relation.objects.get_or_create(
-                tag=obj_tag,
-                synonym=obj_syn
-            )
-
-            syn_total_list += [syn]
+        # print(syn_dict)
         
-    print(len(syn_total_list))
+        # create synonym instances, and their relationship to the tag
+        for affinity,synonyms in syn_dict.items():
+            for syn in synonyms:
+                if syn == tag:
+                    src = 'SELF' # add tag itself 'as a synonym'
+                else:
+                    src = 'THESAURUS'
+
+                obj_syn, created = Synonym.objects.get_or_create(
+                    synonym=syn,
+                    source=src
+                )
+
+                Synonym_Relation.objects.get_or_create(
+                    tag=obj_tag,
+                    synonym=obj_syn,
+                    affinity=affinity
+                )
+
+                print(syn,affinity,obj_tag,src)
 
 
 def populate_lastfm_from_synonyms():
@@ -216,8 +208,8 @@ def populate():
 
 
 def erase_db():
-    Synonym.objects.all().delete()
-    Synonym_Relation.objects.all().delete()
+    LastFM_Entity.objects.all().delete()
+    # Synonym_Relation.objects.all().delete()
     
 
 if __name__ == '__main__':

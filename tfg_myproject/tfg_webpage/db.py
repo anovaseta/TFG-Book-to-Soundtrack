@@ -1,7 +1,6 @@
 # Name: download_db.py
 # Date: Jan 11 2026
-# Description: un script para obtener objetos de la bbdd
-# Output: synonym_list.json con la lista
+# Description: una libreria para obtener objetos de la bbdd
 
 import os
 import django
@@ -45,7 +44,24 @@ def get_storygraph_books():
     syn_file.close()
 
 
+def get_json_books():
+    f = open('db_json/all_books_extended.json', 'r')
+    all_books = json.loads(f.read())
+    return all_books
+
+
+def get_json_thesaurus_synonyms():
+    f = open('db_json/all_thesaurus_synonyms.json', 'r')
+    all_syn = json.loads(f.read())
+    return all_syn
+        
 
 if __name__ == '__main__':
     # get_synonyms()
-    get_storygraph_books()
+    # get_storygraph_books()
+
+    # all_books = get_json_books()
+    # print(list(all_books.values())[0])
+
+    all_syn = get_json_thesaurus_synonyms()
+    print(all_syn.keys())
