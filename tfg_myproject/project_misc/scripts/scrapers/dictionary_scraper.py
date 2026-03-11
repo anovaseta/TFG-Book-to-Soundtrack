@@ -91,6 +91,7 @@ def thesaurus(word, include='strongest'):
 
     return [s_list, len(s_list)]
 
+
 if __name__ == '__main__':
     # this main gathers tag synonyms from thesaurus, grouped by strength index (weak, strong or strongest)
 
