@@ -133,3 +133,6 @@ Una vez completemos eso (lo dejaré trabajando, porque los scripts ya están ref
 incomplete entities:
     OK emotional - albums
     sentimental - artists
+    visionary - artists
+    mysterious - artists
+    dark - albums

@@ -123,7 +123,7 @@ if __name__ == "__main__":
     # print(clean_tag_list)
     # print(len(clean_tag_list))
 
-    music_dict = get_lastfm_music(clean_tag_list[10:50], get_lastfm_credentials(), 100)
+    music_dict = get_lastfm_music(clean_tag_list[150:200], get_lastfm_credentials(), 100)
 
     f = open("json_files/lastfm_entities.json", "w", encoding='utf-8')
     f.write(json.dumps(music_dict, indent=4, ensure_ascii=False))
