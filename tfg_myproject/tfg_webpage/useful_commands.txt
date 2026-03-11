@@ -4,3 +4,5 @@ python3 manage.py graph_models > {my output as a .dot file}
 
 https://www.scraperapi.com/web-scraping/best-practices/
 best practices for web scraping
+
+cp json_files/all_books_extended.json json_files/all_thesaurus_synonyms.json -t ../tfg_webpage/db_json
