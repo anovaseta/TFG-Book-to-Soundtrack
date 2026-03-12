@@ -131,9 +131,17 @@ Wed Mar 11: sinónimos metidos. ahora toca recopilar el pool más grande de trac
 Una vez completemos eso (lo dejaré trabajando, porque los scripts ya están refinados, es solamente cuestión de dejarlo trabajar) habrá que filtrar cada una de ellas por spotify (miedo).
 ultimo update: 200 tags.
 
+Thu Mar 12: compiled all 412 tags yay.
+
 incomplete entities:
     OK emotional - albums
     sentimental - artists
     visionary - artists
     mysterious - artists
     dark - albums
+    venturous - albums
+    depressed - artists
+    inspiring - artists
+    relaxed - albums
+    dark
+    jovial

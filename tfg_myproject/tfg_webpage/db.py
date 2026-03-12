@@ -73,9 +73,24 @@ if __name__ == '__main__':
 
     # get_synonyms()
     all_entities = get_json_lastfm_entities()
+
+    g = open(os.path.join("../", "project_misc/json_files/synonym_list.json"), "r")
+    all_tags = json.loads(g.read())
+    all_tags = [t[0] for t in all_tags]
+
     counter = 0
     for tt in all_entities.values():
         for tracks in tt.values():
             counter += len(tracks['items'])
 
-    print(counter)
+    all_keys = list(all_entities.keys())
+    print(counter, len(all_keys), len(all_tags))
+
+    left_tags = []
+    for i in range(189,412):
+        print(all_keys[i], all_tags[i])
+
+    print('dark' in all_keys, 'jovial' in all_keys)
+
+
+
