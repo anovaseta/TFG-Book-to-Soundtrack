@@ -78,19 +78,27 @@ if __name__ == '__main__':
     all_tags = json.loads(g.read())
     all_tags = [t[0] for t in all_tags]
 
+    all_synonyms = [x.synonym for x in Synonym.objects.all()]
+
     counter = 0
     for tt in all_entities.values():
         for tracks in tt.values():
             counter += len(tracks['items'])
 
     all_keys = list(all_entities.keys())
-    print(counter, len(all_keys), len(all_tags))
+    print(counter, len(all_keys), len(all_tags), len(all_synonyms))
 
-    left_tags = []
-    for i in range(189,412):
-        print(all_keys[i], all_tags[i])
+    # left_tags = []
+    # for i in range(189,412):
+    #     print(all_keys[i], all_tags[i])
 
-    print('dark' in all_keys, 'jovial' in all_keys)
+    # counter = 0
+    # for x in all_tags:
+    #     counter += 1
+    #     print(counter, x, x in all_keys)
+
+    print([x for x in all_keys if x not in all_tags])
+    print([x for x in all_keys if x not in all_synonyms])
 
 
 

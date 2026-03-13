@@ -1,34 +1,11 @@
-# Name: lastfm_complete_scraping.py
+# Name: lastfm_scraper.py
 # Date: Jan 11 2026
 # Description: un script que recoge los top artists, albums y tracks para cada tag de la bbdd
-# Input: synonym_list.json con la lista de tags
-# Output: complete_tag_search.json con los top artists, albums y tracks de cada 
-# tag en la lista predefinida
-
-# Name: dictionary_scraper.py
-# Date: 10 Feb 2026
-# Description: un script para hacer scraping para conseguir sinónimos/palabras relacionadas
 
 import sys
-import os
-import re
 import json
-from bs4 import BeautifulSoup as bs
-import re
-import random
 import pylast
-from urllib.request import Request, urlopen
 import django
-
-sys.path.append('/home/manuloseta/TFG/tfg_myproject/tfg_webpage')
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tfg_webpage.settings')
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
-
-django.setup()  
-
-from webapp.models import Synonym
 
 
 def get_lastfm_credentials():

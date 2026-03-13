@@ -133,6 +133,9 @@ ultimo update: 200 tags.
 
 Thu Mar 12: compiled all 412 tags yay.
 
+Fri Mar 13: 2 of the 414 tags are repeated (dark, lighthearted). joder el rate limit de spotify es horrible, muy horrible, me quiero matar. scraping para conseguir lo que quiero?
+solo 500 tracks conseguidas hoy jopetas.
+
 incomplete entities:
     OK emotional - albums
     sentimental - artists

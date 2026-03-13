@@ -1,4 +1,4 @@
-# Name: storygraph-scraper-demo.py
+# Name: storygraph-scraper.py
 # Date: 06 Feb 2026
 # Description: un script para recopilar información completa de un libro a partir de atributos iniciales (título y autor, ISBN).
 # Con potencial a ampliar a más sitios que den más asociaciones interesantes de palabras

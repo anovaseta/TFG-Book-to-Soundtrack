@@ -7,7 +7,6 @@ import os
 import re
 import json
 from bs4 import BeautifulSoup as bs
-import re
 from urllib.request import Request, urlopen
 import django
 
