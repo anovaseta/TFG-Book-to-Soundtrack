@@ -23,7 +23,7 @@ def spotify_bulk_search(track_dict, tag_list, access_token):
                "Content-Type": "application/json"}
 
     found_tracks = {}
-    slp_strd = 2
+    slp_strd = 0
     slp = slp_strd
 
     for keyword,types in track_dict.items():
@@ -59,6 +59,7 @@ def spotify_bulk_search(track_dict, tag_list, access_token):
                         f = open("json_files/spotify_filtered_tracks.json", 'w', encoding='utf-8')
                         f.write(json.dumps(found_tracks, indent=4, ensure_ascii=False))
                         f.close()
+                        print(slp)
                         return
                 else:
                     slp = slp_strd
@@ -123,4 +124,4 @@ if __name__ == '__main__':
 
     f = open(os.path.join('../', 'tfg_webpage/db_json/all_lastfm_entities.json'), 'r')
     all_tracks = json.loads(f.read())
-    spotify_bulk_search(all_tracks, ['emotional'], spotify_get_access_token())
+    spotify_bulk_search(all_tracks, ["funny", "hopeful", "challenging"], spotify_get_access_token())
