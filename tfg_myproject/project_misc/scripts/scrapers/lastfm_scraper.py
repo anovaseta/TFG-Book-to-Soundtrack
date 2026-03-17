@@ -97,10 +97,11 @@ if __name__ == "__main__":
     f = open("json_files/synonym_list.json", "r")
     tag_list = json.loads(f.read())
     clean_tag_list = [t[0] for t in tag_list]
-    # print(clean_tag_list)
+    print(clean_tag_list)
     # print(len(clean_tag_list))
 
-    music_dict = get_lastfm_music(clean_tag_list[375:], get_lastfm_credentials(), 100)
+    music_dict = get_lastfm_music(clean_tag_list, get_lastfm_credentials(), 5)
+    print(music_dict)
 
     f = open("json_files/lastfm_entities.json", "w", encoding='utf-8')
     f.write(json.dumps(music_dict, indent=4, ensure_ascii=False))

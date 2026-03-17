@@ -146,9 +146,9 @@ def populate_synonyms_from_tags():
                 print(syn,affinity,obj_tag,src)
 
 
-def populate_music_from_synonyms():
+def populate_lastfm_entities_from_synonyms():
 
-    in_path = os.path.join("../", "project_misc", "complete_tag_search.json")
+    in_path = os.path.join("db_json/all_lastfm_entities.json")
     in_file = open(in_path, "r")
     in_dict = json.load(in_file)
 
@@ -158,45 +158,30 @@ def populate_music_from_synonyms():
     total = len(in_dict.keys())
     counter = 1
 
-    for key,value in in_dict.items():
+    for kw,v in in_dict.items():
 
-        syn = Synonym.objects.get(synonym=key)
+        syn = Synonym.objects.get(synonym=kw)
 
-        print("Completing tag", key)
+        print("Completing tag", kw)
         print("Tag", counter, "in", total)
 
-        for artist in value["top_artists"]:
-            obj, created = LastFM_Entity.objects.get_or_create(
-                name=artist,
-                type="ARTIST"
-            )
+        for type,t in v.items():
+            print(type)
+            for track in t['items']:
+                # print(track)
 
-            Entity_Tag_Relation.objects.get_or_create(
-                entity=obj,
-                tag=syn
-            )
+                obj_trk, created = LastFM_Entity.objects.get_or_create(
+                    name=track[0],
+                    artist=track[1],
+                    tag=track[2]
+                )
 
-        for album in value["top_albums"]:
-            obj, created = LastFM_Entity.objects.get_or_create(
-                name=album,
-                type="ALBUM"
-            )
+                Entity_Tag_Relation.objects.get_or_create(
+                    entity=obj_trk,
+                    tag=syn,
+                    source=type
+                )
 
-            Entity_Tag_Relation.objects.get_or_create(
-                entity=obj,
-                tag=syn
-            )
-
-        for track in value["top_tracks"]:
-            obj, created = LastFM_Entity.objects.get_or_create(
-                name=track,
-                type="TRACK"
-            )
-
-            Entity_Tag_Relation.objects.get_or_create(
-                entity=obj,
-                tag=syn
-            )
 
         counter += 1
 
@@ -204,7 +189,7 @@ def populate_music_from_synonyms():
 def populate():
     # populate_books_and_tags()
     # populate_synonyms_from_tags()
-    # populate_music_from_synonyms()
+    populate_lastfm_entities_from_synonyms()
     # erase_db()
     sys.exit(0)
 

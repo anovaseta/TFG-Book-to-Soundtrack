@@ -31,14 +31,25 @@ def spotify_bulk_search(track_dict, tag_list, access_token):
             if keyword not in tag_list:
                 continue
         
-        n_tracks = 0
-        counter = 0
-        for type,tracks in types.items():
-            n_tracks += len(tracks['items'])
-        print(f'About to process a total of {n_tracks} tracks, estimate time of completion is {n_tracks*slp_strd}')
+        # n_tracks = 0
+        # counter = 0
+        # for type,tracks in types.items():
+        #     n_tracks += len(tracks['items'])
+        # print(f'About to process a total of {n_tracks} tracks, estimate time of completion is {n_tracks*slp_strd}')
 
         found_tracks[keyword] = {'TRACK': {'n': 0, 'items': []}, 'FROM_ARTISTS': {'n': 0, 'items': []}, 'FROM_ALBUMS': {'n': 0, 'items': []}}
+        print('--------------------------------------------------------------------')
+        print(keyword)
+
         for type,tracks in types.items():
+            if type != 'TRACK':
+                continue
+
+            print(type)
+            n_tracks = len(tracks['items'])
+            print(f'About to process a total of {n_tracks} tracks, estimate time of completion is {n_tracks*slp_strd}')
+
+            counter = 0
             for track,artist,kw in tracks['items']:
                 # print(keyword,type,n,track,artist,kw)
                 # para ver si hace una buena search
@@ -122,6 +133,14 @@ def spotify_search(search_url, track, artist, kw, headers, time_to_sleep):
 
 if __name__ == '__main__':
 
-    f = open(os.path.join('../', 'tfg_webpage/db_json/all_lastfm_entities.json'), 'r')
+    f = open(os.path.join('../', 'tfg_webpage/db_json/all_lastfm_entities_refined.json'), 'r')
     all_tracks = json.loads(f.read())
-    spotify_bulk_search(all_tracks, ["funny", "hopeful", "challenging"], spotify_get_access_token())
+    f.close()
+
+    f = open(os.path.join('../', 'tfg_webpage/db_json/all_updated_tags.json'), 'r')
+    all_tags = json.loads(f.read())
+    f.close()
+
+    print(all_tags)
+
+    spotify_bulk_search(all_tracks, all_tags[8:], spotify_get_access_token())
