@@ -62,7 +62,7 @@ class LastFM_Entity(models.Model):
     artist = models.CharField(max_length=100) 
     tag = models.CharField(max_length=100, default='') 
     def __str__(self):
-        return f"{self.name} ({self.type})"
+        return f"{self.name} by {self.artist}"
     
 class Entity_Tag_Relation(models.Model):
     entity = models.ForeignKey(LastFM_Entity, on_delete=models.CASCADE)
@@ -71,3 +71,19 @@ class Entity_Tag_Relation(models.Model):
 
     def __str__(self):
         return f"{self.entity.name} is related to {self.tag.synonym}"
+    
+class Spotify_Track(models.Model):
+    name = models.CharField(max_length=100)
+    artist = models.CharField(max_length=100) 
+    tag = models.CharField(max_length=100, default='') 
+    def __str__(self):
+        return f"{self.name} by {self.artist}"
+    spotify_json = models.JSONField(max_length=15000, default=dict)
+
+class Spotify_Tag_Relation(models.Model):
+    track = models.ForeignKey(Spotify_Track, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Synonym, on_delete=models.CASCADE)
+    source = models.CharField(max_length=100, default='') # TRACK, FROM_ARTISTS, FROM_ALBUMS
+
+    def __str__(self):
+        return f"{self.track.name} is related to {self.tag.synonym}"

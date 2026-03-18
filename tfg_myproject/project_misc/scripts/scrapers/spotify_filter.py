@@ -23,7 +23,7 @@ def spotify_bulk_search(track_dict, tag_list, access_token):
                "Content-Type": "application/json"}
 
     found_tracks = {}
-    slp_strd = 4
+    slp_strd = 0
     slp = slp_strd
 
     for keyword,types in track_dict.items():
@@ -143,4 +143,4 @@ if __name__ == '__main__':
 
     print(all_tags)
 
-    spotify_bulk_search(all_tracks, all_tags[30:], spotify_get_access_token())
+    spotify_bulk_search(all_tracks, all_tags[45:], spotify_get_access_token())

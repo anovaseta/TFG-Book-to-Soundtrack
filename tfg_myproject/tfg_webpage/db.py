@@ -12,7 +12,7 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 
-from webapp.models import Synonym, Storygraph_Book
+from webapp.models import Synonym, Storygraph_Book, Spotify_Track, Spotify_Tag_Relation
 
 django.setup()
 
@@ -67,24 +67,39 @@ def get_json_spotify_entities():
     all_entities = json.loads(f.read())
     return all_entities
 
+def get_spotify_tracks():
+    all_tracks = Spotify_Track.objects.all()
+    relations = Spotify_Tag_Relation.objects.all()
+
+    return (all_tracks, relations)
+
         
 
 if __name__ == '__main__':
 
 
-    all_entities = get_json_spotify_entities()
-    # f = open(os.path.join("../", "project_misc/json_files/spotify_filtered_tracks.json"), 'r')
-    # all_entities = json.loads(f.read())
+    # all_entities = get_json_spotify_entities()
+    # # f = open(os.path.join("../", "project_misc/json_files/spotify_filtered_tracks.json"), 'r')
+    # # all_entities = json.loads(f.read())
 
-    total = 0
-    for tag,t in all_entities.items():
-        print('---------------------------------------------------------------')
-        print(tag)
-        for src,v in t.items():
-            total += v['n']
-            print(src,v['n'])
-            # for track in v['items']:
-            #     spotify_track = track[3]
-            #     # print(spotify_track)
-            #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
-    print(total, len(all_entities.keys()))
+    # total = 0
+    # for tag,t in all_entities.items():
+    #     print('---------------------------------------------------------------')
+    #     print(tag)
+    #     for src,v in t.items():
+    #         total += v['n']
+    #         print(src,v['n'])
+    #         # for track in v['items']:
+    #         #     spotify_track = track[3]
+    #         #     # print(spotify_track)
+    #         #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
+    # print(total, len(all_entities.keys()))
+
+    all_tracks,relations = get_spotify_tracks()
+    all_synonyms = Synonym.objects.all()
+    for track in all_tracks:
+        f_key = relations.get(track=track)
+        syn = all_synonyms.get(pk=f_key.tag.pk)
+        print(track.name, track.artist, syn.synonym, track.spotify_json['external_urls']['spotify'])
+    # print(query)
+    # print(len(all_tracks))

@@ -20,7 +20,7 @@ from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
 
-from webapp.models import Storygraph_Book, Storygraph_Tag, Tagged_Book, Synonym, Synonym_Relation, LastFM_Entity, Entity_Tag_Relation
+from webapp.models import Storygraph_Book, Storygraph_Tag, Tagged_Book, Synonym, Synonym_Relation, LastFM_Entity, Entity_Tag_Relation, Spotify_Track, Spotify_Tag_Relation
 
 django.setup()
 
@@ -185,11 +185,55 @@ def populate_lastfm_entities_from_synonyms():
 
         counter += 1
 
+
+def populate_spotify_entities_from_synonyms():
+
+    in_path = os.path.join("db_json/all_spotify_filtered_tracks.json")
+    in_file = open(in_path, "r")
+    in_dict = json.load(in_file)
+
+    # get synonyms from db
+    all_synonyms = [syn.synonym for syn in Synonym.objects.all()]
+
+    total = len(in_dict.keys())
+    counter = 1
+
+    for kw,v in in_dict.items():
+
+        syn = Synonym.objects.get(synonym=kw)
+        print(syn)
+
+        print("Completing tag", kw)
+        print("Tag", counter, "in", total)
+
+        for type,t in v.items():
+            print(type)
+            for track in t['items']:
+                # print(track[0], track[1], track[2])
+                # print(track)
+
+                obj_trk, created = Spotify_Track.objects.get_or_create(
+                    name=track[0],
+                    artist=track[1],
+                    tag=track[2],
+                    spotify_json = track[3]
+                )
+
+                Spotify_Tag_Relation.objects.get_or_create(
+                    track=obj_trk,
+                    tag=syn,
+                    source=type
+                )
+
+
+        counter += 1
+
         
 def populate():
     # populate_books_and_tags()
     # populate_synonyms_from_tags()
-    populate_lastfm_entities_from_synonyms()
+    # populate_lastfm_entities_from_synonyms()
+    populate_spotify_entities_from_synonyms()
     # erase_db()
     sys.exit(0)
 
