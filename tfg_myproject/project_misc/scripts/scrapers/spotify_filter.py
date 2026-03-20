@@ -141,6 +141,6 @@ if __name__ == '__main__':
     all_tags = json.loads(f.read())
     f.close()
 
-    # print(all_tags[45:])
+    print(all_tags[74:])
 
-    spotify_bulk_search(all_tracks, all_tags[45:], spotify_get_access_token())
+    # spotify_bulk_search(all_tracks, all_tags[45:], spotify_get_access_token())
