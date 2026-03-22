@@ -82,18 +82,27 @@ if __name__ == '__main__':
     # f = open(os.path.join("../", "project_misc/json_files/spotify_filtered_tracks.json"), 'r')
     # all_entities = json.loads(f.read())
 
-    total = 0
-    for tag,t in all_entities.items():
-        print('---------------------------------------------------------------')
-        print(tag)
-        for src,v in t.items():
-            total += v['n']
-            print(src,v['n'])
-            # for track in v['items']:
-            #     spotify_track = track[3]
-            #     # print(spotify_track)
-            #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
-    print(total, len(all_entities.keys()))
+    f = open("db_json/all_updated_tags.json", "r")
+    all_tags = json.loads(f.read())
+    print(len(all_tags))
+    print(len(all_entities.keys()))
+
+    for i in range(0,97):
+        if list(all_entities.keys())[i] != all_tags[i]:
+            print(i)
+
+    # total = 0
+    # for tag,t in all_entities.items():
+    #     print('---------------------------------------------------------------')
+    #     print(tag)
+    #     for src,v in t.items():
+    #         total += v['n']
+    #         print(src,v['n'])
+    #         # for track in v['items']:
+    #         #     spotify_track = track[3]
+    #         #     # print(spotify_track)
+    #         #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
+    # print(total, len(all_entities.keys()))
 
     # all_tracks,relations = get_spotify_tracks()
     # all_synonyms = Synonym.objects.all()

@@ -219,6 +219,9 @@ def populate_spotify_entities_from_synonyms():
                     spotify_json = track[3]
                 )
 
+                if created:
+                    print('!!')
+
                 Spotify_Tag_Relation.objects.get_or_create(
                     track=obj_trk,
                     tag=syn,

@@ -71,6 +71,9 @@ def spotify_bulk_search(track_dict, tag_list, access_token):
                         f.write(json.dumps(found_tracks, indent=4, ensure_ascii=False))
                         f.close()
                         print(slp)
+                        t = time.time() + slp # get current time and add slp
+                        tt = time.strftime("%H:%M:%S", time.localtime(t)) # convert time to a readable format
+                        print(f"API resets at {tt}")
                         return
                 else:
                     slp = slp_strd
@@ -141,6 +144,7 @@ if __name__ == '__main__':
     all_tags = json.loads(f.read())
     f.close()
 
-    print(all_tags[74:])
+    print(all_tags[96:])
 
-    # spotify_bulk_search(all_tracks, all_tags[45:], spotify_get_access_token())
+    # spotify_bulk_search(all_tracks, all_tags[75:], spotify_get_access_token())
+    # print('DO NOT FORGET TO SAVE THE PROGRESS')
