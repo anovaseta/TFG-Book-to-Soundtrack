@@ -63,7 +63,7 @@ def get_json_lastfm_entities():
     return all_entities
 
 def get_json_spotify_entities():
-    f = open('db_json/all_spotify_filtered_tracks.json', 'r')
+    f = open('db_json/all_spotify_filtered_tracks_TRACK.json', 'r')
     all_entities = json.loads(f.read())
     return all_entities
 
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     print(len(all_tags))
     print(len(all_entities.keys()))
 
-    for i in range(0,97):
+    for i in range(0,127):
         if list(all_entities.keys())[i] != all_tags[i]:
             print(i)
 

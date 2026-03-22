@@ -242,8 +242,9 @@ def populate():
 
 
 def erase_db():
-    LastFM_Entity.objects.all().delete()
+    # LastFM_Entity.objects.all().delete()
     # Synonym_Relation.objects.all().delete()
+    return
     
 
 if __name__ == '__main__':
