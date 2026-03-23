@@ -154,3 +154,6 @@ NOTA: recopilé LastFM así que esto ya no es relevante.
 
 Mon Mar 16: lista reducida, ahora son 20000 tracks más o menos, y ahora al principio filtraré solo las del tipo 'TRACK', que son 6911. Tengo hasta label 'passionate'. Creo que podría 
 ir construyendo el initial flow offline. Además, acabo de meter las 150000 tracks de lastfm en la bbdd. No será usada. Crearé otras tablas para spotify entities. bbdd bien poblada.
+
+Mon Mar 23: pagina web yayy react.js yayy. decidido que usaré vite como build tool (cra deprecado) con react como frontend framework. toca hacer la REST API para comunicar front y back.
+175 TRACK tags gathered.
