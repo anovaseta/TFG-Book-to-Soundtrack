@@ -1,0 +1,8 @@
+FOR WHAT FRONTEND FRAMEWORK/TOOL TO USE:
+
+https://syntackle.com/blog/create-react-app-deprecated/
+https://react.dev/blog/2025/02/14/sunsetting-create-react-app
+https://roadmap.sh/frontend/frameworks
+https://blog.stackblitz.com/posts/what-is-vite-introduction/
+https://medium.com/@pataspatek/06-project-setup-frontend-django-react-from-scratch-to-app-e436d010f48a
+https://medium.com/@pataspatek
