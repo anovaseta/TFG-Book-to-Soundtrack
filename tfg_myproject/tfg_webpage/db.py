@@ -87,7 +87,7 @@ if __name__ == '__main__':
     print(len(all_tags))
     print(len(all_entities.keys()))
 
-    for i in range(0,127):
+    for i in range(0,175):
         if list(all_entities.keys())[i] != all_tags[i]:
             print(i)
 

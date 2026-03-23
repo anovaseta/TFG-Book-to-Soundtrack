@@ -188,7 +188,7 @@ def populate_lastfm_entities_from_synonyms():
 
 def populate_spotify_entities_from_synonyms():
 
-    in_path = os.path.join("db_json/all_spotify_filtered_tracks.json")
+    in_path = os.path.join("db_json/all_spotify_filtered_tracks_TRACK.json")
     in_file = open(in_path, "r")
     in_dict = json.load(in_file)
 
