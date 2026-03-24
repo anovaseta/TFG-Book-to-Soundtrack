@@ -157,3 +157,5 @@ ir construyendo el initial flow offline. Además, acabo de meter las 150000 trac
 
 Mon Mar 23: pagina web yayy react.js yayy. decidido que usaré vite como build tool (cra deprecado) con react como frontend framework. toca hacer la REST API para comunicar front y back.
 175 TRACK tags gathered.
+
+Tue Mar 24: REST API WOOOOO

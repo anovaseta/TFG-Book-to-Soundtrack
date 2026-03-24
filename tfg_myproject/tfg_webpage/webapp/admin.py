@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Storygraph_Book, Synonym
 
-# Register your models here.
+admin.site.register(Storygraph_Book)
+admin.site.register(Synonym)

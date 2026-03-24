@@ -58,3 +58,12 @@ https://books.org/blog/should-you-listen-to-music-while-reading/
 
 # Provides a list of songs for some categories of books (about love, about friendship...). Shows that there is a community interested in this topic
 https://windowstoworlds.wordpress.com/2020/07/31/music-to-listen-to-while-reading/
+
+FOR WHAT FRONTEND FRAMEWORK/TOOL TO USE:
+
+https://syntackle.com/blog/create-react-app-deprecated/
+https://react.dev/blog/2025/02/14/sunsetting-create-react-app
+https://roadmap.sh/frontend/frameworks
+https://blog.stackblitz.com/posts/what-is-vite-introduction/
+https://medium.com/@pataspatek/06-project-setup-frontend-django-react-from-scratch-to-app-e436d010f48a
+https://medium.com/@pataspatek
