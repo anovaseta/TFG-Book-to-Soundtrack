@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fik(y#q7)kseaiqh+k8$g8w&itx@8p3v8)2abq8a8xn$r)y**=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,12 +54,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 
-CORS_ALLOW_HEADERS = [
-    'Access-Control-Allow-Origin',
-    "Content-Type",
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
 ]
+
+
+# CORS_ALLOW_HEADERS = [
+#     'Access-Control-Allow-Origin',
+#     "Content-Type",
+# ]
 
 
 ROOT_URLCONF = 'tfg_webpage.urls'
