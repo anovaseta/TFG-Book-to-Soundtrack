@@ -1,0 +1,27 @@
+Componentes de la app:
+
+mainFlow:
+
+    Componente 1: Inicio del flow: elegir libro de la lista o buscarlo en storygraph
+        1a (storygraph): 
+            1a.1: barra de búsqueda
+            1a.b: confirmar que el libro encontrado es el que se busca (mostrar titulo, portada, sinopsis, etc.)
+        1b (lista de libros de la bbdd): mostrar todas las opciones, barra de búsqueda para buscar por título o autores?, seleccionar para confirmar.
+    
+    Componente 2: mostrar la lista de etiquetas sobre las que se basa la búsqueda, sus pesos, junto con su lista de sinónimos (disponible si quieres "ver más"?). La verdad que esta no me queda tan clara. Opción de quitar los sinónimos que se quiera??
+
+    Componente 3: opciones de la playlist: por ahora se me ocurre el número de canciones?
+
+    (Entre estas dos se despliega la mayoría del backend, el algotimo de recoger las canciones pertinentes y clasificarlas en función del peso. 
+    (Crear un objeto que sea el 'pool' de canciones, y ya luego se sacan de ahí las x canciones?)
+    
+    Componente 4: mostrar las canciones junto con sus links en Spotify! botón de refrescar para "cargar" de nuevo a partir del pool? opción de guardar la playlist (iniciar sesión).
+
+
+knowMore: página donde se explica cómo funciona la creación de la playlist.
+
+loginRegister: para registrarse o hacer login.
+
+myProfile: donde puedes ver tus playlists creadas!
+
+

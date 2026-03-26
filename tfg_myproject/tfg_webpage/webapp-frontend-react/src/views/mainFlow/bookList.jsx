@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // UseState is a JS hook that allows us to declare a state variable inside a component
 
-function TestPageView() {
+function BookList() {
   // console.log('vjsajcjs')
   const [data, setData] = useState([]);
 
@@ -31,15 +31,18 @@ function TestPageView() {
 
   return (
       <div>
-          <h1>API test!!</h1>
-          <p>This is the data returned by the API: </p>
           <ul>
             {data.map((book) => (
-              <li key={book.id}>{book.title}</li>
+              <li key={book.id}>
+                <p>{book.title}</p>
+                <p>Written by: {book.authors.map((author) => (<i>{author},</i>))}</p>
+                <p>{book.isbn_uid}</p>
+                <img src = {book.cover_source} alt = 'Cover not shown'/>
+              </li>
             ))}
           </ul>
       </div>
   );
 }
 
-export default TestPageView;
+export default BookList;

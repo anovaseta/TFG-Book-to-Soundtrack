@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import TestPageView from './views/testPage/testPageView'
+import MainFlowView from './views/mainFlow/mainFlowView'
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<h1>Home</h1>} />
                 <Route path="/test" element={<TestPageView />} />
+                <Route path="/flow" element={<MainFlowView />} />
                 <Route path="*" element={<h1>You dummy dum dum</h1>} />
             </Routes>
         </BrowserRouter>
