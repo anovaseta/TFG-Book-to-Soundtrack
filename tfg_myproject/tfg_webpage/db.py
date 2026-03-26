@@ -3,6 +3,7 @@
 # Description: una libreria para obtener objetos de la bbdd
 
 import os
+import sys
 import django
 import json
 from datetime import date
@@ -65,6 +66,7 @@ def get_json_lastfm_entities():
 def get_json_spotify_entities():
     f = open('db_json/all_spotify_filtered_tracks_TRACK.json', 'r')
     all_entities = json.loads(f.read())
+    f.close()
     return all_entities
 
 def get_spotify_tracks():
@@ -73,11 +75,28 @@ def get_spotify_tracks():
 
     return (all_tracks, relations)
 
+def json_enmesh_files():
+    all_entities = get_json_spotify_entities()
+    f = open(os.path.join("../", "project_misc/json_files/spotify_filtered_tracks.json"), 'r')
+    temp_entities = json.loads(f.read())
+    f.close()
+    for tag,t in temp_entities.items():
+        print(f'Processing tag {tag}')
+        all_entities[tag]['FROM_ARTISTS'] = temp_entities[tag]['FROM_ARTISTS']
+
+    # return all_entities
+    # f = open('db_json/all_spotify_filtered_tracks.json', 'w')
+    # all_entities = json.loads(f.read())
+    # f.close()
+
+
+
         
 
 if __name__ == '__main__':
 
 
+    # all_entities = json_enmesh_files()
     all_entities = get_json_spotify_entities()
     # f = open(os.path.join("../", "project_misc/json_files/spotify_filtered_tracks.json"), 'r')
     # all_entities = json.loads(f.read())
@@ -87,28 +106,38 @@ if __name__ == '__main__':
     print(len(all_tags))
     print(len(all_entities.keys()))
 
-    for i in range(0,222):
+    for i in range(0,11):
         if list(all_entities.keys())[i] != all_tags[i]:
             print(i)
 
-    # total = 0
-    # for tag,t in all_entities.items():
-    #     print('---------------------------------------------------------------')
-    #     print(tag)
-    #     for src,v in t.items():
-    #         total += v['n']
-    #         print(src,v['n'])
-    #         # for track in v['items']:
-    #         #     spotify_track = track[3]
-    #         #     # print(spotify_track)
-    #         #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
-    # print(total, len(all_entities.keys()))
+    total = 0
+    populated_syn = []
+    for tag,t in all_entities.items():
+        # print('---------------------------------------------------------------')
+        # print(tag)
+        for src,v in t.items():
+            
+            total += v['n']
+            if v['n'] > 0 and src == 'TRACK':
+                populated_syn.append(tag)
+            # print(src,v['n'])
+            # for track in v['items']:
+            #     spotify_track = track[3]
+            #     # print(spotify_track)
+            #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
+    print(total, len(all_entities.keys()), len(populated_syn))
 
-    # all_tracks,relations = get_spotify_tracks()
     # all_synonyms = Synonym.objects.all()
-    # for track in all_tracks:
-    #     f_key = relations.get(track=track)
-    #     syn = all_synonyms.get(pk=f_key.tag.pk)
-    #     print(track.name, track.artist, syn.synonym, track.spotify_json['external_urls']['spotify'])
-    # print(query)
-    # print(len(all_tracks))
+    # all_tracks = Spotify_Track.objects.all()
+
+    # populated_syn = []
+
+    # for syn in all_synonyms:
+    #     query = all_tracks.filter(tag=syn.synonym)
+    #     # print(query)
+    #     if len(query) != 0:
+    #         populated_syn.append(syn.synonym)
+
+    # print(len(populated_syn))
+
+    sys.exit(0)

@@ -9,3 +9,7 @@ cp json_files/all_books_extended.json json_files/all_thesaurus_synonyms.json -t 
 
 mkdir scrapers
 cp spotify_auth.py storygraph_scraper.py lastfm_scraper.py dictionary_scraper.py -t scrapers
+
+
+select count(*) from (select s.synonym,count(*) from webapp_synonym as s, webapp_spotify_track as t, webapp_spotify_tag_relation as st wh
+ere s.id=st.tag_id and t.id=st.track_id group by s.synonym having count(*)>0)

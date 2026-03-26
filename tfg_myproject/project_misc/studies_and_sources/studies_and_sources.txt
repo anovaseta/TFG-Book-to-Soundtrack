@@ -67,3 +67,5 @@ https://roadmap.sh/frontend/frameworks
 https://blog.stackblitz.com/posts/what-is-vite-introduction/
 https://medium.com/@pataspatek/06-project-setup-frontend-django-react-from-scratch-to-app-e436d010f48a
 https://medium.com/@pataspatek
+
+https://www.youtube.com/watch?v=6Jfk8ic3KVk&t=3714s [aprende react desde cero]

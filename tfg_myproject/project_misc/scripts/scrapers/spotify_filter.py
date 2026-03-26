@@ -42,7 +42,7 @@ def spotify_bulk_search(track_dict, tag_list, access_token):
         print(keyword)
 
         for type,tracks in types.items():
-            if type != 'TRACK':
+            if type != 'FROM_ARTISTS':
                 continue
 
             print(type)
@@ -144,7 +144,7 @@ if __name__ == '__main__':
     all_tags = json.loads(f.read())
     f.close()
 
-    index = 221
+    index = 10
 
     print(all_tags[index:])
 
