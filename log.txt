@@ -160,4 +160,6 @@ Mon Mar 23: pagina web yayy react.js yayy. decidido que usaré vite como build t
 
 Tue Mar 24: REST API WOOOOO. i achieved a successful api call and i presented the info . i need to change it to a react component.
 
-Thu Mar 26: gathering of TRACK tracks is complete. starting gathering of FROM_ARTISTS tracks.
+Thu Mar 26: gathering of TRACK tracks is complete. starting gathering of FROM_ARTISTS tracks. avanzando con la web.
+
+Fri Mar 27: 50 FROM_ARTISTS tags gathered. finishing component 1 of mainFlow.
