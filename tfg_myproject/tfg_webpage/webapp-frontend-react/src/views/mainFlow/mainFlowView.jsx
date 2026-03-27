@@ -17,9 +17,7 @@ function MainFlowView() {
         Show or hide
       </button>
 
-      <div>
         {visiblePage == 0 && <ChooseBook/>}
-      </div>
 
     </div>
 
