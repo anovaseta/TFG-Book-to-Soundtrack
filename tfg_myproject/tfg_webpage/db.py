@@ -64,7 +64,7 @@ def get_json_lastfm_entities():
     return all_entities
 
 def get_json_spotify_entities():
-    f = open('db_json/all_spotify_filtered_tracks_TRACK.json', 'r')
+    f = open('db_json/all_spotify_filtered_tracks_FROM_ARTISTS.json', 'r')
     all_entities = json.loads(f.read())
     f.close()
     return all_entities
@@ -111,21 +111,21 @@ if __name__ == '__main__':
             print(i)
 
     total = 0
-    populated_syn = []
+    # populated_syn = []
     for tag,t in all_entities.items():
         # print('---------------------------------------------------------------')
         # print(tag)
         for src,v in t.items():
             
             total += v['n']
-            if v['n'] > 0 and src == 'TRACK':
-                populated_syn.append(tag)
+            # if v['n'] > 0 and src == 'TRACK':
+            #     populated_syn.append(tag)
             # print(src,v['n'])
             # for track in v['items']:
             #     spotify_track = track[3]
             #     # print(spotify_track)
             #     print(spotify_track['name'], spotify_track['artists'][0]['name'], spotify_track['external_urls']['spotify'])
-    print(total, len(all_entities.keys()), len(populated_syn))
+    print(total, len(all_entities.keys()))
 
     # all_synonyms = Synonym.objects.all()
     # all_tracks = Spotify_Track.objects.all()
