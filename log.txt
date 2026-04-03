@@ -163,3 +163,7 @@ Tue Mar 24: REST API WOOOOO. i achieved a successful api call and i presented th
 Thu Mar 26: gathering of TRACK tracks is complete. starting gathering of FROM_ARTISTS tracks. avanzando con la web.
 
 Fri Mar 27: 50 FROM_ARTISTS tags gathered. finishing component 1 of mainFlow.
+
+Resfriade
+
+Fri Apr 03: 94 FROM_ARTISTS tags gathered. Componente 1 terminado i am so proud of myself.

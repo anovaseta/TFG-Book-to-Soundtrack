@@ -8,7 +8,7 @@ mainFlow:
             1a.b: confirmar que el libro encontrado es el que se busca (mostrar titulo, portada, sinopsis, etc.)
         1b (lista de libros de la bbdd): mostrar todas las opciones, barra de búsqueda para buscar por título o autores?, seleccionar para confirmar.
     
-    Componente 2: mostrar la lista de etiquetas sobre las que se basa la búsqueda, sus pesos, junto con su lista de sinónimos (disponible si quieres "ver más"?). La verdad que esta no me queda tan clara. Opción de quitar los sinónimos que se quiera??
+    Componente 2: mostrar el libro elegido, junto con su lista de etiquetas, sus pesos, su lista de sinónimos (disponible si quieres "ver más"?). La verdad que esta no me queda tan clara. Opción de quitar los sinónimos que se quiera??
 
     Componente 3: opciones de la playlist: por ahora se me ocurre el número de canciones?
 

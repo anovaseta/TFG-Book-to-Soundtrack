@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import BookList from './bookList.jsx'
-import FindBook from './findBook.jsx';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import BookList from './bookList'
+import FindBook from './findBook'
 // UseState is a JS hook that allows us to declare a state variable inside a component
 
-function ChooseBook() {
+function ChooseBookView() {
 
-  const [visibleComp, setVisibleComp] = useState('0') // 0 or 1
+  const [visibleComp, setVisibleComp] = useState('0') // '0', '1', '2'
 
   return (
       <div>
@@ -24,4 +24,4 @@ function ChooseBook() {
   );
 }
 
-export default ChooseBook;
+export default ChooseBookView;
