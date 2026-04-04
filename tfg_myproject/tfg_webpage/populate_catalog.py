@@ -209,7 +209,7 @@ def populate_spotify_entities_from_synonyms():
         for type,t in v.items():
             print(type)
             for track in t['items']:
-                print(track[0], track[1], track[2])
+                # print(track[0], track[1], track[2])
                 # print(track)
 
                 obj_trk, created = Spotify_Track.objects.get_or_create(

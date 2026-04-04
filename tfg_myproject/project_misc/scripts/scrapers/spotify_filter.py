@@ -144,7 +144,7 @@ if __name__ == '__main__':
     all_tags = json.loads(f.read())
     f.close()
 
-    index = 94
+    index = 141
 
     print(all_tags[index:])
 
