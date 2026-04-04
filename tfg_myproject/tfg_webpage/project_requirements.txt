@@ -23,5 +23,3 @@ knowMore: página donde se explica cómo funciona la creación de la playlist.
 loginRegister: para registrarse o hacer login.
 
 myProfile: donde puedes ver tus playlists creadas!
-
-

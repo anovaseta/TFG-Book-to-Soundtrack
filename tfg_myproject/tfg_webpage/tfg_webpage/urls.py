@@ -25,6 +25,7 @@ api_router = routers.DefaultRouter()
 api_router.register('books', views.BooksDB, basename = 'BooksDB')
 api_router.register('storygraph-search', views.StorygraphSearch, basename='StorygraphSearch')
 api_router.register('isbn', views.GetBookByISBNorUID, basename='GetBookByISBN')
+api_router.register('tag', views.getTagSynonyms, basename='GetTagSynonyms')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

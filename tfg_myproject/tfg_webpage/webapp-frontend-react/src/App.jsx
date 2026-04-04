@@ -13,6 +13,7 @@ function App() {
                 <Route path="/flow" element={<MainFlowView />} />
                 <Route path="/flow/choose-book" element={<ChooseBookView />} />
                 <Route path="/flow/book/:book_id" element={<SelectedBookView />} />
+                <Route path="/flow/book/:book_id/create-playlist" element={<p>In progress...</p>} />
                 <Route path="*" element={<h1>Not found</h1>} />
             </Routes>
         </BrowserRouter>

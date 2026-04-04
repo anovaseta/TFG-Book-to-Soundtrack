@@ -1,6 +1,6 @@
 import json
 from django.core import serializers
-from .models import Storygraph_Book
+from .models import Storygraph_Book, Storygraph_Tag, Synonym, Synonym_Relation
 from .serializers import BookDBSerializer
 from rest_framework import mixins
 from rest_framework import generics
@@ -17,7 +17,7 @@ class BooksDB(viewsets.ReadOnlyModelViewSet):
 class GetBookByISBNorUID(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         # get request with isbn/uid param
-        print(pk)
+        # print(pk)
         book = Storygraph_Book.objects.filter(isbn_uid=pk)
         book = serializers.serialize('json', book)
         book = json.loads(book)
@@ -37,6 +37,27 @@ class StorygraphSearch(viewsets.ViewSet):
         book = add_weights_to_book(book)
         # print(book)
         return Response(book)
+    
+class getTagSynonyms(viewsets.ViewSet) :
+# retrieve the list of synonyms associated to a StoryGraph tag
+    def retrieve(self, request, pk=None):
+        # print(pk)
+        tag = Storygraph_Tag.objects.get(tag_name=pk)
+        # print(tag)
+        query_list = Synonym_Relation.objects.filter(tag_id=tag.id)
+        # print(query_list)
+        syn_list = []
+        for s in query_list:
+            syn_list.append((Synonym.objects.get(id=s.synonym_id).synonym, s.affinity)) # (synonym, affinity)
+        # print(syn_list)
+        syn_dict = {pk:{'strongest':[], 'strong': [], 'weak': []}}
+        for s in syn_list:
+            syn_dict[pk][s[1]].append(s[0])
+        # print(syn_dict)
+        # book = serializers.serialize('json', book)
+        # book = json.loads(book)
+        return Response(syn_dict)
+
 
 
         
