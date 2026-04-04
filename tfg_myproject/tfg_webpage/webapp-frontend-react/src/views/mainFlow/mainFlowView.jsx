@@ -1,5 +1,3 @@
-// You should have a prev button, and a status button to know which page to show (the others would be hidden)
-// import ChooseBookComponent from "./chooseBookComponent";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 

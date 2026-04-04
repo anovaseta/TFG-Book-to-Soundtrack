@@ -6,12 +6,12 @@ import FindBook from './findBook'
 
 function ChooseBookView() {
 
-  const [visibleComp, setVisibleComp] = useState('0') // '0', '1', '2'
+  const [visibleComp, setVisibleComp] = useState('0') // '0', '1'
 
   return (
       <div>
           <p>How do you want to choose your book?</p>
-          <select name='selectBook' onChange={(event) => setVisibleComp(event.target.value)}>
+          <select name='selectBook' defaultValue={null} onChange={(event) => setVisibleComp(event.target.value)}>
             <option value = '0' >Choose book from StoryGraph</option>
             <option value = '1'>Choose locally from a list of 600+ books</option>
           </select>

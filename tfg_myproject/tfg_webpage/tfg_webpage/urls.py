@@ -24,6 +24,7 @@ api_router = routers.DefaultRouter()
 # En el router vamos añadiendo los endpoints a los viewsets
 api_router.register('books', views.BooksDB, basename = 'BooksDB')
 api_router.register('storygraph-search', views.StorygraphSearch, basename='StorygraphSearch')
+api_router.register('isbn', views.GetBookByISBNorUID, basename='GetBookByISBN')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -61,7 +61,7 @@ function BookList() {
               <li key={book.id}>
                 <p>{book.id}</p>
                 <a href={'/flow/book/'+book.isbn_uid}>{book.title}</a>
-                <p>Written by: {book.authors.map((author) => (<i>{author},</i>))}</p>
+                <p>Written by: {book.authors.map((author) => (<text>{author} </text>))}</p>
                 <p>{book.isbn_uid}</p>
                 <img src = {book.cover_source} alt = 'Cover not shown'/>
               </li>

@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.core import serializers
 from .models import Storygraph_Book
 from .serializers import BookDBSerializer
 from rest_framework import mixins
@@ -14,8 +14,21 @@ class BooksDB(viewsets.ReadOnlyModelViewSet):
     queryset = Storygraph_Book.objects.all()
     serializer_class = BookDBSerializer
 
+class GetBookByISBNorUID(viewsets.ViewSet):
+    def retrieve(self, request, pk=None):
+        # get request with isbn/uid param
+        print(pk)
+        book = Storygraph_Book.objects.filter(isbn_uid=pk)
+        book = serializers.serialize('json', book)
+        book = json.loads(book)
+        # print(book[0])
+        return Response(book[0]['fields'])
+
+
 class StorygraphSearch(viewsets.ViewSet):
+# accesses StoryGraph to retrieve a certain book
     def create(self, request):
+        # post request with search query in body
         b = json.loads(request.body.decode("utf-8"))
         # print(b)
         id = book_search([b['searchItem']])
