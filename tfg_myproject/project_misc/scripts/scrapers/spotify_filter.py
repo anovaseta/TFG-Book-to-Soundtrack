@@ -144,9 +144,9 @@ if __name__ == '__main__':
     all_tags = json.loads(f.read())
     f.close()
 
-    index = 141
+    index = 192
 
     print(all_tags[index:])
 
     # spotify_bulk_search(all_tracks, all_tags[index:], spotify_get_access_token())
-    # print('DO NOT FORGET TO SAVE THE PROGRESS')
+    print('DO NOT FORGET TO SAVE THE PROGRESS')
