@@ -169,3 +169,6 @@ Resfriade
 Fri Apr 03: 94 FROM_ARTISTS tags gathered. Componente 1 terminado i am so proud of myself.
 
 Sat Apr 04: 142 FROM_ARTISTS tags gathered. finished component 2.
+
+Wed Apr 08: 192 FROM_ARTISTS tags gathered. finished component 3. in the middle of programming the backend, already returns the complete track pool. needs to get from that
+ the resulting tracks of the playlist.
