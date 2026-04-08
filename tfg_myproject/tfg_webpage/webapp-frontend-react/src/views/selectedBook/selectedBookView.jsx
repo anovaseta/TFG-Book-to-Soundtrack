@@ -12,9 +12,13 @@ function SelectedBookView() {
   const fetchBookByISBNOrUID = async (id) => {
     try {
       // Success: Fetch data from the API
-      var url = "http://localhost:8000/api/v1/isbn/" + id;
+      var url = "http://localhost:8000/api/v1/isbn/";
       const response = await fetch(url, {
-        method: 'GET',
+        method: 'POST',
+        body: JSON.stringify({
+          'book_id': id,
+          'mode': params['mode']
+        })
       }).then(response => response.json())
       console.log(response)
       setData(response)
@@ -65,13 +69,13 @@ function SelectedBookView() {
   }
 
   function goToPlaylistCreationPage(pk) {
-    const url = '/flow/book/' + pk + '/create-playlist'
+    const url = '/flow/book/' + params['mode'] + '/' + pk + '/create-playlist'
     navigate(url)
   }
 
   return (
     <div>
-      <h2>What is your book's 'emotional core'?</h2>
+      <h2>Book details</h2>
       <p>{data.title}</p>
       <p>{data.authors?.map((author) => (<li key={author}>{author} </li>))}</p>
       <p>{data.isbn_uid}</p>

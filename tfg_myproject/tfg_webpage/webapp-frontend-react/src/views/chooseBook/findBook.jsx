@@ -31,7 +31,7 @@ function FindBook() {
   }
 
   function goToBookPage(bookId) {
-    const url = '/flow/book/' + bookId
+    const url = '/flow/book/online/' + bookId
     navigate(url)
   }
 
@@ -43,7 +43,7 @@ function FindBook() {
           <div className="searchForm">
             <form onSubmit={apiCall}>
               <label htmlFor="book-search">Search from StoryGraph:</label>
-              <input type="search" id="book-search" value={searchItem} 
+              <input type="search" id="book-search" name="bookSearch" value={searchItem} 
                 onChange={(e) => (setSearchItem(e.target.value))} placeholder='f.ex. 9780008244125'/>
               <button type='submit'>Search</button>
             </form>

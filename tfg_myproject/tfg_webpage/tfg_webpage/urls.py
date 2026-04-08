@@ -26,6 +26,7 @@ api_router.register('books', views.BooksDB, basename = 'BooksDB')
 api_router.register('storygraph-search', views.StorygraphSearch, basename='StorygraphSearch')
 api_router.register('isbn', views.GetBookByISBNorUID, basename='GetBookByISBN')
 api_router.register('tag', views.getTagSynonyms, basename='GetTagSynonyms')
+api_router.register('track-pool', views.getTrackPool, basename='getTrackPool')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

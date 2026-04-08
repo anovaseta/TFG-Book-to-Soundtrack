@@ -6,6 +6,7 @@ from rest_framework import mixins
 from rest_framework import generics
 from rest_framework import viewsets
 from .scripts.storygraph_scraper import book_search, book_info, add_weights_to_book
+from .scripts.get_track_pool import get_track_pool
 from rest_framework.response import Response
 
 class BooksDB(viewsets.ReadOnlyModelViewSet):
@@ -15,14 +16,24 @@ class BooksDB(viewsets.ReadOnlyModelViewSet):
     serializer_class = BookDBSerializer
 
 class GetBookByISBNorUID(viewsets.ViewSet):
-    def retrieve(self, request, pk=None):
+# has online and offline mode
+    def create(self, request):
         # get request with isbn/uid param
         # print(pk)
-        book = Storygraph_Book.objects.filter(isbn_uid=pk)
-        book = serializers.serialize('json', book)
-        book = json.loads(book)
-        # print(book[0])
-        return Response(book[0]['fields'])
+        b = json.loads(request.body.decode("utf-8"))
+        print(b)
+        if b['mode'] == 'offline':
+            book = Storygraph_Book.objects.filter(isbn_uid=b['book_id'])
+            book = serializers.serialize('json', book)
+            book = json.loads(book)
+            # print(book[0])
+            return Response(book[0]['fields'])
+        elif b['mode'] == 'online':
+            print('online')
+            id = book_search([b['book_id']])
+            book = book_info(id)
+            book = add_weights_to_book(book)
+            return Response(book)
 
 
 class StorygraphSearch(viewsets.ViewSet):
@@ -38,7 +49,7 @@ class StorygraphSearch(viewsets.ViewSet):
         # print(book)
         return Response(book)
     
-class getTagSynonyms(viewsets.ViewSet) :
+class getTagSynonyms(viewsets.ViewSet):
 # retrieve the list of synonyms associated to a StoryGraph tag
     def retrieve(self, request, pk=None):
         # print(pk)
@@ -57,6 +68,28 @@ class getTagSynonyms(viewsets.ViewSet) :
         # book = serializers.serialize('json', book)
         # book = json.loads(book)
         return Response(syn_dict)
+    
+class getTrackPool(viewsets.ViewSet):
+# has offline and online mode
+    def create(self, request):
+        # receives the book, returns the track pool
+        b = json.loads(request.body.decode("utf-8"))
+
+        # gather the book either offline (from db) or online (from scraping)
+        if b['mode'] == 'offline':
+            book = Storygraph_Book.objects.filter(isbn_uid=b['book_id'])
+            book = serializers.serialize('json', book)
+            book = json.loads(book)
+        elif b['mode'] == 'online':
+            print('online')
+            id = book_search([b['book_id']])
+            book = book_info(id)
+            book = add_weights_to_book(book)
+        # print(book)
+
+        get_track_pool(book)
+
+        return Response()
 
 
 
