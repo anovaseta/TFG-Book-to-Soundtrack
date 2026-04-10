@@ -1,0 +1,68 @@
+
+/* This is seen in ALL the web*/
+.playlist {
+  background-color: #E9E3E3;
+  color: #143F4E;
+}
+
+.playlist-found-tracks {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+
+.playlist-playlist {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto;
+  background: #477085;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.playlist-playlist ul {
+  list-style: none;
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+
+.playlist-playlist li {
+  background: #477085;
+  display: flex;
+  grid-template-columns: 1fr 1fr 60px;
+  padding: 12px 15px;
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  /* cursor: pointer; */
+}
+
+.playlist-playlist li:hover {
+  background: #8baec1;
+  transform: scale(1.01);
+}
+
+.playlist-playlist img {
+  width: 200px;
+  height: 200px;
+}
+
+.playlist-playlist-text {
+  position: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 20px;
+}
+
+.playlist-playlist-text-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.playlist-playlist-text-artist {
+  float: left;
+  font-size: 1.2rem;
+  color: #555;
+}

@@ -87,9 +87,7 @@ class getTrackPool(viewsets.ViewSet):
             book = add_weights_to_book(book)
         # print(book)
 
-        get_track_pool(book)
-
-        return Response()
+        return Response(get_track_pool(book, b['n_tracks']))
 
 
 
