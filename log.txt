@@ -174,3 +174,5 @@ Wed Apr 08: 192 FROM_ARTISTS tags gathered. finished component 3. in the middle 
  the resulting tracks of the playlist.
 
 Fri Apr 10: Spotify ran out. 6719 total tracks gathered. i finished main flow and i am realising i dont know css and i hate designing.
+
+Sun Apr 12: created header and footer. tied mainFlow to start of the webpage. Advancing steadily on css, component 1 half done.
