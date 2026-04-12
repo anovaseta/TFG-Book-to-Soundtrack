@@ -1,2 +1,9 @@
 
 #477085 ; #83163F ; #E9E3E3 ; #9D8C84 ; #143F4E
+
+Steel teal: #578088 #abbfc3
+Dolphin Gray: #74948C
+Light French Beige: #cfb580 #ddcba6 #faf7f2
+Milk chocolate: #864e3e
+Copper Red: #ca7c4c #d4966f
+#83163F #e6d0d8

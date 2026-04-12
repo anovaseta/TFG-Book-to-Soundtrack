@@ -36,24 +36,23 @@ function FindBook() {
   }
 
   return (
-    <div>
-      {searchResultVisible == false &&
-        <div className='findBook'>
-          <p>You can use the title and the author for the search, but the ISBN gives more accurate results.</p>
-          <div className="searchForm">
-            <form onSubmit={apiCall}>
-              <label htmlFor="book-search">Search from StoryGraph:</label>
-              <input type="search" id="book-search" name="bookSearch" value={searchItem} 
-                onChange={(e) => (setSearchItem(e.target.value))} placeholder='f.ex. 9780008244125'/>
-              <button type='submit'>Search</button>
-            </form>
-          </div>
+    <div className='choose-book-storygraph'>
+
+      <div className='choose-book-storygraph-search'>
+        <p>Use StoryGraph to search for your book.</p>
+        <p>Tip: you can use the title and the author for the search, but the ISBN gives more accurate results.</p>
+        <div className="choose-book-storygraph-search-form">
+          <form onSubmit={apiCall}>
+            <input type="search" id="book-search" name="bookSearch" value={searchItem} 
+              onChange={(e) => (setSearchItem(e.target.value))} placeholder='f.ex. 9780008244125'/>
+            <button type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
         </div>
-      }
+      </div>
 
       {searchResultVisible && 
         
-        <div>
+        <div className='choose-book-storygraph-result'>
           <h2>Is this your book?</h2>
           <p>{searchResult.title}</p>
           <img src = {searchResult.cover_source} alt = 'Cover not shown'/>

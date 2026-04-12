@@ -1,0 +1,109 @@
+.choose-book-container {
+  background-color: #d4966f;
+  margin-top: 120px;
+  margin-left: 20px;
+  margin-right: 30px;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: inline-block;
+  height: 100px;
+}
+
+.choose-book-container-title {
+  position: relative;
+  bottom: 15px;
+  font-family: 'Times New Roman', serif;
+  font-size: 28px;
+}
+
+.choose-book-container-select {
+  position: relative;
+  bottom: 45px;
+  display: flex;
+}
+
+.choose-book-container-select p {
+  font-family: 'Times New Roman', serif;
+  font-size: 18px;
+}
+
+.choose-book-container-select button {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #e6d0d8;
+  background-color: #681132;
+  border: none;
+  padding: none;
+  height: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.choose-book-container-select button:hover {
+  color: #681132;
+  background-color: #e6d0d8;
+}
+
+.choose-book-storygraph-search {
+  width: 700px;
+  position: relative;
+  bottom: 132px;
+  left: 500px;
+  display: block;
+  background-color: #d4966f;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.choose-book-storygraph-search p {
+  font-size: 18px;
+  position: relative;
+  bottom: 10px;
+}
+
+.choose-book-storygraph-search form {
+  position: relative;
+  bottom: 10px;
+}
+
+.choose-book-storygraph-search input {
+  width: 200px;
+  height: 20px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #faf7f2;
+}
+
+.choose-book-storygraph-search input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(104, 17, 50, 0.5);
+}
+
+.choose-book-storygraph-search button {
+  position: relative;
+  right: 0px;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d4966f;
+  cursor: pointer;
+}
+
+.choose-book-storygraph-result {
+  width: 700px;
+  position: relative;
+  bottom: 115px;
+  left: 20px;
+  display: block;
+  background-color: #d4966f;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.choose-book-storygraph-result p, .choose-book-storygraph-result h2, .choose-book-storygraph-result button {
+  display: inline-block
+}

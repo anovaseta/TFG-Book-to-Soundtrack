@@ -1,0 +1,38 @@
+.header {
+  position: fixed;
+  display: block;
+  background-color: #864e3e;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+.header-title {
+  /* text-align: center; */
+  background-color: #864e3e;
+  font-family: Arial;
+  font-size: 30px;
+}
+
+.header-title-book {
+  font-family: 'Garamond', serif;
+  font-size: 45px;
+}
+
+.header-title-soundtrack {
+  font-family: "Courier New", monospace;
+  font-size: 45px;
+}
+
+.footer {
+  position: fixed;
+  display: block;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 10px 16px;
+  background-color: #864e3e;
+  z-index: 1000;
+}

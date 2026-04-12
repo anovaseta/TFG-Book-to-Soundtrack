@@ -1,0 +1,41 @@
+.mainflow-container {
+  background-color: #d4966f;
+  margin-top: 150px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 15px;
+}
+
+.mainflow-container p, .mainflow-container h2 {
+  font-family: 'Times New Roman', serif;
+}
+
+.mainflow-container-title {
+  font-size: 48px;
+}
+
+.mainflow-container p {
+  font-size: 28px;
+}
+
+.mainflow-container a {
+  transition: background 0.3s ease, color 0.3s ease;
+  padding: 5px;
+}
+
+
+
+.mainflow-container a:link, .mainflow-container a:visited {
+  color: #681132;
+  text-decoration: underline;
+}
+
+.mainflow-container a:hover {
+  color: #e6d0d8;
+  background-color: #681132;
+  text-decoration: none;
+}
+
+.mainflow-container-flow h2 {
+  font-size: 30px;
+  margin-top: 20px;}

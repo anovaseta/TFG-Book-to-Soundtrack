@@ -1,18 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import TestPageView from './views/testPage/testPageView'
+import InstructionsView from "./views/instructions/instructionsView"
 import MainFlowView from './views/mainFlow/mainFlowView'
 import ChooseBookView from "./views/chooseBook/chooseBookView"
 import SelectedBookView from "./views/selectedBook/selectedBookView"
 import ConfigurePlaylistView from "./views/configurePlaylist/configurePlaylistView"
 import ShowPlaylistView from "./views/showPlaylist/showPlaylistView"
+import './App.css'
 
 function App() {
   return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<h1>Home</h1>} />
-                <Route path="/test" element={<TestPageView />} />
-                <Route path="/flow" element={<MainFlowView />} />
+                <Route path="/" element={<MainFlowView />} />
+                <Route path="/instructions" element={<InstructionsView />} />
                 <Route path="/flow/choose-book" element={<ChooseBookView />} />
                 <Route path="/flow/book/:mode/:book_id" element={<SelectedBookView />} />
                 <Route path="/flow/book/:mode/:book_id/create-playlist" element={<ConfigurePlaylistView />} />
