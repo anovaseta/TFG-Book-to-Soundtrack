@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams} from "react-router-dom"
+import HeaderView from '../headerView'
+import FooterView from '../footerView'
+import './selectedBookView.css'
+import bookAnim from '../../assets/book-anim.gif'
 
 function SelectedBookView() {
 
   const params = useParams()
   const navigate = useNavigate()
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState(null)
   const [synData, setSynData] = useState({})
   
   const fetchBookByISBNOrUID = async (id) => {
@@ -74,37 +78,46 @@ function SelectedBookView() {
   }
 
   return (
-    <div>
-      <h2>Book details</h2>
-      <p>{data.title}</p>
-      <p>{data.authors?.map((author) => (<li key={author}>{author} </li>))}</p>
-      <p>{data.isbn_uid}</p>
-      <img src = {data.cover_source} alt = 'Cover not shown'/>
-      <div>
-        <h3>Here are the most common mood labels associated to your book!</h3>
-        {data.tag_weights?.map((t) => (
+    <div className="selected-book">
+      <HeaderView />
+      {data == null &&
+        <div className="selected-book-loading-page">
+          <img src={bookAnim} />
+        </div>
+      }
+      {data != null &&
+        <div>
+          <h2>Book details</h2>
+          <p>{data.title}</p>
+          <p>{data.authors?.map((author) => (<li key={author}>{author} </li>))}</p>
+          <p>{data.isbn_uid}</p>
+          <img src = {data.cover_source} alt = 'Cover not shown'/>
           <div>
-          <p>{t[0]} with a {roundUsingToFixed(100*t[1])}% weight</p>
-          {!synData[t[0]] 
-            ? 
-            <button value={t[0]} onClick={(e) => (getTagSynonyms(e.target.value))}>Get synonyms</button> 
-            : 
-            <div>
-            <p>Strongest: {synData[t[0]]['strongest']?.map((t) => (<text>{t}, </text>))}</p>
-            <p>Strong: {synData[t[0]]['strong']?.map((t) => (<text>{t}, </text>))}</p>
-            <p>Weak: {synData[t[0]]['weak']?.map((t) => (<text>{t}, </text>))}</p>
-            <button value={t[0]} onClick={(e) => (delTagSynonyms(e.target.value))}>Hide synonyms</button>
-            </div>
-          }
+            <h3>Here are the most common mood labels associated to your book!</h3>
+            {data.tag_weights?.map((t) => (
+              <div>
+              <p>{t[0]} with a {roundUsingToFixed(100*t[1])}% weight</p>
+              {!synData[t[0]] 
+                ? 
+                <button value={t[0]} onClick={(e) => (getTagSynonyms(e.target.value))}>Get synonyms</button> 
+                : 
+                <div>
+                <p>Strongest: {synData[t[0]]['strongest']?.map((t) => (<text>{t}, </text>))}</p>
+                <p>Strong: {synData[t[0]]['strong']?.map((t) => (<text>{t}, </text>))}</p>
+                <p>Weak: {synData[t[0]]['weak']?.map((t) => (<text>{t}, </text>))}</p>
+                <button value={t[0]} onClick={(e) => (delTagSynonyms(e.target.value))}>Hide synonyms</button>
+                </div>
+              }
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div>
-        <h3>Ready to create your playlist?</h3>
-        <button onClick={() => (goToPlaylistCreationPage(params['book_id']))}>Go!</button>
-      </div>
-      
-
+          <div>
+            <h3>Ready to create your playlist?</h3>
+            <button onClick={() => (goToPlaylistCreationPage(params['book_id']))}>Go!</button>
+          </div>
+        </div>
+      }
+      <FooterView />
     </div>
   )
 }

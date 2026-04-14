@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
+import magnifyingGlass from "../../assets/magnifying-glass-solid-full.svg"
+import bookAnim from '../../assets/book-anim.gif'
 // import TextField from "@mui/material/TextField";
 // UseState is a JS hook that allows us to declare a state variable inside a component
 
@@ -7,11 +9,13 @@ function FindBook() {
 
   const [searchItem, setSearchItem] = useState('')
   const [searchResultVisible, setSearchResultVisible] = useState(false)
-  const [searchResult, setSearchResult] = useState([])
+  const [searchResult, setSearchResult] = useState(null)
 
   const navigate = useNavigate()
 
   async function apiCall(e){
+    setSearchResultVisible(true)
+    setSearchResult(null)
     e.preventDefault()
     e.target.clear
     try {
@@ -23,7 +27,6 @@ function FindBook() {
       }).then(response => response.json())
       console.log(response)
       setSearchResult(response)
-      setSearchResultVisible(true)
     } catch (error) {
       // Error: Handle any problems with the request
       console.error("Error fetching books:", error)
@@ -33,6 +36,24 @@ function FindBook() {
   function goToBookPage(bookId) {
     const url = '/flow/book/online/' + bookId
     navigate(url)
+  }
+
+  function displayArray(arr) {
+    // console.log(arr)
+    let l = arr.length
+    // console.log(l)
+    let inlinehtml = ''
+    for (let i = 0; i < l; i++) {
+      // console.log(i)
+      // console.log(arr[i])
+      inlinehtml += arr[i]
+      if (i < l-1) {
+        inlinehtml += ', '
+      }
+    }
+    inlinehtml += ''
+    // console.log(inlinehtml)
+    return inlinehtml
   }
 
   return (
@@ -45,7 +66,7 @@ function FindBook() {
           <form onSubmit={apiCall}>
             <input type="search" id="book-search" name="bookSearch" value={searchItem} 
               onChange={(e) => (setSearchItem(e.target.value))} placeholder='f.ex. 9780008244125'/>
-            <button type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button type='submit'><img src={magnifyingGlass} alt = "Search"></img></button>
           </form>
         </div>
       </div>
@@ -53,15 +74,35 @@ function FindBook() {
       {searchResultVisible && 
         
         <div className='choose-book-storygraph-result'>
-          <h2>Is this your book?</h2>
-          <p>{searchResult.title}</p>
-          <img src = {searchResult.cover_source} alt = 'Cover not shown'/>
-          <button onClick={() => (goToBookPage(searchResult.ISBN_UID))}>
-            Yes!
-          </button>
-          <button onClick={() => setSearchResultVisible(false)}>
-            No...
-          </button>
+          {searchResult == null && 
+            <div className='choose-book-storygraph-result-loading-page'>
+              <img src={bookAnim} />
+            </div>
+          }
+          {searchResult != null &&
+            <div className='choose-book-storygraph-result-book'>
+              <h2>Is this your book?</h2>
+              <img src = {searchResult.cover_source} alt = 'Cover not shown'/>
+              <div className='choose-book-storygraph-result-book-text'>
+                <h3>{searchResult.title}</h3>
+                <p>{displayArray(searchResult.authors)}</p>
+                <p>{searchResult.pages} pages</p>
+                <p>First published in {searchResult.first_pub}</p>
+                <p>Tags: {displayArray(searchResult.tags)}</p>
+              </div>
+              <div className='choose-book-storygraph-result-book-buttons'>
+                <p>
+                  <a onClick={() => (goToBookPage(searchResult.ISBN_UID))}>Yup</a>
+                </p>
+                <p>
+                  <a onClick={() => {
+                    setSearchResultVisible(false)
+                    setSearchResult(null)
+                  }}> Nah (go back)</a>
+                </p>
+              </div>
+            </div>
+          }
         </div>
         
       }

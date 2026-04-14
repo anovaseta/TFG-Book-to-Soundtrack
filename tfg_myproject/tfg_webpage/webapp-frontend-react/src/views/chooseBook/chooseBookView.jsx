@@ -5,6 +5,7 @@ import FindBook from './findBook'
 import HeaderView from '../headerView'
 import FooterView from '../footerView'
 import './chooseBookView.css'
+import book from "../../assets/book-solid-full.svg"
 // UseState is a JS hook that allows us to declare a state variable inside a component
 
 function ChooseBookView() {
@@ -18,7 +19,7 @@ function ChooseBookView() {
 
         <div className='choose-book-container'>
           <p className='choose-book-container-title'>
-            <span class="fa-solid fa-book"></span> The Book Hub
+            <img src={book}></img> The Book Hub
           </p>
           <div className='choose-book-container-select'>
             <p>You choose your book from: 

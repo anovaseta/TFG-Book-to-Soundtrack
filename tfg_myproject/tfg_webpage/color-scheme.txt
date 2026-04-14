@@ -6,4 +6,6 @@ Dolphin Gray: #74948C
 Light French Beige: #cfb580 #ddcba6 #faf7f2
 Milk chocolate: #864e3e
 Copper Red: #ca7c4c #d4966f
-#83163F #e6d0d8
+#83163F #a85b78 #e6d0d8
+#900f2d
+#83163F

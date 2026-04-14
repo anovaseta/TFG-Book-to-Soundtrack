@@ -1,0 +1,8 @@
+.selected-book-loading-page img {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  left: 700px;
+  top: 250px;
+  filter: sepia(0.6);
+}
