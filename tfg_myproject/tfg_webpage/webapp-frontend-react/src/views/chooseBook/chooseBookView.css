@@ -8,6 +8,7 @@
   padding-right: 20px;
   display: inline-block;
   height: 135px;
+  border-radius: 20px;
 }
 
 .choose-book-container-title {
@@ -52,6 +53,8 @@
   background-color: #e6d0d8;
 }
 
+/* findBook */
+
 .choose-book-storygraph-search {
   width: 995px;
   position: relative;
@@ -62,6 +65,7 @@
   padding-top: 3px;
   padding-left: 20px;
   padding-right: 20px;
+  border-radius: 20px;
 }
 
 .choose-book-storygraph-search p {
@@ -123,6 +127,7 @@ input[type="search"]::-webkit-search-results-decoration {
   padding-top: 3px;
   padding-left: 20px;
   padding-right: 20px;
+  border-radius: 30px;
 }
 
 .choose-book-storygraph-result-loading-page img {
@@ -157,11 +162,13 @@ input[type="search"]::-webkit-search-results-decoration {
   width: 200px;
   left: 160px;
   filter: sepia(0.6);
+  border-radius: 10px;
 }
 
 .choose-book-storygraph-result-book-text {
   background-color: inherit;
   max-width: 350px;
+  max-height: 400px;
   position: relative;
   bottom: 60px;
   left: 200px;
@@ -201,4 +208,141 @@ input[type="search"]::-webkit-search-results-decoration {
   background-color: #681132;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* bookList */
+
+.choose-book-list-message {
+  width: 995px;
+  height: 133px;
+  position: relative;
+  bottom: 151px;
+  left: 500px;
+  display: block;
+  background-color: #d4966f;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+}
+
+.choose-book-list-message h2 {
+  font-family: 'Times New Roman', serif;
+  font-size: 32px;
+  position: relative;
+  bottom: 10px;
+}
+
+.choose-book-list-message p {
+  font-size: 24px;
+  position: relative;
+  bottom: 10px;
+  font-family: 'Times New Roman', serif;
+}
+
+.choose-book-list-list {
+  width: 1475px;
+  position: relative;
+  bottom: 90px;
+  left: 20px;
+  display: block;
+  background-color: #d4966f;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 100px;
+  border-radius: 30px;
+}
+
+.choose-book-list-list-search-tools {
+  display: flex;
+  position: relative;
+  top: 30px;
+  left: 230px;
+  width: 1000px;
+}
+
+.choose-book-list-list-search-tools button {
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 0 15px 0 15px;
+  color: #e6d0d8;
+  background-color: #681132;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.choose-book-list-list-search-tools button:hover {
+  color: #681132;
+  background-color: #e6d0d8;
+}
+
+.choose-book-list-list-books > p {
+  font-size: 32px;
+  position: relative;
+  top: 35px;
+  left: 520px;
+  font-family: 'Times New Roman', serif;
+}
+
+.choose-book-list-list-loading-page img {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  left: 570px;
+  top: 20px;
+  filter: sepia(0.35);
+}
+
+.choose-book-list-list-books > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+  top: 50px;
+}
+
+.choose-book-list-list-books > div > div > div {
+  position: relative;
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  background-color: #9b2642;
+  margin: 20px;
+  transition: background 0.5s ease, scale 0.5s ease;
+}
+
+.choose-book-list-list-books > div > div > div:hover {
+  background-color: #872139;
+  cursor: pointer;
+  scale: 1.05;
+  box-shadow: 0 4px 8px rgba(104, 17, 50, 0.3);
+  > div h3 {
+    text-decoration: underline;
+  }
+}
+
+.choose-book-list-list-books > div > div > div img {
+  display: flex;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  height: 200px;
+  width: 133px;
+  filter: sepia(0.45);
+  border-radius: 10px;
+}
+
+.choose-book-list-list-books > div > div > div > div {
+  position: relative;
+  bottom: 200px;
+  left: 170px;
+  max-width: 200px;
+  max-height: 80px;
+  background-color: inherit;
 }

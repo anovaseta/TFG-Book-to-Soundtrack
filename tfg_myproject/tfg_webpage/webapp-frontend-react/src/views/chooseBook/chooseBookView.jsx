@@ -36,7 +36,7 @@ function ChooseBookView() {
                 color: visibleComp == '1' && "#681132",
                 textDecoration: visibleComp == '1' && "underline"
               }} 
-              onClick={() => setVisibleComp('1')}>Local database</button>
+              onClick={() => setVisibleComp('1')}>Local library</button>
             </p>
           </div>
         </div>
