@@ -180,4 +180,4 @@ Sun Apr 12: created header and footer. tied mainFlow to start of the webpage. Ad
 Tue Apr 14: component 1 finished y era el mas dificil lets gooo. pero tengo que espabilar con el resto, ya he comenzado el componente 2.
 
 Wed Apr 15: comp 1 actually finished, finishing comp 2. almost done with the book section. Here I am once again. Ok finished comp 2, it
- seems comps 3 and 4 wont be as much work. i need to rest.
+ seems comps 3 and 4 wont be as much work. i need to rest. comp 3 done. just need to distribute the music in comp 4 and we are done i guess.
