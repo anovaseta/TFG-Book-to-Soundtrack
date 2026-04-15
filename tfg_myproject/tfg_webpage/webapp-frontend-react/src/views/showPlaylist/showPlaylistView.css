@@ -1,6 +1,11 @@
 .playlist {
-  background-color: #E9E3E3;
-  color: #143F4E;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  margin-left: 20px;
+  margin-right: 30px;
+  padding-top: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .playlist-found-tracks {

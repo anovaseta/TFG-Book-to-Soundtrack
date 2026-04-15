@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import './showPlaylistView.css'
+import HeaderView from "../headerView"
+import FooterView from "../footerView"
 
 function ShowPlaylistView() {
 
@@ -60,6 +62,9 @@ function ShowPlaylistView() {
 
   return (
     <div className="playlist">
+
+      <HeaderView />
+
       {loadingPage &&
       <div className="playlist-loading-page">
         <p>Loading...</p>
@@ -98,6 +103,9 @@ function ShowPlaylistView() {
           }
         </div>
       }
+
+      <FooterView />
+
     </div>
   )
 }

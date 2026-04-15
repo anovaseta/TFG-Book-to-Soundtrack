@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import HeaderView from "../headerView"
+import FooterView from "../footerView"
+import './configurePlaylistView.css'
 
 function ConfigurePlaylistView() {
 
@@ -33,7 +36,11 @@ function ConfigurePlaylistView() {
   }
 
   return (
-    <div>
+    <div className="configure-playlist">
+
+      <HeaderView />
+
+      <h1>One last thing before you go...</h1>
       <h2>How many tracks do you want in your playlist?</h2>
 
       <form action={(e) => (handleForm(e))}>
@@ -45,6 +52,7 @@ function ConfigurePlaylistView() {
         }
       </form>
       
+      <FooterView />
 
     </div>
   )

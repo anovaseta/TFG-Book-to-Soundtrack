@@ -128,7 +128,7 @@ function SelectedBookView() {
             </div>
           </div>
           <div className="selected-book-main-page-tag-information">
-            <h2>This book has quite the emotional composition</h2>
+            <h2 className="selected-book-main-page-tag-information-title">This book has quite the emotional composition</h2>
             <div className="selected-book-main-page-tag-information-tags">
               <ul>
                   {data.tag_weights?.map((t, i) => (
@@ -150,35 +150,40 @@ function SelectedBookView() {
                     }
                     return  (
                       <li index={i} data-percentage={roundUsingToFixed(100*t[1])} data-color={colorArray[i]} accum={accum}>
-                        <span>{t[0]}: {roundUsingToFixed(100*t[1])}%</span>
+                        <span>{t[0]}</span>
                       </li>
                     )
                   })}
                 </ul>
             </div>
-          </div>
-          <div>
-            {data.tag_weights?.map((t) => (
-              <div>
-                <p>{t[0]} with a {roundUsingToFixed(100*t[1])}% weight</p>
-                {!synData[t[0]] 
-                  ? 
-                  <button value={t[0]} onClick={(e) => (getTagSynonyms(e.target.value))}>Get synonyms</button> 
-                  : 
-                  <div>
-                  <p>Strongest: {synData[t[0]]['strongest']?.map((t) => (<text>{t}, </text>))}</p>
-                  <p>Strong: {synData[t[0]]['strong']?.map((t) => (<text>{t}, </text>))}</p>
-                  <p>Weak: {synData[t[0]]['weak']?.map((t) => (<text>{t}, </text>))}</p>
-                  <button value={t[0]} onClick={(e) => (delTagSynonyms(e.target.value))}>Hide synonyms</button>
+            <div className="selected-book-main-page-tag-information-see-more">
+              <h2>These mood or emotion tags are going to determine the type of music that you will get</h2>
+              <h3>Click to see the synonyms of each tag!</h3>
+              <div className="selected-book-main-page-tag-information-see-more-synonyms">
+                {data.tag_weights?.map((t, i) => (
+                  <div data-color={colorArray[i]} className="selected-book-main-page-tag-information-see-more-synonyms-element">
+                    {!synData[t[0]] 
+                      ? 
+                      <button value={t[0]} onClick={(e) => (getTagSynonyms(e.target.value))}>{t[0]}</button> 
+                      : 
+                      <button value={t[0]} onClick={(e) => (delTagSynonyms(e.target.value))}>{t[0]}</button>
+                    }
+                    {synData[t[0]] && 
+                      <div>
+                        <p>Strongest: {synData[t[0]]['strongest']?.map((t) => (<text>{t}, </text>))}</p>
+                        <p>Strong: {synData[t[0]]['strong']?.map((t) => (<text>{t}, </text>))}</p>
+                        <p>Weak: {synData[t[0]]['weak']?.map((t) => (<text>{t}, </text>))}</p>
+                      </div>
+                    }
                   </div>
-                }
+                ))}
               </div>
-            ))}
+              <div className="selected-book-main-page-next-page">
+                <h3 onClick={() => (goToPlaylistCreationPage(params['book_id']))}>Ready to create your playlist?</h3>
+              </div>
+            </div>
           </div>
-          <div className="selected-book-main-page-next-page">
-            <h3>Ready to create your playlist?</h3>
-            <button onClick={() => (goToPlaylistCreationPage(params['book_id']))}>Go!</button>
-          </div>
+          
         </div>
       }
 
