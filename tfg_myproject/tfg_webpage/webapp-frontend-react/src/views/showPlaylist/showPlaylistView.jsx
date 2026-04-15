@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import './showPlaylistView.css'
 import HeaderView from "../headerView"
 import FooterView from "../footerView"
+import musicPlayer from '../../assets/player-music.gif'
+import musicLoader from '../../assets/music-loader.gif'
 
 function ShowPlaylistView() {
 
@@ -61,44 +63,43 @@ function ShowPlaylistView() {
 
 
   return (
-    <div className="playlist">
+    <div className="show-playlist">
 
       <HeaderView />
 
       {loadingPage &&
-      <div className="playlist-loading-page">
-        <p>Loading...</p>
+      <div className="show-playlist-loading-page">
+        <img src={musicPlayer} />
       </div>
       }
       {!loadingPage && 
         <div>
-          <div className="playlist-found-tracks">
+          <div className="show-playlist-found-tracks">
+            <h1>Groovy!</h1>
             <h2>We compiled {trackPool[0]} songs for you!</h2>
             <p>Number of tracks: {params['n_tracks']}</p>
-            
-          </div>
-          {playlist == null &&
-            <button onClick={() => (generatePlaylist())}>Generate playlist</button>
-          }
-          {playlist != null &&
-            <div className="playlist-playlist-and-refresh">
-              <label htmlFor="regenerate-playlist">Want to refresh the playlist?</label> 
+            {playlist == null ?
+              <button onClick={() => (generatePlaylist())}>Generate playlist</button>
+              :
               <button id='regenerate-playlist' onClick={() => (generatePlaylist())}>Refresh playlist</button>
-              <div className="playlist-playlist">
-                <ul>
-                  {playlist.map((tr) => (
-                    <li key={tr[3]}>
-                      <img src={tr[5]} alt="Not shown"/>
-                      <div className='playlist-playlist-text'>
-                        <p className="playlist-playlist-text-title">{tr[0]}</p>
-                        <p className="playlist-playlist-text-artist">{tr[1]}</p>
-                        <p className="playlist-playlist-text-tag">A {tr[2]} track</p>
-                        <a className="playlist-playlist-text-button" href={tr[4]}>Go to track!</a>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            }
+          </div>
+          
+          {playlist != null &&
+            <div className="show-playlist-playlist">
+              <ul>
+                {playlist.map((tr) => (
+                  <li key={tr[3]}>
+                    <img src={tr[5]} alt="Not shown"/>
+                    <div className='show-playlist-playlist-text'>
+                      <p className="show-playlist-playlist-text-title">{tr[0]}</p>
+                      <p className="show-playlist-playlist-text-artist">{tr[1]}</p>
+                      <p className="show-playlist-playlist-text-tag">A {tr[2]} track</p>
+                      <a className="show-playlist-playlist-text-button" href={tr[4]}>Go to track!</a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           }
         </div>

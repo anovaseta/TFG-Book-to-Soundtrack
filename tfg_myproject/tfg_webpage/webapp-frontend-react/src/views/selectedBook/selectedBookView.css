@@ -189,7 +189,8 @@
   position: relative;
   left: 350px;
   font-size: 20px;
-  transition: background 0.3 ease, scale 0.3s ease;
+  font-family:'Times New Roman', Times, serif;
+  transition: all 0.3s ease;
 }
 
 .selected-book-main-page-tag-information-see-more-synonyms-element button:hover {
@@ -211,7 +212,7 @@
 .selected-book-main-page-next-page h3 {
   font-size: 36px;
   transition: scale 0.3s ease, text-decoration 0.3s ease, color 0.3s ease, background-color 0.3s ease;
-  background-color: #83163F;
+  background-color: #900f2d;
   display: inline-block;
   padding: 10px;
   border-radius: 10px;

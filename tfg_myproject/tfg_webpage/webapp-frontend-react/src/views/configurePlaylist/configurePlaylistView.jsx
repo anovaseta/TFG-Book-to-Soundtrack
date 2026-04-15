@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import HeaderView from "../headerView"
 import FooterView from "../footerView"
 import './configurePlaylistView.css'
+import rightArrow from '../../assets/right-long-solid-full.svg'
 
 function ConfigurePlaylistView() {
 
@@ -40,17 +41,20 @@ function ConfigurePlaylistView() {
 
       <HeaderView />
 
-      <h1>One last thing before you go...</h1>
-      <h2>How many tracks do you want in your playlist?</h2>
+      <div className="configure-playlist-form">
 
-      <form action={(e) => (handleForm(e))}>
-        <label htmlFor="n-playlist">Choose a number between 5 and 30: </label>
-        <input type="search" id="n-playlist" name="nPlaylist" />
-        <button type='submit'>Generate playlist</button>
-        {errorMessage != null &&
-          <p>{errorMessage}</p>
-        }
-      </form>
+        <h1>One last thing before you go...</h1>
+        <h2>How many tracks do you want in your playlist? (a number between 5 and 30)</h2>
+
+        <form action={(e) => (handleForm(e))}>
+          <input onClick={() => (setErrorMessage(null))} type="search" id="n-playlist" name="nPlaylist" />
+          <button type='submit'><img src={rightArrow} /></button>
+          {errorMessage != null &&
+            <p>{errorMessage}</p>
+          }
+        </form>
+      
+      </div>
       
       <FooterView />
 

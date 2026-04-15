@@ -1,4 +1,4 @@
-.playlist {
+.show-playlist {
   margin-top: 120px;
   margin-bottom: 120px;
   margin-left: 20px;
@@ -8,13 +8,24 @@
   padding-right: 20px;
 }
 
-.playlist-found-tracks {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 1rem;
+.show-playlist-loading-page img {
+  position: relative;
+  left: 500px;
+  height: 270px;
+  width: 270px;
 }
 
-.playlist-playlist {
+.show-playlist-found-tracks {
+  display: block;
+  max-width: 350px;
+  position: relative;
+  left: 500px;
+  background-color: #597e91;
+  padding: 5px 20px 20px 20px;
+  border-radius: 10px;
+}
+
+.show-playlist-playlist {
   width: 100%;
   max-width: 700px;
   margin: 40px auto;
@@ -23,7 +34,7 @@
   padding: 20px;
 }
 
-.playlist-playlist ul {
+.show-playlist-playlist ul {
   list-style: none;
   display: inline;
   padding: 0;
@@ -31,7 +42,7 @@
 }
 
 
-.playlist-playlist li {
+.show-playlist-playlist li {
   background: #477085;
   display: flex;
   grid-template-columns: 1fr 1fr 60px;
@@ -46,7 +57,7 @@
   transform: scale(1.01);
 }
 
-.playlist-playlist img {
+.show-playlist-playlist img {
   width: 200px;
   height: 200px;
 }
@@ -59,12 +70,12 @@
   margin-left: 20px;
 }
 
-.playlist-playlist-text-title {
+.show-playlist-playlist-text-title {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.playlist-playlist-text-artist {
+.show-playlist-playlist-text-artist {
   float: left;
   font-size: 1.2rem;
   color: #555;
