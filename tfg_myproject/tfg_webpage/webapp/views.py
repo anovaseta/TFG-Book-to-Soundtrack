@@ -41,10 +41,12 @@ class StorygraphSearch(viewsets.ViewSet):
     def create(self, request):
         # post request with search query in body
         b = json.loads(request.body.decode("utf-8"))
-        # print(b)
+        print(b)
         id = book_search([b['searchItem']])
-        # print(id)
+        print(id)
         book = book_info(id)
+        if book == None:
+            return Response('error')
         book = add_weights_to_book(book)
         # print(book)
         return Response(book)

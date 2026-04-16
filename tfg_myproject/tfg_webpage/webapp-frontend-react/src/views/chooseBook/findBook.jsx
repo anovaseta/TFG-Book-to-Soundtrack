@@ -26,6 +26,9 @@ function FindBook() {
         body: JSON.stringify({searchItem})
       }).then(response => response.json())
       console.log(response)
+      if (response == 'error') {
+        setSearchResult('error')
+      }
       setSearchResult(response)
     } catch (error) {
       // Error: Handle any problems with the request
@@ -79,7 +82,14 @@ function FindBook() {
               <img src={bookAnim} />
             </div>
           }
-          {searchResult != null &&
+          {searchResult == 'error' &&
+            <div className='choose-book-storygraph-result-not-found-page'>
+              <h2>Oops... something went wrong</h2>
+              <p>We could not find your wonderful book</p>
+              <p>Try a different search prompt!</p>
+            </div>
+          }
+          {searchResult != null & searchResult != 'error' &&
             <div className='choose-book-storygraph-result-book'>
               <h2>Is this your book?</h2>
               <img src = {searchResult.cover_source} alt = 'Cover not shown'/>

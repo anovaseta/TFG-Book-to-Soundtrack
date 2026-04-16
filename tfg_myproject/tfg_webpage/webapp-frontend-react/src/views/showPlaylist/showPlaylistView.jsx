@@ -63,7 +63,7 @@ function ShowPlaylistView() {
     let playlistDisplay = []
     let count = 0
     for (let i = 0; i < playlist.length; i += 3) {
-      // console.log(i, i+1, i+2)
+      console.log(i, i+1, i+2)
       playlistDisplay.push([count, [playlist[i], playlist[i+1], playlist[i+2]]])
       count += 1
     }
@@ -87,29 +87,43 @@ function ShowPlaylistView() {
           <div className="show-playlist-found-tracks">
             <h1>Groovy!</h1>
             <h2>We compiled {trackPool[0]} songs for you!</h2>
-            <p>Number of tracks: {params['n_tracks']}</p>
             {playlist == null ?
               <button onClick={() => (generatePlaylist())}>Generate playlist</button>
               :
-              <button id='regenerate-playlist' onClick={() => (generatePlaylist())}>Refresh playlist</button>
+              <div>
+                <h2>Playlist doesn't convince you?</h2>
+                <button id='regenerate-playlist' onClick={() => (generatePlaylist())}>Refresh playlist</button>
+              </div>
             }
           </div>
           
           {playlist != null &&
             <div className="show-playlist-playlist">
-              <ul>
-                {playlist.map((tr) => (
-                  <li key={tr[3]}>
-                    <img src={tr[5]} alt="Not shown"/>
-                    <div className='show-playlist-playlist-text'>
-                      <p className="show-playlist-playlist-text-title">{tr[0]}</p>
-                      <p className="show-playlist-playlist-text-artist">{tr[1]}</p>
-                      <p className="show-playlist-playlist-text-tag">A {tr[2]} track</p>
-                      <a className="show-playlist-playlist-text-button" href={tr[4]}>Go to track!</a>
+              <h2>Click on each track to access the Spotify url!</h2>
+              <p>Tip: it is advisable to create your own empty Spotify playlist, and add each track one by one</p>
+              {playlist.map((t) => (
+                <div className={'show-playlist-playlist-div-' + t[0]}>
+                  {/* <p>{t[0]} {t[1].length}</p> */}
+                  {t[1].map((tr) => (
+                    <div>
+                      {tr && 
+                      <a href={tr[4]} target="_blank">
+                        <div>
+                          <img src={tr[5]} alt="Not shown"/>
+                          <div className='show-playlist-playlist-text'>
+                            <h2 className="show-playlist-playlist-text-title">{tr[0]}</h2>
+                            <p className="show-playlist-playlist-text-artist">{tr[1]}</p>
+                            <p className="show-playlist-playlist-text-tag">A {tr[2]} track</p>
+                            <p className="show-playlist-playlist-text-go">Go to track!</p>
+                          </div>
+                        </div>
+                      </a>
+                      }
+                      
                     </div>
-                  </li>
-                ))}
-              </ul>
+                  ))}
+                </div>
+              ))}
             </div>
           }
         </div>

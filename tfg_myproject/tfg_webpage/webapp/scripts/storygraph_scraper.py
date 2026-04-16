@@ -117,42 +117,42 @@ def book_info(id):
         title = soup.find('h3',class_="font-semibold text-2xl md:w-11/12 inline items-center").text
         title = re.sub('  +', '', title)
         title = re.sub('\n', '', title)
-        # print(title)
+        print(title)
 
         # parsing authors
         authors = []
         auths = soup.find('p', class_='font-body font-medium mb-1 text-base md:text-lg md:w-11/12').find_all('a', href=True)
         for a in auths:
             authors.append(a.text)
-        # print(authors)
+        print(authors)
 
         # parse unique book identifier
         book_id = soup.find('div', class_='hidden edition-info mt-3').find_all('p')[0].text.split(' ')[2]
-        # print(book_id)
+        print(book_id)
         
         # parsing pages and first year of publication
         pages_first_pub = soup.find('p', class_='text-sm font-light text-darkestGrey dark:text-grey mt-1').find_all('span')
-        # print([sp.text for sp in pages_first_pub])
+        print([sp.text for sp in pages_first_pub])
 
         pages = pages_first_pub[0].text.split(' ')[0]
-        # print(pages)
+        print(pages)
 
         first_pub = pages_first_pub[1].text.split(' ')[6]
-        # print(first_pub)
+        print(first_pub)
 
         # parsing tags
         tags = []
         tag_div = soup.find('div',class_="book-page-tag-section relative").find_all('span')
         for tag in tag_div:
             tags.append(tag.text)
-        # print(tags)
+        print(tags)
 
         desc = soup.find_all('script')[5].text
         pattern = re.compile(r'Description<\/h4><div class=\"trix-content mt-3\">(.*?)<\/div>') # regex expression for getting the description text out of the script
         match = pattern.search(desc)
         description = match.group(1).strip()
         description = re.sub('<(.*?)>', '', description)
-        # print(description)
+        print(description)
 
         img = soup.find('div', class_='book-cover').find('img').get_attribute_list('src')[0]
         # print(img)
