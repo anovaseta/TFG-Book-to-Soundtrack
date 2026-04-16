@@ -14,16 +14,16 @@ function SelectedBookView() {
   const [synData, setSynData] = useState({})
 
   const colorArray = [
-    '#66c2a5',
-    '#fc8d62',
-    '#8da0cb',
-    '#e78ac3',
-    '#a6d854',
-    '#ffd92f',
-    '#e5c494',
-    '#b3b3b3',
-    '#8c564b',
-    '#fa4d56',
+    ['#66c2a5', '#84ceb7'],
+    ['#fc8d62', '#fca381'],
+    ['#8da0cb', '#a3b3d5'],
+    ['#e78ac3', '#eba1cf'],
+    ['#a6d854', '#b7df76'],
+    ['#ffe058', '#ffe882'],
+    ['#e5c494', '#eacfa9'],
+    ['#b3b3b3', '#c2c2c2'],
+    ['#8c564b', '#a3776e'],
+    ['#fa4d56', '#fb7077']
   ]
   
   const fetchBookByISBNOrUID = async (id) => {
@@ -133,7 +133,7 @@ function SelectedBookView() {
               <ul>
                   {data.tag_weights?.map((t, i) => (
                       <li>
-                        <p style={{backgroundColor: colorArray[i]}}>
+                        <p style={{backgroundColor: colorArray[i][0]}}>
                           {t[0]} with a {roundUsingToFixed(100*t[1])}% weight
                         </p>
                       </li>
@@ -149,7 +149,7 @@ function SelectedBookView() {
                       accum += roundUsingToFixed(100*data.tag_weights[j][1])
                     }
                     return  (
-                      <li index={i} data-percentage={roundUsingToFixed(100*t[1])} data-color={colorArray[i]} accum={accum}>
+                      <li index={i} data-percentage={roundUsingToFixed(100*t[1])} data-color={colorArray[i][0]} accum={accum}>
                         <span>{t[0]}</span>
                       </li>
                     )
@@ -161,7 +161,8 @@ function SelectedBookView() {
               <h3>Click to see the synonyms of each tag!</h3>
               <div className="selected-book-main-page-tag-information-see-more-synonyms">
                 {data.tag_weights?.map((t, i) => (
-                  <div data-color={colorArray[i]} className="selected-book-main-page-tag-information-see-more-synonyms-element">
+                  <div data-color-og={colorArray[i][0]} data-color-muted={colorArray[i][1]} onClick={(e) => (getTagSynonyms(t[0]))}
+                    className="selected-book-main-page-tag-information-see-more-synonyms-element">
                     {!synData[t[0]] 
                       ? 
                       <button value={t[0]} onClick={(e) => (getTagSynonyms(e.target.value))}>{t[0]}</button> 

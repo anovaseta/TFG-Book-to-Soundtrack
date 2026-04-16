@@ -18,6 +18,8 @@ from webapp.models import Storygraph_Book, Storygraph_Tag, Tagged_Book, Synonym,
 def get_track_pool(book, n_tracks):
 # returns the complete track pool of a certain book, stored in the database as is.
 
+  print(book)
+
   # calculates the number of tracks per tag (based on total number of tracks)
   tag_tracks = [(t[0], float(n_tracks)*t[1]) for t in book['tag_weights']]
   # print(tag_tracks)
@@ -54,7 +56,7 @@ def get_track_pool(book, n_tracks):
     synonyms[t[0]] = {'n_tracks': t[2], 'synonyms': {}}
     synonyms_two[t[0]] = {'n_tracks': t[2], 'tracks': []}
 
-  print(synonyms)
+  # print(synonyms)
 
   for t in synonyms.keys():
     # print(t)
@@ -71,20 +73,26 @@ def get_track_pool(book, n_tracks):
       # print(syn)
       syn_id = Synonym.objects.get(synonym=syn).id
       list_objects = [Spotify_Track.objects.get(id=rt.track_id) for rt in Spotify_Tag_Relation.objects.filter(tag_id=syn_id)]
-      tracklist = [(t.name, t.artist, t.tag, t.spotify_json['uri'],t.spotify_json['external_urls']['spotify'], t.spotify_json['album']['images'][0]['url']) for t in list_objects]
+      tracklist = []
+      for t in list_objects:
+        if t.spotify_json['album']['images'] == []:
+          tracklist.append((t.name, t.artist, t.tag, t.spotify_json['uri'],t.spotify_json['external_urls']['spotify']))
+        else:
+          tracklist.append(((t.name, t.artist, t.tag, t.spotify_json['uri'],t.spotify_json['external_urls']['spotify'], t.spotify_json['album']['images'][0]['url'])))
+      # tracklist = [(t.name, t.artist, t.tag, t.spotify_json['uri'],t.spotify_json['external_urls']['spotify'], t.spotify_json['album']['images'][0]['url']) for t in list_objects]
       synonyms[tag]['synonyms'][syn] += tracklist
       synonyms_two[tag]['tracks'] += tracklist
 
   #### useful for debug ######
   n_tracks = 0
   for tag in synonyms.keys():
-    # print(tag)
-    # print(len(synonyms[tag]['synonyms'].items()))
+    print(tag)
+    print(len(synonyms[tag]['synonyms'].items()))
     n_by_syn = 0
     for syn in synonyms[tag]['synonyms'].keys():
       n_by_syn += len(synonyms[tag]['synonyms'][syn])
       n_tracks += len(synonyms[tag]['synonyms'][syn])
-    # print(n_by_syn)
+    print(n_by_syn)
 
   
 

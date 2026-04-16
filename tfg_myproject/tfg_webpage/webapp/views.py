@@ -80,6 +80,7 @@ class getTrackPool(viewsets.ViewSet):
             book = Storygraph_Book.objects.filter(isbn_uid=b['book_id'])
             book = serializers.serialize('json', book)
             book = json.loads(book)
+            book = book[0]['fields']
         elif b['mode'] == 'online':
             print('online')
             id = book_search([b['book_id']])

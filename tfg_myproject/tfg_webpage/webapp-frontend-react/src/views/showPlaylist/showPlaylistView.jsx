@@ -58,7 +58,17 @@ function ShowPlaylistView() {
       playlist = playlist.concat(playlist_slice)
     }
     // console.log(playlist)
-    setPlaylist(playlist)
+    // setPlaylist(playlist)
+    // now we slice up the playlist in groups of three
+    let playlistDisplay = []
+    let count = 0
+    for (let i = 0; i < playlist.length; i += 3) {
+      // console.log(i, i+1, i+2)
+      playlistDisplay.push([count, [playlist[i], playlist[i+1], playlist[i+2]]])
+      count += 1
+    }
+    console.log(playlistDisplay)
+    setPlaylist(playlistDisplay)
   }
 
 
