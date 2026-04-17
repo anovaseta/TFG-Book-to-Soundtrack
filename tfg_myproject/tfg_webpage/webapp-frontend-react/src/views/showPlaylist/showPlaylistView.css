@@ -14,6 +14,7 @@
   top: 100px;
   height: 270px;
   width: 270px;
+  filter: sepia(0.8);
 }
 
 .show-playlist-found-tracks {

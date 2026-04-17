@@ -89,7 +89,7 @@ function FindBook() {
               <p>Try a different search prompt!</p>
             </div>
           }
-          {searchResult != null & searchResult != 'error' &&
+          {searchResult != null && searchResult != 'error' &&
             <div className='choose-book-storygraph-result-book'>
               <h2>Is this your book?</h2>
               <img src = {searchResult.cover_source} alt = 'Cover not shown'/>
