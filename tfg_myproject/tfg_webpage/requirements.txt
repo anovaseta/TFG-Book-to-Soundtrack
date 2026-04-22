@@ -10,7 +10,6 @@ bs4==0.0.2
 certifi==2026.1.4
 cffi==2.0.0
 charset-normalizer==3.4.4
-command-not-found==0.3
 constantly==23.10.4
 cryptography==46.0.4
 cssselect==1.4.0
