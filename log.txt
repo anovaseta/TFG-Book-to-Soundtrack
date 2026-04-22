@@ -183,3 +183,5 @@ Wed Apr 15: comp 1 actually finished, finishing comp 2. almost done with the boo
  seems comps 3 and 4 wont be as much work. i need to rest. comp 3 done. just need to distribute the music in comp 4 and we are done i guess.
 
 Thu Apr 16: component finished.
+
+Wed Apr 22: minor changes. plantilla de tfg instalada en overleaf. struggling with dependencies in requirements.
