@@ -21,20 +21,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+DEBUG = os.getenv('DEBUG') # should be 1
+if DEBUG == None:
+  DEBUG = True
+  SECRET_KEY = 'django-insecure-fik(y#q7)kseaiqh+k8$g8w&itx@8p3v8)2abq8a8xn$r)y**='
+  ALLOWED_HOSTS = ['*']
+else:
+  SECRET_KEY = os.getenv('SECRET_KEY')
+  ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-fik(y#q7)kseaiqh+k8$g8w&itx@8p3v8)2abq8a8xn$r)y**='
 
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 
-# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
