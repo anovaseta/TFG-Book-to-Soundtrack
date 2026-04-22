@@ -12,7 +12,7 @@ from rest_framework.response import Response
 class BooksDB(viewsets.ReadOnlyModelViewSet):
 # supports list and retrieve pk
 # maybe it will be more useful to do a generic view set and define the methods on our own, since they may be more complex
-    queryset = Storygraph_Book.objects.all()
+    queryset = Storygraph_Book.objects.all().order_by('authors').values()
     serializer_class = BookDBSerializer
 
 class GetBookByISBNorUID(viewsets.ViewSet):

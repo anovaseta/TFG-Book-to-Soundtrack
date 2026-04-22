@@ -117,7 +117,7 @@ function BookList() {
         }
         {dataFraction != null &&
           <div className='choose-book-list-list-books'>
-            <p>Showing books {listIndex*50+1}-{Math.min((listIndex+1)*50, 635)} of {data.length}</p>
+            <p>Showing books {listIndex*50+1}-{Math.min((listIndex+1)*50, 635)} of {data.length}. Books are ordered by author's name.</p>
             {dataFraction && dataFraction.map((d) => (
               <div className={'choose-book-list-list-books-div-' + d[0]}>
                 {d[1].map((book) => (
@@ -129,7 +129,6 @@ function BookList() {
                         <div className={'choose-book-list-list-books-div-' + d[0] + '-' + book.id + '-text'}>
                           <h3>{book.title}</h3>
                           <p>{book.authors && displayArray(book.authors)}</p>
-                          <p>{book.id}</p>
                           <p>{book.pages} pages</p>
                           <p>First published in {book.first_published_year}</p>
                         </div>
