@@ -16,5 +16,4 @@ Pillow ==9.4.0
 psycopg2 ==2.9.7
 pycodestyle==2.11.1
 sqlparse==0.4.4
-typingextensions==4.9.0
 whitenoise==5.2.0
