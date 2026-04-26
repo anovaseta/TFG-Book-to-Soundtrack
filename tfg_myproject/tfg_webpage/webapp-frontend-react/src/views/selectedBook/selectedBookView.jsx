@@ -29,7 +29,9 @@ function SelectedBookView() {
   const fetchBookByISBNOrUID = async (id) => {
     try {
       // Success: Fetch data from the API
-      var url = "http://localhost:8000/api/v1/isbn/";
+      // var baseUrl = "http://localhost:8000/"
+      var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+      var url = baseUrl + "api/v1/isbn/";
       const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify({
@@ -56,7 +58,9 @@ function SelectedBookView() {
   async function getTagSynonyms(tag){
     try {
       // Success: Fetch data from the API
-      var url = "http://localhost:8000/api/v1/tag/" + tag;
+      // var baseUrl = "http://localhost:8000/"
+      var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+      var url = baseUrl + "api/v1/tag/" + tag;
       const response = await fetch(url, {
         method: 'GET',
       }).then(response => response.json())

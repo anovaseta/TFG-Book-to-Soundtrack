@@ -10,9 +10,10 @@ function InstructionsView() {
 
     <div className="instructions-container">
 
+    <p>Nota: la página web está escrita en inglés. Si esto te supone un problema, ¡pide ayuda!</p>
     <p>If you are here, you are probably helping me with my TFG. Thanks for being here! I am going to go through the things you are going to need:</p>
     <ul>
-      <li>A good enough level of English (you can always ask me for help if you have any doubts)</li>
+      <li>A book you love (or, at least, have read) and its ISBN (the number that "identifies" your book)</li>
       <li>A Spotify account that can create a list: a free account is enough if you do not have Spotify, but a premium account will make it easier to listen to the music.</li>
     </ul>
 

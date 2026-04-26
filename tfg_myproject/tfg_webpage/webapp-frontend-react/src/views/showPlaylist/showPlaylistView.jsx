@@ -15,7 +15,9 @@ function ShowPlaylistView() {
   const [playlist, setPlaylist] = useState(null)
 
   async function fetchTracksFromAPI(book_id) {
-    const url = "http://localhost:8000/api/v1/track-pool/"
+    // var baseUrl = "http://localhost:8000/"
+      var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+    const url = baseUrl + "api/v1/track-pool/"
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
@@ -25,7 +27,7 @@ function ShowPlaylistView() {
       }),
     }).then(response => response.json())
 
-    console.log(response)
+    // console.log(response)
     setTrackPool(response)
     setLoadingPage(false)
 
@@ -63,7 +65,7 @@ function ShowPlaylistView() {
     let playlistDisplay = []
     let count = 0
     for (let i = 0; i < playlist.length; i += 3) {
-      console.log(i, i+1, i+2)
+      // console.log(i, i+1, i+2)
       playlistDisplay.push([count, [playlist[i], playlist[i+1], playlist[i+2]]])
       count += 1
     }

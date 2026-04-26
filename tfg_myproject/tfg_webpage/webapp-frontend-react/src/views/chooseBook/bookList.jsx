@@ -13,12 +13,15 @@ function BookList() {
 
   const fetchBooksFromDB = async (pk) => {
     try {
+      // var baseUrl = "http://localhost:8000/"
+      var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
       // Success: Fetch data from the API
       if (pk != null) {
-        var url = "http://localhost:8000/api/v1/books/" + pk;
+        var url = baseUrl + "api/v1/books/" + pk;
       } else {
-        var url = "http://localhost:8000/api/v1/books/";
+        var url = baseUrl + "api/v1/books/";
       }
+      console.log(url)
       const response = await fetch(url, {
         method: 'GET',
       }).then(response => response.json())

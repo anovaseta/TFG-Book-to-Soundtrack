@@ -20,7 +20,9 @@ function FindBook() {
     e.target.clear
     try {
       // Success: Fetch data from the API
-      const url = 'http://127.0.0.1:8000/api/v1/storygraph-search/'
+      // var baseUrl = "http://localhost:8000/"
+      var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+      const url = baseUrl + 'api/v1/storygraph-search/'
       const response = await fetch(url, {
         method: 'POST',
         body: JSON.stringify({searchItem})
@@ -37,8 +39,8 @@ function FindBook() {
   }
 
   function goToBookPage(bookId) {
-    const url = '/flow/book/online/' + bookId
-    navigate(url)
+    const nav = '/flow/book/online/' + bookId
+    navigate(nav)
   }
 
   function displayArray(arr) {
