@@ -185,3 +185,17 @@ Wed Apr 15: comp 1 actually finished, finishing comp 2. almost done with the boo
 Thu Apr 16: component finished.
 
 Wed Apr 22: minor changes. plantilla de tfg instalada en overleaf. struggling with dependencies in requirements.
+
+Dom Apr 26: uploaded the whole website on Render!
+
+Wed Apr 29: revisando cositas que bellogin me ha dado para modificar. (Used Font Awesome to get some icons)
+
+Unos comentarios:
+OK "you may have a week to do that" --> "you will have a week to do that"
+OK una vez que estás en las instrucciones, ¿cómo sales de ahí?
+OK es curioso que en los emotion tags, el cursor indica que se puede pulsar en todo el botón menos en la palabra...
+OK ¿el número de tracks se podría poner en una lista, para evitar tener que escribirlo y validarlo?
+OK la frase que aparece al final de cada track ("A tense track"), ¿la has creado tú? ¿de dónde lo sacas? Es curiosidad mía, más que nada... y para acordarnos de explicarlo en la memoria
+OK cuando se abren los tracks se ponen en marcha, no sé si eso ayuda (a mí me ha parecido bien) pero si quieres abrir todos para incluirlos en el playlist, como sugieres, quizá no es lo que se quiere, ¿qué opinas?
+
+Formularios creados. You can do it.
