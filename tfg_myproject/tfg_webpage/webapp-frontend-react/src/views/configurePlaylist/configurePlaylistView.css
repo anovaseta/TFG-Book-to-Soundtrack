@@ -45,11 +45,69 @@ input[type="search"]::-webkit-search-results-decoration {
   cursor: pointer;
 }
 
-.configure-playlist-form > form button > img {
+.configure-playlist-form > form {
+  display: block;
+  background-color: ivory;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 220px;
+  max-height: 30px;
+}
+
+.configure-playlist-form h3 {
+  font-weight: bold;
   position: relative;
-  width: 20px;
-  height: 20px;
+  bottom: 12px;
+}
+
+.configure-playlist-form-submit-button {
+  left: 180px;
+  bottom: 90px;
+  position: relative;
+  max-width: 25px;
+  border-radius: 30%;
+  img {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+  }
+  :hover {
+    cursor: pointer;
+  };
+}
+
+.configure-playlist-form-add-button {
+  left: 30px;
+  bottom: 69px;
+  position: relative;
+  background-color: ivory;
   padding: 0;
+  border-radius: 10px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+.configure-playlist-form-add-button:hover {
+  cursor: pointer;
+}
+
+.configure-playlist-form-subtract-button {
+  position: relative;
+  left: 3px;
+  bottom: 55px;
+  height: 17px;
+  background-color: ivory;
+  border-radius: 10px;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+
+.configure-playlist-form-subtract-button:hover {
+  cursor: pointer;
 }
 
 .configure-playlist-form > form p {

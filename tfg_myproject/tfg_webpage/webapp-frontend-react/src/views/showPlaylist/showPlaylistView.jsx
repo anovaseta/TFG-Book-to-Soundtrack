@@ -109,7 +109,7 @@ function ShowPlaylistView() {
                   {t[1].map((tr) => (
                     <div>
                       {tr && 
-                      <a href={tr[4]} target="_blank">
+                      <a href={tr[4] + '/autoplay=off'} target="_blank">
                         <div>
                           <img src={tr[5]} alt="Not shown"/>
                           <div className='show-playlist-playlist-text'>
