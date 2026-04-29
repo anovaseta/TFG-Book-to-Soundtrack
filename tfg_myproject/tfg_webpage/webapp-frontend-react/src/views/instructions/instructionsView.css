@@ -9,3 +9,27 @@
   display: inline-block;
   border-radius: 20px;
 }
+
+.instructions-container-go-back a {
+  transition: background 0.3s ease, color 0.3s ease;
+  padding: 5px;
+}
+
+
+
+.instructions-container-go-back a:link, .instructions-container-go-back a:visited {
+  color: #681132;
+  text-decoration: underline;
+  border-radius: 10px;
+}
+
+.instructions-container-go-back a:hover {
+  color: #e6d0d8;
+  background-color: #681132;
+  text-decoration: none;
+}
+
+.instructions-container-go-back h2 {
+  font-size: 25px;
+  margin-top: 20px;
+}

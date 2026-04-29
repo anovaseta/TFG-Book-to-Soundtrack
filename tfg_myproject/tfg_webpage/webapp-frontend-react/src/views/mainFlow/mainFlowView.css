@@ -22,6 +22,7 @@
 .mainflow-container a {
   transition: background 0.3s ease, color 0.3s ease;
   padding: 5px;
+  border-radius: 10px;
 }
 
 
@@ -39,4 +40,5 @@
 
 .mainflow-container-flow h2 {
   font-size: 30px;
-  margin-top: 20px;}
+  margin-top: 20px;
+}
