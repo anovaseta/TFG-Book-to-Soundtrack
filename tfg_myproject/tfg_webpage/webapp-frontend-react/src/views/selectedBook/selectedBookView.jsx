@@ -113,9 +113,11 @@ function SelectedBookView() {
   }
 
   return (
-    <div className="selected-book">
+    <div>
 
-      <HeaderView />
+    <HeaderView />
+
+    <div className="selected-book">
 
       {data == null &&
         <div className="selected-book-loading-page">
@@ -132,13 +134,13 @@ function SelectedBookView() {
             </div>
           </div>
           <div className="selected-book-main-page-tag-information">
-            <h2 className="selected-book-main-page-tag-information-title">This book has quite the emotional composition</h2>
+            <h2 className="selected-book-main-page-tag-information-title">This book has the following mood composition!</h2>
             <div className="selected-book-main-page-tag-information-tags">
               <ul>
                   {data.tag_weights?.map((t, i) => (
                       <li>
                         <p style={{backgroundColor: colorArray[i][0]}}>
-                          {t[0]} with a {roundUsingToFixed(100*t[1])}% weight
+                          <span style={{fontWeight: "bold"}}>{t[0]}</span> with a {roundUsingToFixed(100*t[1])}% weight
                         </p>
                       </li>
                   ))}
@@ -154,7 +156,7 @@ function SelectedBookView() {
                     }
                     return  (
                       <li index={i} data-percentage={roundUsingToFixed(100*t[1])} data-color={colorArray[i][0]} accum={accum}>
-                        <span>{t[0]}</span>
+                        <span style={{fontWeight: "bold"}}>{t[0]}</span>
                       </li>
                     )
                   })}
@@ -192,7 +194,9 @@ function SelectedBookView() {
         </div>
       }
 
-      <FooterView />
+    </div>
+
+    <FooterView />
 
     </div>
   )

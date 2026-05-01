@@ -17,32 +17,34 @@ function ChooseBookView() {
         <HeaderView />
 
         <div className='choose-book-container'>
-          <p className='choose-book-container-title'>
-            <img src={book}></img> The Book Hub
-          </p>
-          <div className='choose-book-container-select'>
-            <p>You choose your book from: 
-              <button 
-              style={{
-                backgroundColor: visibleComp == '0' && "#d4966f",
-                color: visibleComp == '0' && "#681132",
-                textDecoration: visibleComp == '0' && "underline"
-              }} 
-              onClick={() => setVisibleComp('0')}>StoryGraph</button>
-              <button 
-              style={{
-                backgroundColor: visibleComp == '1' && "#d4966f",
-                color: visibleComp == '1' && "#681132",
-                textDecoration: visibleComp == '1' && "underline"
-              }} 
-              onClick={() => setVisibleComp('1')}>Local library</button>
+          <div className='choose-book-container-start'>
+            <p className='choose-book-container-title'>
+              <img src={book}></img> The Book Hub
             </p>
+            <div className='choose-book-container-select'>
+              <p>You choose your book from: 
+                <button 
+                style={{
+                  backgroundColor: visibleComp == '0' && "#d4966f",
+                  color: visibleComp == '0' && "#681132",
+                  textDecoration: visibleComp == '0' && "underline"
+                }} 
+                onClick={() => setVisibleComp('0')}>StoryGraph</button>
+                <button 
+                style={{
+                  backgroundColor: visibleComp == '1' && "#d4966f",
+                  color: visibleComp == '1' && "#681132",
+                  textDecoration: visibleComp == '1' && "underline"
+                }} 
+                onClick={() => setVisibleComp('1')}>Local library</button>
+              </p>
+            </div>
           </div>
-        </div>
-
-        {visibleComp == '0' && <FindBook/>}
-        {visibleComp == '1' && <BookList/>}
         
+          {visibleComp == '0' && <FindBook/>}
+          {visibleComp == '1' && <BookList/>}
+
+        </div>
         <FooterView />
 
       </div>
