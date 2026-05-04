@@ -87,6 +87,7 @@ function BookList() {
   }
 
   const arr = Array(13).keys()
+  const arrTwo = Array(13).keys()
 
   return (
 
@@ -96,23 +97,6 @@ function BookList() {
         <p>Feel free to choose any book from the ones that are available</p>
       </div>
       <div className='choose-book-list-list'>
-        <div className='choose-book-list-list-search-tools'>
-          <button onClick={() => (updateData(listIndex-1))}>
-            Prev
-          </button>
-          {arr.map((i) => 
-            <button style={{
-              backgroundColor: i == listIndex && 'inherit',
-              color: i == listIndex && '#681132',
-              textDecoration: i == listIndex && 'underline',
-            }} onClick={() => (updateData(i))}>
-              {i+1}
-            </button>
-          )}
-          <button onClick={() => (updateData(listIndex+1))}>
-            Next
-          </button>
-        </div>
         {dataFraction == null &&
           <div className='choose-book-list-list-loading-page'>
             <img src={bookAnim} />
@@ -120,9 +104,26 @@ function BookList() {
         }
         {dataFraction != null &&
           <div className='choose-book-list-list-books'>
+            <div className='choose-book-list-list-search-tools'>
+              <button onClick={() => (updateData(listIndex-1))}>
+                Prev
+              </button>
+              {arr.map((i) => 
+                <button style={{
+                  backgroundColor: i == listIndex && 'inherit',
+                  color: i == listIndex && '#681132',
+                  textDecoration: i == listIndex && 'underline',
+                }} onClick={() => (updateData(i))}>
+                  {i+1}
+                </button>
+              )}
+              <button onClick={() => (updateData(listIndex+1))}>
+                Next
+              </button>
+            </div>
             <p>Showing books {listIndex*50+1}-{Math.min((listIndex+1)*50, 635)} of {data.length}. Books are ordered by author's name.</p>
             {dataFraction && dataFraction.map((d) => (
-              <div className={'choose-book-list-list-books-div-' + d[0]}>
+              <div className={'choose-book-list-list-books-row'}>
                 {d[1].map((book) => (
                   <div>
                     {book && 
@@ -141,8 +142,27 @@ function BookList() {
                 ))}    
               </div>
             ))}
+            <p>Showing books {listIndex*50+1}-{Math.min((listIndex+1)*50, 635)} of {data.length}. Books are ordered by author's name.</p>
+            <div className='choose-book-list-list-search-tools-two'>
+              <button onClick={() => (updateData(listIndex-1))}>
+                Prev
+              </button>
+              {arrTwo.map((i) => 
+                <button style={{
+                  backgroundColor: i == listIndex && 'inherit',
+                  color: i == listIndex && '#681132',
+                  textDecoration: i == listIndex && 'underline',
+                }} onClick={() => (updateData(i))}>
+                  {i+1}
+                </button>
+              )}
+              <button onClick={() => (updateData(listIndex+1))}>
+                Next
+              </button>
+            </div>
           </div>
         }
+        
       </div>
     </div>
   );
