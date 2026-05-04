@@ -199,3 +199,7 @@ OK la frase que aparece al final de cada track ("A tense track"), ¿la has cread
 OK cuando se abren los tracks se ponen en marcha, no sé si eso ayuda (a mí me ha parecido bien) pero si quieres abrir todos para incluirlos en el playlist, como sugieres, quizá no es lo que se quiere, ¿qué opinas?
 
 Formularios creados. You can do it.
+
+Fri May 1: first draft of questionnaires done. integration of questionnaires with website done. minor bugs fixed. hay que hacer la memoria.
+
+Mon May 4: distributed the surveys ig. time to write and write and write
