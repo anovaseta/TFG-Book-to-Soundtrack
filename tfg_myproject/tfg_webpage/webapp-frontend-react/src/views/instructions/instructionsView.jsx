@@ -24,11 +24,11 @@ function InstructionsView() {
 
       <p>There will be TWO QUESTIONNAIRES in this process.</p>
 
-      <p>You start with the first questionnaire (click <a href='https://forms.gle/DHEcpGPHTHBbcGpPA' target="_blank">here</a>), which will be done while 
+      <p>You start with <a href='https://forms.gle/DHEcpGPHTHBbcGpPA' target="_blank">the first questionnaire</a>, which will be done while 
       using the website. When you finish it, you will have your music playlist ready!</p>
 
       <p>After giving yourself time to listen to the music (it would be helpful to spend no more than 5 days),
-        you will fill out the second questionnaire (click <a href='https://forms.gle/kiufDFHxjU8TNoQg9' target="_blank">here</a>).</p>
+        you will fill out <a href='https://forms.gle/kiufDFHxjU8TNoQg9' target="_blank">the second questionnaire</a>.</p>
 
       <p>Thank you again for your help!</p>
     

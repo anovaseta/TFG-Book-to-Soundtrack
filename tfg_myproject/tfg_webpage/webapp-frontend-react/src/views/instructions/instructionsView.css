@@ -12,9 +12,9 @@
 }
 
 .instructions-container a {
-  color: #681132;
   text-decoration: underline;
   transition: all 0.3s ease;
+  font-size: 130%;
   /* padding: 5px; */
 }
 
