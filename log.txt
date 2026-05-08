@@ -202,4 +202,11 @@ Formularios creados. You can do it.
 
 Fri May 1: first draft of questionnaires done. integration of questionnaires with website done. minor bugs fixed. hay que hacer la memoria.
 
-Mon May 4: distributed the surveys ig. time to write and write and write
+Mon May 4: distributed the surveys ig. time to write and write and write. implemented change: buttons at the bottom.
+
+Resumen de actividades para el diagrama de Gantt (35 semanas desde 16 septiembre hasta 17 de mayo, 26 semanas desde el 18 de noviembre
+hasta el 17 de mayo): 
+    construir el flujo del algoritmo: The StoryGraph, Thesaurus, LastFM, Spotify.
+    poblar la BBDD: libros, sinónimos, música.
+    página web
+    escribir la memoria
