@@ -4,18 +4,14 @@
 
 import json
 
-# from storygraph_api import Book
-# id = "28386517-30cc-4ce4-bb90-9336c370a9dd"
-# book = Book()
-# try:
-#     result = book.book_info(id)
-#     print(result)
-# except Exception as e:
-#     print(e)
-# result = book.search("The Orphan Master's Son, Adam Johnson")
-# print(result)
+from storygraph_api import Book
+id = "28386517-30cc-4ce4-bb90-9336c370a9dd"
+book = Book()
+try:
+    result = book.book_info(id)
+    print(result)
+except Exception as e:
+    print(e)
+result = book.search("The Orphan Master's Son, Adam Johnson")
+print(result)
 
-f = open("json_files/synonym_list.json", "r")
-all_synonyms = json.loads(f.read())
-
-print(len(all_synonyms))

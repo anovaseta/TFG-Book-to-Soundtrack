@@ -32,7 +32,7 @@ def tag_recount():
 
 
 def tag_reload():
-    # ampliar lista de tags, bajar el listón de 50 a ??
+    # ampliar lista de tags, bajar el listón de 50 a 25
 
     f = open("json_files/all_books_extended.json", 'r+')
     all_books_extended = json.loads(f.read())
