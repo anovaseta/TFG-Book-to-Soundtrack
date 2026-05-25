@@ -3,6 +3,31 @@ each one with a short explanation of its contents and relevance to the project.
 
 Studies:
 
+- "EmoRemSys: Sistema de recomendación de recursos educativos basado en detección de emociones"
+    filename: recomendacion_recursoseducativos_emociones.pdf
+    content: sistema de recomendación de recursos basado en un anñalisis sentimental, tomando como dato el análisis facial de
+    imágenes del usuario tomadas con su webcam, y también la calificación del recurso del usuario.
+
+- "Sistema de recomendación de libros basado en ontologías asociadas a tesauros: el caso de la Biblioteca 
+de la Facultad de Ingeniería de Sistemas e Informática de la Universidad Nacional Mayor de San Marcos"
+    filename: sistema_recomendacion_libros_biblioteca.pdf
+    contenido: se diseñó e implementó un sistema de recomendación  de  libros  en  la  Biblioteca  de  la  
+    Facultad  de  Ingeniería  de  Sistemas  e Informática de la Universidad de Perú mediante la técnica de recomendación basada en Ontologías 
+    asociada a Tesauros. 
+
+- "PGMÚSICA: SISTEMA DE RECOMENDACIÓN DE MÚSICA"
+    filename: recomendacion_musica_filtrado_colaborativo.pdf
+    content: se crea un sistema de recomendación de música basada en el filtrado colaborativo: recomendaciones a usuarios basadas
+    en lo que le ha gustado a otros usuarios con perfiles similares.
+
+- "Sistema de recomendación de música basado en etiquetado social" parte de "Avances en Informática y Automática: 
+decimotercer workshop", páginas 47-68.
+    filename: recomendacion_musica_etiquetado_social.pdf
+    content: se crea un sistema de recomendación de música basado en un sistema de etiquetación social. Se hace mención de
+    folksonomías. Se propone que dicho etiquetado social provenga de redes sociales como Twitter, pues "[reúne] gustos, 
+    opiniones y subjetividad de una gran cantidad de usuarios de todo el mundo". "A través del procesamiento del lenguaje natural 
+    en redes sociales como Twitter, se pueden extraer características que identifican los gustos musicales de cada usuario"
+
 - "MUSIC MOOD DATASET CREATION BASED ON LAST.FM TAGS" by Erion Çano and Maurizio Morisio:
     filename: music_mood_lastfm.pdf
     content: using the last.fm music dataset, strive to create a complete mood categorisation based on
@@ -47,7 +72,7 @@ Studies:
     relevance: uses the "gold standard" on music tagging, four main facets that serve as ground truth: genres, instruments, locations & languages, and moods.
 
 
-Sources:
+Sources (seguro útil para la INTRODUCCIÓN):
 
 https://books.org/blog/should-you-listen-to-music-while-reading/
     content: in this blog post, the author ponders the pros and cons of listening to music while reading. they posit that, while every reader 
@@ -58,6 +83,14 @@ https://books.org/blog/should-you-listen-to-music-while-reading/
 
 # Provides a list of songs for some categories of books (about love, about friendship...). Shows that there is a community interested in this topic
 https://windowstoworlds.wordpress.com/2020/07/31/music-to-listen-to-while-reading/
+
+https://los40.com/los40/2023/04/23/musica/1681898314_636222.html
+    content: artículo de los 40 con las top 10 canciones inspiradas en libros
+    relevance: lo que un libro puede hacerte sentir ha inspirado a artistas a escribir música: muestra cierta conexión 
+    entre los dos dominios artísticos.
+https://yerseyowen.com/2022/09/29/la-fusion-de-la-musica-y-la-literatura-canciones-inspiradas-en-libros/
+    content: más artículos con canciones basadas en libros.
+    relevance: similar a la de arriba.
 
 FOR WHAT FRONTEND FRAMEWORK/TOOL TO USE:
 

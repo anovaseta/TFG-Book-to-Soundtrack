@@ -1,0 +1,74 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="c-Kgy8wnppfOFTIfMVOr">
+    <mxGraphModel dx="774" dy="417" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="240" width="180" x="70" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="240" width="180" x="630" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="240" width="180" x="350" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=light-dark(#dec0ed, #392f3f);strokeColor=#9673a6;" value="&lt;font face=&quot;Verdana&quot; style=&quot;color: rgb(98, 75, 108);&quot;&gt;Back-end + API&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot; style=&quot;color: rgb(98, 75, 108);&quot;&gt;Django (Python)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="660" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#624B6C,#EDEDED);" value="&lt;b style=&quot;&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;Página web&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="90" x="675" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-6" edge="1" parent="1" style="endArrow=open;html=1;rounded=0;endFill=0;dashed=1;dashPattern=8 8;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="TFSp3ibN46jqfcG0iPiw-17" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="250" y="130" as="sourcePoint" />
+            <mxPoint x="330" y="129.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-7" connectable="0" parent="TFSp3ibN46jqfcG0iPiw-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Verdana;" value="Requiere" vertex="1">
+          <mxGeometry relative="1" x="-0.3333" y="-2" as="geometry">
+            <mxPoint x="10" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=light-dark(#dec0ed, #392f3f);strokeColor=#9673a6;fontColor=#624B6C;" value="&lt;font face=&quot;Verdana&quot;&gt;Front-end&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Verdana&quot;&gt;React+Vite (JavaScript)&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="660" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#877336;labelBorderColor=none;" value="&lt;b style=&quot;&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;Algoritmo&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;b style=&quot;&quot;&gt;&lt;font face=&quot;Lucida Console&quot;&gt;&#39;Book-to-Soundtrack&#39;&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="152.5" x="83.75" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#526C92;labelBorderColor=none;" value="&lt;font face=&quot;Lucida Console&quot;&gt;&lt;b&gt;Base de datos SQLite&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="106.25" x="386.88" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=light-dark(#FFE599,#FFE599);strokeColor=#d6b656;" value="&lt;font face=&quot;Verdana&quot; style=&quot;color: rgb(135, 115, 54);&quot;&gt;Libro de The StoryGraph&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="100" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=light-dark(#FFE599,#FFE599);strokeColor=#d6b656;" value="&lt;font face=&quot;Verdana&quot; style=&quot;color: rgb(135, 115, 54);&quot;&gt;Lista de reproducción de Spotify&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="100" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-13" edge="1" parent="1" source="TFSp3ibN46jqfcG0iPiw-11" style="endArrow=open;html=1;rounded=0;endFill=0;dashed=1;dashPattern=8 8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#D6B656;" target="TFSp3ibN46jqfcG0iPiw-12" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="150" y="170" as="sourcePoint" />
+            <mxPoint x="210" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-15" edge="1" parent="1" source="TFSp3ibN46jqfcG0iPiw-2" style="endArrow=open;html=1;rounded=0;endFill=0;dashed=1;dashPattern=8 8;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" target="TFSp3ibN46jqfcG0iPiw-19" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="600" y="220" as="sourcePoint" />
+            <mxPoint x="570" y="219.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-16" connectable="0" parent="TFSp3ibN46jqfcG0iPiw-15" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=Verdana;" value="Consulta" vertex="1">
+          <mxGeometry relative="1" x="-0.3333" y="-2" as="geometry">
+            <mxPoint x="-10" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=light-dark(#92BEFF,#392F3F);strokeColor=#6C8EBF;" value="&lt;font face=&quot;Verdana&quot; style=&quot;color: rgb(82, 108, 146);&quot;&gt;Integral para la construcción del algoritmo&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="380" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="TFSp3ibN46jqfcG0iPiw-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=light-dark(#92BEFF,#392F3F);strokeColor=#6C8EBF;" value="&lt;font face=&quot;Verdana&quot; style=&quot;color: rgb(82, 108, 146);&quot;&gt;Parte del proyecto de página web&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="380" y="190" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

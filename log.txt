@@ -210,3 +210,20 @@ hasta el 17 de mayo):
     poblar la BBDD: libros, sinónimos, música.
     página web
     escribir la memoria
+
+Resumen de tareas pendientes de la memoria:
+    OK El capítulo de pruebas
+    OK La introducción
+    OK La conclusión
+    OK Decidir el título definitivo
+    OK El resumen/abstract
+    OK Los anexos
+    OK Requisitos no funcionales
+    OK Explicar mejor esa sección en el diseño
+    OK Explicar mejor esa otra sección en el desarrollo (pseudocódigo)
+    OK REDUCIR PÁGINAS
+    Repasar notas hasta el final
+    OK Los agradecimientos
+
+Mon May 25: you did it you animal
+

@@ -5,15 +5,6 @@
 # import nltk
 from PyMultiDictionary import MultiDictionary
 
-# nltk.download('wordnet')
-
-# from nltk.corpus import wordnet as wn
-
-# print(wn.synonyms('car'))
-# print(wn.synsets('thriller', pos=wn.NOUN))
-
-# wordnet no me ha convencido
-
 dict = MultiDictionary()
 
 # terms = ["emotional", "reflective", "adventurous", "dark", "mysterious", "sad", "funny", "lighthearted", 

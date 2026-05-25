@@ -94,26 +94,4 @@ def get_track_pool(book, n_tracks):
       n_tracks += len(synonyms[tag]['synonyms'][syn])
     print(n_by_syn)
 
-  
-
   return([n_tracks, synonyms_two, synonyms])
-
-  
-
-  
-
-  
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
