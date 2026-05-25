@@ -1,5 +1,8 @@
 import json
+import io
 from django.core import serializers
+from django.http import FileResponse, HttpResponse
+from reportlab.pdfgen import canvas
 from .models import Storygraph_Book, Storygraph_Tag, Synonym, Synonym_Relation
 from .serializers import BookDBSerializer
 from rest_framework import mixins
@@ -8,6 +11,7 @@ from rest_framework import viewsets
 from .scripts.storygraph_scraper import book_search, book_info, add_weights_to_book
 from .scripts.get_track_pool import get_track_pool
 from rest_framework.response import Response
+
 
 class BooksDB(viewsets.ReadOnlyModelViewSet):
 # supports list and retrieve pk
@@ -20,7 +24,7 @@ class GetBookByISBNorUID(viewsets.ViewSet):
     def create(self, request):
         # get request with isbn/uid param
         # print(pk)
-        b = json.loads(request.body.decode("utf-8"))
+        b = json.loads(request.body)
         print(b)
         if b['mode'] == 'offline':
             book = Storygraph_Book.objects.filter(isbn_uid=b['book_id'])
@@ -93,5 +97,24 @@ class getTrackPool(viewsets.ViewSet):
         return Response(get_track_pool(book, b['n_tracks']))
 
 
+class exportToPDF(viewsets.ViewSet):
+# has offline and online mode
+    def create(self, request):
+        b = json.loads(request.body.decode("utf-8"))
+        print(b)
+        # Create the HttpResponse object with the appropriate PDF headers.
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
 
+        # Create the PDF object, using the response object as its "file."
+        p = canvas.Canvas(response)
+
+        # Draw things on the PDF. Here's where the PDF generation happens.
+        # See the ReportLab documentation for the full list of functionality.
+        p.drawString(100, 100, "Hello world.")
+
+        # Close the PDF object cleanly, and we're done.
+        p.showPage()
+        p.save()
+        return response
         

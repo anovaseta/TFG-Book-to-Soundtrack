@@ -225,5 +225,6 @@ Resumen de tareas pendientes de la memoria:
     Repasar notas hasta el final
     OK Los agradecimientos
 
-Mon May 25: you did it you animal
+Mon May 25: you did it you animal. im gonna render the pdf in the front, its what makes the most sense. got it set up,
+i just need the relevant info and to construct the pdf.
 

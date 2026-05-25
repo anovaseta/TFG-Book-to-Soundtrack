@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { usePDF, Document, Page, pdf } from '@react-pdf/renderer'
+import { saveAs } from 'file-saver'
 import './showPlaylistView.css'
 import HeaderView from "../headerView"
 import FooterView from "../footerView"
 import musicPlayer from '../../assets/player-music.gif'
 import musicLoader from '../../assets/music-loader.gif'
+import PDFView from "./PDFView";
 
 function ShowPlaylistView() {
 
@@ -13,6 +16,7 @@ function ShowPlaylistView() {
   const [loadingPage, setLoadingPage] = useState(true)
   const [trackPool, setTrackPool] = useState([])
   const [playlist, setPlaylist] = useState(null)
+  const [exportPDF, setExportPDF] = useState(false)
 
   async function fetchTracksFromAPI(book_id) {
     // var baseUrl = "http://localhost:8000/"
@@ -73,6 +77,14 @@ function ShowPlaylistView() {
     setPlaylist(playlistDisplay)
   }
 
+  async function exportToPDF() {
+    // falta hacer la llamada para conseguir toda la info y organizar esa info en el PDF
+    const fileName = 'test.pdf';
+    const blob = await pdf(<PDFView />).toBlob();
+    saveAs(blob, fileName);
+    // setExportPDF(true)
+  }
+
 
   return (
     <div className="show-playlist">
@@ -98,6 +110,14 @@ function ShowPlaylistView() {
               </div>
             }
           </div>
+
+          {playlist != null &&
+            <div className="show-playlist-pdf">
+              <h1>Want to remember this forever?</h1>
+              <h2>You can save your journey in this website in a PDF file!</h2>
+              <button onClick={() => (exportToPDF())}>Export to PDF</button>
+            </div>
+          } 
           
           {playlist != null &&
             <div className="show-playlist-playlist">
