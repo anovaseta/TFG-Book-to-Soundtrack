@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { usePDF, Document, Page, pdf } from '@react-pdf/renderer'
+import { usePDF, pdf, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
 import { saveAs } from 'file-saver'
 import './showPlaylistView.css'
 import HeaderView from "../headerView"
@@ -16,11 +16,11 @@ function ShowPlaylistView() {
   const [loadingPage, setLoadingPage] = useState(true)
   const [trackPool, setTrackPool] = useState([])
   const [playlist, setPlaylist] = useState(null)
-  const [exportPDF, setExportPDF] = useState(false)
+  const [exportPDF, setExportPDF] = useState(null)
 
   async function fetchTracksFromAPI(book_id) {
     // var baseUrl = "http://localhost:8000/"
-      var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+    var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
     const url = baseUrl + "api/v1/track-pool/"
     const response = await fetch(url, {
       method: 'POST',
@@ -31,7 +31,7 @@ function ShowPlaylistView() {
       }),
     }).then(response => response.json())
 
-    // console.log(response)
+    console.log(response)
     setTrackPool(response)
     setLoadingPage(false)
 
@@ -73,16 +73,26 @@ function ShowPlaylistView() {
       playlistDisplay.push([count, [playlist[i], playlist[i+1], playlist[i+2]]])
       count += 1
     }
-    console.log(playlistDisplay)
+    // console.log(playlistDisplay)
     setPlaylist(playlistDisplay)
+    setExportPDF(null)
   }
 
   async function exportToPDF() {
-    // falta hacer la llamada para conseguir toda la info y organizar esa info en el PDF
-    const fileName = 'test.pdf';
-    const blob = await pdf(<PDFView />).toBlob();
-    saveAs(blob, fileName);
-    // setExportPDF(true)
+    // hacer la llamada para conseguir toda la info y organizar esa info en el PDF
+    var baseUrl = 'http://localhost:8000/'
+    // var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+    var url = baseUrl + "api/v1/export-pdf/";
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        'book_id': params['book_id'],
+        'mode': params['mode']
+      })
+    }).then(response => response.json())
+    response['playlist'] = playlist
+    // console.log(response)
+    setExportPDF(response)
   }
 
 
@@ -116,14 +126,25 @@ function ShowPlaylistView() {
               <h1>Want to remember this forever?</h1>
               <h2>You can save your journey in this website in a PDF file!</h2>
               <button onClick={() => (exportToPDF())}>Export to PDF</button>
+              {exportPDF == null ?
+                <div style={{display:"none"}}></div>
+                :
+                // <a href={'/flow/book/' + params['mode'] + '/' + params['book_id'] + '/show-playlist/' + params['n_tracks'] + '/view-pdf'} target="_blank">
+                //   download!
+                // </a>
+                <PDFDownloadLink className="show-playlist-pdf-download-button" document={<PDFView PDFInfo={exportPDF} />} fileName={exportPDF['title'] + ".pdf"}>
+                  {({ blob, url, loading, error }) =>
+                    loading ? 'Loading document...' : 'Download now!'
+                  }
+                </PDFDownloadLink>
+                }
             </div>
           } 
-          
           {playlist != null &&
             <div className="show-playlist-playlist">
               <h2>Click on each track to access the Spotify url!</h2>
               <p>Tip: it is advisable to create your own empty Spotify playlist, and add each track one by one</p>
-              {playlist.map((t) => (
+              {playlist?.map((t) => (
                 <div className={'show-playlist-playlist-div-' + t[0]}>
                   {/* <p>{t[0]} {t[1].length}</p> */}
                   {t[1].map((tr) => (
@@ -147,6 +168,11 @@ function ShowPlaylistView() {
                 </div>
               ))}
             </div>
+          }
+          {exportPDF != null &&
+            <PDFViewer className="show-playlist-pdf-viewer">
+              <PDFView PDFInfo={exportPDF}/>
+            </PDFViewer>
           }
         </div>
       }

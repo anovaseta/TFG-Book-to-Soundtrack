@@ -100,21 +100,37 @@ class getTrackPool(viewsets.ViewSet):
 class exportToPDF(viewsets.ViewSet):
 # has offline and online mode
     def create(self, request):
-        b = json.loads(request.body.decode("utf-8"))
+        # get request with isbn/uid param
+        # print(pk)
+        b = json.loads(request.body)
         print(b)
-        # Create the HttpResponse object with the appropriate PDF headers.
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
-
-        # Create the PDF object, using the response object as its "file."
-        p = canvas.Canvas(response)
-
-        # Draw things on the PDF. Here's where the PDF generation happens.
-        # See the ReportLab documentation for the full list of functionality.
-        p.drawString(100, 100, "Hello world.")
-
-        # Close the PDF object cleanly, and we're done.
-        p.showPage()
-        p.save()
-        return response
-        
+        if b['mode'] == 'offline':
+            book = Storygraph_Book.objects.filter(isbn_uid=b['book_id'])
+            book = serializers.serialize('json', book)
+            book = json.loads(book)
+            tag_weights = book[0]['fields']['tag_weights']
+            # print(tag_weights)
+            book[0]['fields']['synonyms'] = {}
+            for t in tag_weights:
+                tt = t[0]
+                tag = Storygraph_Tag.objects.get(tag_name=tt)
+                # print(tag)
+                query_list = Synonym_Relation.objects.filter(tag_id=tag.id)
+                # print(query_list)
+                syn_list = []
+                for s in query_list:
+                    syn_list.append((Synonym.objects.get(id=s.synonym_id).synonym, s.affinity)) # (synonym, affinity)
+                # print(syn_list)
+                syn_dict = {'strongest':[], 'strong': [], 'weak': []}
+                for s in syn_list:
+                    syn_dict[s[1]].append(s[0])
+                # print(syn_dict)
+                book[0]['fields']['synonyms'][tt] = syn_dict
+            return Response(book[0]['fields'])
+        elif b['mode'] == 'online':
+            # print('online')
+            # id = book_search([b['book_id']])
+            # book = book_info(id)
+            # book = add_weights_to_book(book)
+            # return Response(book)
+            return Response({})

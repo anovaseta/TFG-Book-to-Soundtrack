@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { usePDF, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { usePDF, Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 
 function PDFView({PDFInfo}) {
 
@@ -18,7 +18,7 @@ function PDFView({PDFInfo}) {
     }
   });
 
-  return (
+  const myPDF = () => (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
@@ -26,6 +26,13 @@ function PDFView({PDFInfo}) {
         </View>
       </Page>
     </Document>
+  )
+
+  return (
+    <PDFViewer>
+      <myPDF />
+    </PDFViewer>
+
   );
 }
 

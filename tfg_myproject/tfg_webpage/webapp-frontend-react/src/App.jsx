@@ -5,6 +5,7 @@ import ChooseBookView from "./views/chooseBook/chooseBookView"
 import SelectedBookView from "./views/selectedBook/selectedBookView"
 import ConfigurePlaylistView from "./views/configurePlaylist/configurePlaylistView"
 import ShowPlaylistView from "./views/showPlaylist/showPlaylistView"
+import PDFPreView from "./views/PDFPreview/PDFPreView"
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/flow/book/:mode/:book_id" element={<SelectedBookView />} />
                 <Route path="/flow/book/:mode/:book_id/create-playlist" element={<ConfigurePlaylistView />} />
                 <Route path="/flow/book/:mode/:book_id/show-playlist/:n_tracks" element={<ShowPlaylistView />} />
+                <Route path="/flow/book/:mode/:book_id/show-playlist/:n_tracks/view-pdf" element={<PDFPreView />} />
                 <Route path="*" element={<h1>Not found!</h1>} />
             </Routes>
         </BrowserRouter>

@@ -43,7 +43,7 @@
   max-width: 550px;
   position: relative;
   left: 700px;
-  bottom: 240px;
+  bottom: 250px;
   background-color: #d4966f;
   padding: 5px 20px 20px 20px;
   border-radius: 10px;
@@ -72,6 +72,27 @@
 }
 
 .show-playlist-pdf button:hover {
+  background-color: #3f6477;
+  text-decoration: underline;
+}
+
+.show-playlist-pdf-download-button {
+  position: relative;
+  left: 203px;
+  text-decoration: none;
+  display: inline;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #597e91;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.show-playlist-pdf-download-button:hover {
   background-color: #3f6477;
   text-decoration: underline;
 }
@@ -162,4 +183,9 @@
 .show-playlist-playlist-text-go {
   color: white;
   display: none;
+}
+
+.show-playlist-pdf-viewer {
+  width: 700px;
+  height: 1000px;
 }
