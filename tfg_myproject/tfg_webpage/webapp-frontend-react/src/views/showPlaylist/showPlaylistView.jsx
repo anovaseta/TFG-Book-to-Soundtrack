@@ -90,7 +90,18 @@ function ShowPlaylistView() {
         'mode': params['mode']
       })
     }).then(response => response.json())
-    response['playlist'] = playlist
+
+    let playlistList = []
+    for (let i = 0; i < playlist.length; i++) {
+      let row = playlist[i][1]
+      for (let j=0; j < row.length; j++) {
+        playlistList.push(row[j])
+      }
+    }
+
+    // console.log(playlistList)
+
+    response['playlist'] = playlistList
     // console.log(response)
     setExportPDF(response)
   }
