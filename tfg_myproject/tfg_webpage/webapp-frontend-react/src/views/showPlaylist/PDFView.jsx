@@ -23,7 +23,8 @@ function PDFView({PDFInfo}) {
     },
     section_header: {
       backgroundColor: '#864e3e',
-      padding: 10
+      padding: 10,
+      fontSize: 30
     },
     section_book: {
       position: 'relative',
