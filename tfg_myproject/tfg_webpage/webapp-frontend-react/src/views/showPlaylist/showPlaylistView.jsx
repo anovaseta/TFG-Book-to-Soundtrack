@@ -180,11 +180,11 @@ function ShowPlaylistView() {
               ))}
             </div>
           }
-          {exportPDF != null &&
+          {/* {exportPDF != null &&
             <PDFViewer className="show-playlist-pdf-viewer">
               <PDFView PDFInfo={exportPDF}/>
             </PDFViewer>
-          }
+          } */}
         </div>
       }
 
