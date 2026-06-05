@@ -80,8 +80,8 @@ function ShowPlaylistView() {
 
   async function exportToPDF() {
     // hacer la llamada para conseguir toda la info y organizar esa info en el PDF
-    var baseUrl = 'http://localhost:8000/'
-    // var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
+    // var baseUrl = 'http://localhost:8000/'
+    var baseUrl = "https://tfg-book-to-soundtrack.onrender.com/"
     var url = baseUrl + "api/v1/export-pdf/";
     const response = await fetch(url, {
       method: 'POST',
