@@ -1,7 +1,7 @@
 # 📖​🎶​WELCOME TO MY BACHELOR'S THESIS PROJECT
 
 This project, called 'Book-to-Soundtrack', takes a book (any book!) as input and, after some **algorithm magic**, develops a music playlist as output that coincides with the vibes of the book. 
-As part of the project, a full stack website was create to allow user interaction. [Click here to go to my website](tfg-book-to-soundtrack-site.onrender.com).
+As part of the project, a full stack website was create to allow user interaction. <a href="https://tfg-book-to-soundtrack-site.onrender.com/" target="_blank">Click here to go to my website</a>
 
 
 ## 🌟 Highlights
