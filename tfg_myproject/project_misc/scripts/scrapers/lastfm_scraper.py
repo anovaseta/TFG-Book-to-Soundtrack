@@ -3,6 +3,7 @@
 # Description: un script que recoge los top artists, albums y tracks para cada tag de la bbdd
 
 import sys
+import os
 import json
 import pylast
 import django
@@ -11,7 +12,8 @@ import django
 def get_lastfm_credentials():
 
     # manage LastFM credentials and connect to network
-    account_file = open("json_files/lastfm_api_account.json", "r")
+    account_path = os.path.join('../', '../', 'json_files/lastfm_api_account.json')
+    account_file = open(account_path, "r")
     account_info = json.load(account_file)
     password_hash = pylast.md5(account_info["password"])
     network = pylast.LastFMNetwork(
@@ -94,13 +96,13 @@ def get_lastfm_music(tag_list, network, n):
 
 if __name__ == "__main__":
 
-    f = open("json_files/synonym_list.json", "r")
-    tag_list = json.loads(f.read())
-    clean_tag_list = [t[0] for t in tag_list]
-    print(clean_tag_list)
+    # f = open("json_files/synonym_list.json", "r")
+    # tag_list = json.loads(f.read())
+    # clean_tag_list = [t[0] for t in tag_list]
+    # print(clean_tag_list)
     # print(len(clean_tag_list))
 
-    music_dict = get_lastfm_music(clean_tag_list, get_lastfm_credentials(), 5)
+    music_dict = get_lastfm_music(['heartbroken'], get_lastfm_credentials(), 5)
     print(music_dict)
 
     f = open("json_files/lastfm_entities.json", "w", encoding='utf-8')
