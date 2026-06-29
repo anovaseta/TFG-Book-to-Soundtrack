@@ -22,37 +22,14 @@ A paragraph explaining your work, who you are, and why you made it.
 
 ### ✍️ Authors
 
-It's me! Noa (Marina). I'm a software engineer and developer with a unique and creative point of view. My socials are:
-- My <a href=" https://www.linkedin.com/in/anovaseta" target="_blank">LinkedIn profile</a>.
+It's me! Noa (Marina). I'm a software engineer and developer with a unique and creative point of view. Places where you can find me:
+<br>
+<a href="https://www.linkedin.com/in/anovaseta" target="_blank"><image src="tfg_myproject/project_misc/static/linkedin-svgrepo-com.svg" alt="LinkedIn" width=25 height=25 align="left" border=50 /></a>
+<br>
+
 
 
 
 ## 🚀 Website usage tips
 
 *Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
-
-```py
->>> import mypackage
->>> mypackage.do_stuff()
-'Oh yeah!'
-```
-
-
-## ⬇️ Installation
-
-Simple, understandable installation instructions!
-
-```bash
-pip install my-package
-```
-
-And be sure to specify any other minimum requirements like Python versions or operating systems.
-
-*You may be inclined to add development instructions here, don't.*
-
-
-## 💭 Feedback and Contributing
-
-Add a link to the Discussions tab in your repo and invite users to open issues for bugs/feature requests.
-
-This is also a great place to invite others to contribute in any ways that make sense for your project. Point people to your DEVELOPMENT and/or CONTRIBUTING guides if you have them.
